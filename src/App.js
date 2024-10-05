@@ -28,7 +28,7 @@ function App() {
   const turn = (state, dispatch) => {
     setShowExpeditions(false)
     const foodRequirement = foodRequired(state)
-    if (foodRequirement > state.food) {
+    if (foodRequirement > state.food || state.population.length == 0) {
       dispatch({
         type: "GAME_OVER"
       })
