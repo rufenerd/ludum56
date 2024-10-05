@@ -4,15 +4,15 @@ import { Goober, Hungry, Packer } from './classes';
 const GameContext = createContext();
 
 const initialState = {
-    world: {
-        population: [
-            new Goober("Stev"),
-            new Goober("Jez"),
-            new Hungry("Derb"),
-            new Packer("Stelbo")
-        ],
-        food: 100,
-    },
+    population: [
+        new Goober("Stev"),
+        new Goober("Jez"),
+        new Hungry("Derb"),
+        new Packer("Stelbo")
+    ],
+    food: 100,
+    hand: [],
+    team: []
 };
 
 const gameReducer = (state, action) => {
@@ -22,21 +22,47 @@ const gameReducer = (state, action) => {
         case 'CONSUME':
             return {
                 ...state,
-                world: {
-                    ...state.world,
-                    food: state.world.food - action.payload.consume,
-                },
+                food: state.food - action.payload.consume,
             };
         case 'GAME_OVER':
             return {
                 ...state,
                 gameOver: true
             }
+        case 'CLEAR_TEAM':
+            return {
+                ...state,
+                team: []
+            }
         case 'DRAW':
             return {
                 ...state,
                 hand: action.payload.hand,
             }
+        case 'TOGGLE_TEAM_MEMBER':
+            const { goober } = action.payload;
+            const memberExists = state.team.some(member => member === goober);
+
+            return {
+                ...state,
+                team: memberExists
+                    ? state.team.filter(member => member !== goober)
+                    : [...state.team, action.payload.goober],
+            }
+        case 'STAY':
+            return {
+                ...state,
+                hand: state.hand.filter(member => !state.team.includes(member)),
+                team: []
+            }
+        case 'BIRTH':
+            return {
+                ...state,
+                population: [...state.population, action.payload.goober],
+                hand: state.hand.filter(member => !state.team.includes(member)),
+                team: []
+            }
+        case 'EXPEDITION':
         default:
             return state;
     }
