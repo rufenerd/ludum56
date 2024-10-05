@@ -142,6 +142,10 @@ function App() {
     let unusedBozos = state.team.filter(x => x.klass == "bozo");
     let usedBozos = []
     let died = team.filter(x => {
+      if (x.klass == "immortal") {
+        return false
+      }
+
       const shouldDie = Math.random() < risk;
       const doctorAvailable = unusedDoctors > 0;
 

@@ -59,6 +59,14 @@ export class Buddy extends Goober {
     }
 }
 
+export class Immortal extends Goober {
+    constructor(name) {
+        super(name);
+        this.klass = "immortal";
+        this.description = "Can not die"
+    }
+}
+
 export class Packer extends Goober {
     constructor(name) {
         super(name);
