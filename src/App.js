@@ -125,7 +125,20 @@ function App() {
     const { team } = state
 
     const risk = DIFFICULTY * zone.risk / team.reduce((m, a) => m * a.protect, 1)
-    const died = team.filter(x => Math.random() < risk)
+
+    let unusedDoctors = state.team.filter(x => x.klass == "doctor").length;
+    const died = team.filter(x => {
+      const dying = Math.random() < risk;
+      const doctorAvailable = unusedDoctors > 0;
+
+      if (dying && doctorAvailable) {
+        unusedDoctors--;
+        return false;
+      }
+
+      return dying;
+    });
+
     const alive = team.filter(x => !died.includes(x))
 
     let unlockedZone = null
