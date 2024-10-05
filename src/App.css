@@ -135,3 +135,47 @@ button {
   background-color: rgba(0, 0, 255, 0.3);
   border-radius: 50%;
 }
+
+.zone .tooltip {
+  visibility: hidden;
+  background-color: #fff; /* White background */
+  color: #000; /* Black text */
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1000;
+  left: 110%; /* Positioned to the right of the circle */
+  top: 50%;
+  transform: translateY(-50%);
+  white-space: nowrap;
+
+  /* Optional Arrow */
+  opacity: 0;
+  transition: opacity 0.3s;
+  border: 1px solid #ccc; /* Optional border for better visibility */
+}
+
+.tooltip::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 100%; /* Arrow on the left, pointing to the circle */
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent white transparent transparent;
+}
+
+.zone:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+.zone-tooltip {
+  margin: 10px
+}
+
+.zone-title {
+  font-weight: bold;
+}

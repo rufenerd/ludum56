@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Zone from './Zone'
 
 function Map(props) {
     const { zones, onZoneClick, unlockedRooms } = props
@@ -23,7 +24,11 @@ function Map(props) {
                         zIndex: 999,
                         top: `${zone.y || 500 * Math.random()}px`,
                         left: `${zone.x || 500 * Math.random()}px`,
-                    }} />
+                    }}>
+                        <div className="tooltip">
+                            <Zone zone={zone} />
+                        </div>
+                    </div>
                 ))}
             </div>
             <div className="map-container" onWheel={handleWheel}>

@@ -17,7 +17,7 @@ export const zones = [
         room: 1,
     },
     {
-        name: "zone1-3",
+        name: "Vent",
         risk: 3,
         bounty: 0,
         remaining: 0,
