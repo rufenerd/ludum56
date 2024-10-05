@@ -29,7 +29,7 @@ function Map(props) {
             <div className="map-container" onWheel={handleWheel}>
                 <div className="map" style={{ transform: `scale(${scale})` }}>
                     {unlockedRooms.includes(1) && <img src="assets/room_1.webp" className="room" alt="Room 1" style={{ top: '0', left: '0px' }} />}
-                    {unlockedRooms.includes(2) && <img src="assets/room_2.webp" className="room" alt="Room 2" style={{ top: '0', left: '926px' }} />}
+                    {unlockedRooms.includes(2) && <img src="assets/room_2.webp" className="room" alt="Room 2" style={{ top: '0', left: '1360px' }} />}
                 </div>
             </div>
         </div >
