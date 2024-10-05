@@ -43,6 +43,14 @@ export class Doctor extends Goober {
     }
 }
 
+export class Asexual extends Goober {
+    constructor(name) {
+        super(name);
+        this.klass = "asexual";
+        this.description = "Can breed on its own"
+    }
+}
+
 export class Packer extends Goober {
     constructor(name) {
         super(name);

@@ -93,7 +93,7 @@ function App() {
   }
 
   const breed = (state, dispatch) => {
-    if (state.team.length < 2) {
+    if (state.team.length < 2 && !state.team.map(x => x.klass).includes("asexual")) {
       return
     }
 
