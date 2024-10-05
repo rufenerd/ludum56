@@ -1,5 +1,5 @@
 import React, { createContext, useReducer, useContext } from 'react';
-import { Goober, Hungry, Packer, Protector, Stud, Explorer, Doctor, Scavenger, Bozo, Asexual, Buddy, Recruiter, Opener } from './classes';
+import { Goober } from './classes';
 import { zones } from './zones'
 
 const GameContext = createContext();
@@ -7,21 +7,17 @@ const GameContext = createContext();
 const initialState = {
     population: [
         new Goober("Stev"),
-        new Protector("Jez"),
-        new Hungry("Derb"),
-        new Packer("Stelbo"),
-        new Stud("Malx"),
-        new Explorer("Weebie"),
-        new Doctor("Toogie"),
-        new Scavenger("Ribnar"),
-        new Bozo("Ilva"),
-        new Asexual("Wiggy"),
-        new Buddy("Waz"),
-        new Buddy("Wav"),
-        new Recruiter("Darf"),
-        new Opener("Chimi"),
+        new Goober("Jez"),
+        new Goober("Derb"),
+        new Goober("Stelbo"),
+        new Goober("Malx"),
+        new Goober("Weebie"),
+        new Goober("Toogie"),
+        new Goober("Ribnar"),
+        new Goober("Ilva"),
+        new Goober("Darf"),
     ],
-    food: 1000,
+    food: 110,
     hand: [],
     team: [],
     zones,

@@ -13,7 +13,7 @@ import PlayArea from './PlayArea';
 import { Goober, Hungry, Packer, Immortal, Protector, Stud, Explorer, Doctor, Scavenger, Bozo, Asexual, Buddy, Recruiter, Opener } from './classes';
 import { names } from './names'
 
-const START_HAND_SIZE = 3
+const START_HAND_SIZE = 5
 const DIFFICULTY = 0.2
 
 function App() {
