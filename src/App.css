@@ -32,6 +32,13 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+.hand {
+  height: 80vh;
+}
+.hand .goober-group {
+  height: 80vh;
+}
+
 .team-bar {
   position: absolute;
   bottom: 0;
