@@ -30,9 +30,11 @@ const gameReducer = (state, action) => {
 
     switch (action.type) {
         case 'CONSUME':
+            const newFood = state.food - action.payload.consume
             return {
                 ...state,
-                food: state.food - action.payload.consume,
+                food: newFood,
+                gameOver: newFood < 0
             };
         case 'GAME_OVER':
             return {

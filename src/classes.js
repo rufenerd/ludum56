@@ -3,10 +3,10 @@ export class Goober {
         this.name = name;
         this.klass = "goober";
         this.foodRequirement = 1;
-        this.carryingCapacity = 5;
+        this.carryingCapacity = 3;
         this.scavenge = 1;
         this.protect = 1;
-        this.description = "Just a normal"
+        this.description = "Just a normal. Eats 1, carries 3."
     }
 }
 

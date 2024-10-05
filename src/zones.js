@@ -15,6 +15,7 @@ export const zones = [
         unlocked: false,
         canUnlock: (team) => team.map(x => x.klass).includes("opener"),
         room: 1,
+        requires: "opener"
     },
     {
         name: "Vent",
@@ -26,7 +27,8 @@ export const zones = [
         room: 1,
         unlocksRoom: 2,
         x: 600,
-        y: 150
+        y: 150,
+        requires: "explorer"
     },
     {
         name: "zone-2-1",
@@ -44,7 +46,8 @@ export const zones = [
         unlocked: false,
         canUnlock: (team) => team.map(x => x.klass).includes("explorer"),
         room: 2,
-        unlocksRoom: 3
+        unlocksRoom: 3,
+        requires: "explorer"
     },
     {
         name: "zone3-1",
@@ -53,6 +56,7 @@ export const zones = [
         remaining: 1000,
         unlocked: false,
         canUnlock: (team) => team.map(x => x.klass).includes("explorer") && team.map(x => x.klass).includes("opener"),
-        room: 3
+        room: 3,
+        requires: "explorer and opener"
     }
 ]
