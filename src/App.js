@@ -5,6 +5,7 @@ import { Goober } from './classes';
 import { names } from './names'
 import React, { useState } from 'react';
 import Hand from './Hand';
+import Stats from './Stats';
 
 const HAND_SIZE = 3
 const DIFFICULTY = 0.5
@@ -130,12 +131,7 @@ function App() {
 
   return (
     <div className="App">
-      <div>
-        FOOD: {state.food}
-      </div>
-      <div>
-        POPULATION: {state.population.length}
-      </div>
+      <Stats food={state.food} population={state.population} />
       <Hand hand={state.hand} onClick={(x) => toggleTeamMember(state, dispatch, x)} />
       <div>
         TEAM:
