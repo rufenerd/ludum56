@@ -1,5 +1,4 @@
 import React, { createContext, useReducer, useContext } from 'react';
-import { map } from 'underscore';
 import { Goober, Hungry, Packer, Protector, Stud, Explorer, Doctor, Scavenger, Bozo, Asexual, Buddy, Recruiter } from './classes';
 import { zones } from './zones'
 
@@ -86,7 +85,7 @@ const gameReducer = (state, action) => {
                 }]
             }
         case 'EXPEDITION':
-            const { died, alive, gainedFood, unlockedZone, savingDoctors, savedGoobers } = action.payload
+            const { died, alive, gainedFood, unlockedZone, savingDoctors, savedGoobers, targetZone } = action.payload
 
             let expeditionResults = []
 
@@ -124,7 +123,8 @@ const gameReducer = (state, action) => {
             if (died.length) {
                 expeditionResults.push({
                     type: "death",
-                    goobers: died
+                    goobers: died,
+                    targetZone
                 })
             }
 

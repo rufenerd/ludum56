@@ -28,7 +28,7 @@ function Results(props) {
             break;
         case "death":
             title = "RIP"
-            message = "These brave souls have perished!"
+            message = `These brave souls have perished adventuring to ${result.targetZone.name}`
             break;
         case 'unlockedZone':
             title = "Discovery!"

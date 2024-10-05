@@ -185,7 +185,8 @@ function App() {
             died,
             alive,
             savingDoctors,
-            savedGoobers
+            savedGoobers,
+            targetZone: zone
           }
         })
         return
@@ -204,7 +205,8 @@ function App() {
         alive,
         unlockedZone: unlockedZone,
         savingDoctors,
-        savedGoobers
+        savedGoobers,
+        targetZone: zone
       }
     })
     toggleShowMap()
