@@ -25,8 +25,8 @@ export const zones = [
         canUnlock: (team) => team.map(x => x.klass).includes("explorer"),
         room: 1,
         unlocksRoom: 2,
-        x: 400,
-        y: 100
+        x: 600,
+        y: 150
     },
     {
         name: "zone-2-1",
