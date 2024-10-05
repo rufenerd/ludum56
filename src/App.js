@@ -13,7 +13,7 @@ import PlayArea from './PlayArea';
 import { Goober } from './classes';
 import { names } from './names'
 
-const HAND_SIZE = 3
+const START_HAND_SIZE = 3
 const DIFFICULTY = 0.2
 
 function App() {
@@ -42,7 +42,8 @@ function App() {
   }
 
   const draw = (state) => {
-    let hand = _.sample(state.population, HAND_SIZE)
+    const numRecruiters = state.population.filter(x => x.klass == "recruiter").length
+    let hand = _.sample(state.population, START_HAND_SIZE + numRecruiters)
     let unusedBuddies = hand.filter(x => x.klass == "buddy").length
     let usedBuddies = 0
     while (unusedBuddies > 0) {

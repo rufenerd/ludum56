@@ -113,3 +113,11 @@ export class Bozo extends Goober {
         this.description = "Dies first"
     }
 }
+
+export class Recruiter extends Goober {
+    constructor(name) {
+        super(name);
+        this.klass = "recruiter";
+        this.description = "Adds 1 to hand size when in population"
+    }
+}
