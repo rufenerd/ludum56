@@ -136,7 +136,7 @@ function App() {
       <Hand hand={state.hand} onClick={(x) => toggleTeamMember(state, dispatch, x)} />
       <div>
         TEAM:
-        <GooberGroup goobers={state.team} />
+        <GooberGroup goobers={state.team} onClick={(x) => toggleTeamMember(state, dispatch, x)} />
         {state.team.length && <div>
           <button onClick={() => stay(state, dispatch)}>STAY</button>
           <button onClick={() => breed(state, dispatch)}>BREED</button>
