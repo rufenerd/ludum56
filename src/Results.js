@@ -35,6 +35,10 @@ function Results(props) {
             message = `These fine adventurers have discovered a new zone.`
             extra = <div className="title">{result.zone.name}</div>
             break;
+        case 'savingDoctors':
+            title = "Saved!"
+            message = 'These doctors prevented the following deaths!'
+            extra = <GooberGroup goobers={result.savedGoobers}></GooberGroup>
     }
 
     return (

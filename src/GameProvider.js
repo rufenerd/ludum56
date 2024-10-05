@@ -80,7 +80,7 @@ const gameReducer = (state, action) => {
                 }]
             }
         case 'EXPEDITION':
-            const { died, alive, gainedFood, unlockedZone } = action.payload
+            const { died, alive, gainedFood, unlockedZone, savingDoctors, savedGoobers } = action.payload
 
             let expeditionResults = []
 
@@ -104,6 +104,14 @@ const gameReducer = (state, action) => {
                     type: "food",
                     goobers: alive,
                     gainedFood
+                })
+            }
+
+            if (savingDoctors.length > 0) {
+                expeditionResults.push({
+                    type: "savingDoctors",
+                    goobers: savingDoctors,
+                    savedGoobers
                 })
             }
 

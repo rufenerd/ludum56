@@ -127,16 +127,20 @@ function App() {
     const risk = DIFFICULTY * zone.risk / team.reduce((m, a) => m * a.protect, 1)
 
     let unusedDoctors = state.team.filter(x => x.klass == "doctor").length;
+    const savingDoctors = [];
+    const savedGoobers = [];
     const died = team.filter(x => {
-      const dying = Math.random() < risk;
+      const shouldDie = Math.random() < risk;
       const doctorAvailable = unusedDoctors > 0;
 
-      if (dying && doctorAvailable) {
+      if (shouldDie && doctorAvailable) {
         unusedDoctors--;
+        savingDoctors.push(state.team.find(d => d.klass == "doctor" && !savingDoctors.includes(d)));
+        savedGoobers.push(x)
         return false;
       }
 
-      return dying;
+      return shouldDie;
     });
 
     const alive = team.filter(x => !died.includes(x))
@@ -151,7 +155,9 @@ function App() {
           payload: {
             gainedFood: 0,
             died,
-            alive
+            alive,
+            savingDoctors,
+            savedGoobers
           }
         })
         return
@@ -168,7 +174,9 @@ function App() {
         gainedFood,
         died,
         alive,
-        unlockedZone: unlockedZone
+        unlockedZone: unlockedZone,
+        savingDoctors,
+        savedGoobers
       }
     })
     toggleShowMap()
