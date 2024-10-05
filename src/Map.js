@@ -18,9 +18,12 @@ function Map(props) {
         <div className="map">
             <div className="zones">
                 {zones.filter(z => unlockedRooms.includes(z.room)).map(zone => (
-                    <button key={zone.name} onClick={() => onZoneClick(zone)}>
-                        {zone.name}
-                    </button>
+                    <div className="zone" key={zone.name} onClick={() => onZoneClick(zone)} style={{
+                        position: 'absolute',
+                        zIndex: 999,
+                        top: `${zone.y || 500 * Math.random()}px`,
+                        left: `${zone.x || 500 * Math.random()}px`,
+                    }} />
                 ))}
             </div>
             <div className="map-container" onWheel={handleWheel}>
@@ -29,7 +32,7 @@ function Map(props) {
                     {unlockedRooms.includes(2) && <img src="assets/room_2.webp" className="room" alt="Room 2" style={{ top: '0', left: '926px' }} />}
                 </div>
             </div>
-        </div>
+        </div >
     );
 }
 
