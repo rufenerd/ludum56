@@ -1,0 +1,20 @@
+export const names = [
+    "Stev", "Jez", "Derb", "Stelbo", "Womble", "Fizz", "Noodle", "Blinky",
+    "Jumbo", "Snicklefritz", "Wobble", "Frodo", "Ziggy", "Pumpernickel",
+    "Doodle", "Bumble", "Flapjack", "Munchkin", "Squiggle", "Fizzlepop",
+    "Jibber", "Quirk", "Blubber", "Dizzy", "Wizzle", "Snickers", "Tater",
+    "Wiggles", "Gizmo", "Dabble", "Chuckle", "Jangle", "Buzzy", "Chubbs",
+    "Gigglepants", "Kooky", "Dingbat", "Squishy", "Sprocket", "Wobblenut",
+    "Boingo", "Doozy", "Bebop", "Gubbins", "Fiddlesticks", "Nibbles",
+    "Zany", "Muffin", "Nutter", "Squee", "Pudding", "Snarf", "Twitchy",
+    "Wigglebutt", "Dandy", "Bafflegab", "Funky", "Toodles", "Whiskers",
+    "Zippy", "Bamboozle", "Fluffy", "Gooberoni", "Guffaw", "Pipsqueak",
+    "Wobblebottom", "Razzle", "Snickerbottom", "Lumpy", "Jabber", "Dumpling",
+    "Quibble", "Slapdash", "Fuzzbucket", "Sillybean", "Tickle", "Jingle",
+    "Wiggly", "Wobblewump", "Fuzzle", "Zoodles", "Bibbles", "Jive",
+    "Pippin", "Squeegee", "Fizzle", "Jangleberry", "Wibble", "Dabadoo",
+    "Snuggles", "Bloop", "Giggly", "Doddle", "Ziggurat", "Frolic",
+    "Giggler", "Dizzywhirl", "Splat", "Bubblegum", "Whirligig", "Jibberjabber",
+    "Boggle", "Squibble", "Dillydally", "Bamboozler", "Noodlebug", "Gibber",
+    "Twinkie"
+]
