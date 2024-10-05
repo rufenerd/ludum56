@@ -17,7 +17,6 @@ function Map(props) {
     return (
         <div className="map">
             <div className="zones">
-                {unlockedRooms.join(", ")}
                 {zones.filter(z => unlockedRooms.includes(z.room)).map(zone => (
                     <button key={zone.name} onClick={() => onZoneClick(zone)}>
                         {zone.name}

@@ -23,7 +23,7 @@ export class Explorer extends Goober {
     constructor(name) {
         super(name);
         this.klass = "explorer";
-        this.description = "Required to unlock new zones"
+        this.description = "Required to unlock new areas"
     }
 }
 
@@ -31,7 +31,7 @@ export class Opener extends Goober {
     constructor(name) {
         super(name);
         this.klass = "opener";
-        this.description = "Required to unlock advanced zones"
+        this.description = "Required to unlock some areas"
     }
 }
 

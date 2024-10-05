@@ -13,7 +13,7 @@ export const zones = [
         bounty: 20,
         remaining: 200,
         unlocked: false,
-        canUnlock: (team) => team.map(x => x.klass).includes("explorer"),
+        canUnlock: (team) => team.map(x => x.klass).includes("opener"),
         room: 1
     },
     {
@@ -22,7 +22,7 @@ export const zones = [
         bounty: 0,
         remaining: 0,
         unlocked: false,
-        canUnlock: () => true,//(team) => team.map(x => x.klass).includes("explorer") && team.map(x => x.klass).includes("opener"),
+        canUnlock: (team) => team.map(x => x.klass).includes("explorer"),
         room: 1,
         unlocksRoom: 2
     },
