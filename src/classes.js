@@ -44,6 +44,15 @@ export class Packer extends Goober {
     }
 }
 
+export class Scavenger extends Goober {
+    constructor(name) {
+        super(name);
+        this.klass = "scavenger";
+        this.scavenge = 10
+        this.description = "10x amount of found food"
+    }
+}
+
 export class Hungry extends Goober {
     constructor(name) {
         super(name);
