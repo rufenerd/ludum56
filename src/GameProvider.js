@@ -79,14 +79,15 @@ const gameReducer = (state, action) => {
 
             let zones = state.zones
             if (unlockedZone) {
-                zones = zones.map(zone => zone === unlockedZone ? {
+                const newZone = {
                     ...unlockedZone,
                     unlocked: true
-                } : zone)
+                }
+                zones = zones.map(zone => zone === unlockedZone ? newZone : zone)
                 expeditionResults.push({
                     type: "unlockedZone",
                     goobers: alive,
-                    zone: unlockedZone
+                    zone: newZone
                 })
             }
 

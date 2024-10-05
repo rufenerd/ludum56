@@ -7,6 +7,7 @@ import React, { useState } from 'react';
 import Hand from './Hand';
 import Stats from './Stats';
 import TeamBar from './TeamBar';
+import Results from './Results';
 
 const HAND_SIZE = 3
 const DIFFICULTY = 0.5
@@ -14,10 +15,15 @@ const DIFFICULTY = 0.5
 function App() {
   const { state, dispatch } = useGame();
   const [showExpeditions, setShowExpeditions] = useState(false);
+  const [showResults, setShowResults] = useState(true);
 
 
   const toggleExpedition = () => {
     setShowExpeditions(!showExpeditions)
+  }
+
+  const toggleResults = () => {
+    setShowResults(!showResults)
   }
 
   const foodRequired = (state) => {
@@ -30,6 +36,7 @@ function App() {
 
   const turn = (state, dispatch) => {
     setShowExpeditions(false)
+    setShowResults(true)
     const foodRequirement = foodRequired(state)
     if (foodRequirement > state.food || state.population.length == 0) {
       dispatch({
@@ -150,7 +157,7 @@ function App() {
         ))}
       </div>}
       <button onClick={() => turn(state, dispatch)}>End Turn</button>
-      <pre>{state.results.length > 0 && JSON.stringify(state.results, null, 2)}</pre>
+      {showResults && state.results.length > 0 && <Results results={state.results} onFinish={toggleResults} />}
     </div>)
 }
 
