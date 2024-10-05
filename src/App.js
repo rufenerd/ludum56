@@ -8,18 +8,19 @@ import Hand from './Hand';
 import Stats from './Stats';
 import TeamBar from './TeamBar';
 import Results from './Results';
+import Map from './Map'
 
 const HAND_SIZE = 3
 const DIFFICULTY = 0.5
 
 function App() {
   const { state, dispatch } = useGame();
-  const [showExpeditions, setShowExpeditions] = useState(false);
+  const [showMap, setShowMap] = useState(false);
   const [showResults, setShowResults] = useState(true);
 
 
-  const toggleExpedition = () => {
-    setShowExpeditions(!showExpeditions)
+  const toggleShowMap = () => {
+    setShowMap(!showMap)
   }
 
   const toggleResults = () => {
@@ -35,7 +36,7 @@ function App() {
   }
 
   const turn = (state, dispatch) => {
-    setShowExpeditions(false)
+    setShowMap(false)
     setShowResults(true)
     const foodRequirement = foodRequired(state)
     if (foodRequirement > state.food || state.population.length == 0) {
@@ -91,7 +92,7 @@ function App() {
   }
 
   const expedition = (state, dispatch, zone) => {
-    setShowExpeditions(false)
+    setShowMap(false)
     const { team } = state
 
     const risk = DIFFICULTY * zone.risk / team.reduce((m, a) => m * a.protect, 1)
@@ -127,7 +128,7 @@ function App() {
         unlockedZone: unlockedZone
       }
     })
-    toggleExpedition()
+    toggleShowMap()
   }
 
   if (state.gameOver) {
@@ -147,15 +148,9 @@ function App() {
         onGooberClick={(x) => toggleTeamMember(state, dispatch, x)}
         onStayClick={() => stay(state, dispatch)}
         onBreedClick={() => breed(state, dispatch)}
-        onExpeditionClick={toggleExpedition}
+        onExpeditionClick={toggleShowMap}
       />
-      {showExpeditions && <div>
-        {state.zones.map(zone => (
-          <button key={zone.name} onClick={() => expedition(state, dispatch, zone)}>
-            {zone.name}
-          </button>
-        ))}
-      </div>}
+      {showMap && <Map zones={state.zones} onZoneClick={(zone) => expedition(state, dispatch, zone)} />}
       <button onClick={() => turn(state, dispatch)}>End Turn</button>
       {showResults && state.results.length > 0 && <Results results={state.results} onFinish={toggleResults} />}
     </div>)
