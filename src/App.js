@@ -6,7 +6,7 @@ import { names } from './names'
 import React, { useState } from 'react';
 import Hand from './Hand';
 import Stats from './Stats';
-import GooberGroup from './GooberGroup';
+import TeamBar from './TeamBar';
 
 const HAND_SIZE = 3
 const DIFFICULTY = 0.5
@@ -84,6 +84,7 @@ function App() {
   }
 
   const expedition = (state, dispatch, zone) => {
+    setShowExpeditions(false)
     const { team } = state
 
     const risk = DIFFICULTY * zone.risk / team.reduce((m, a) => m * a.protect, 1)
@@ -134,23 +135,21 @@ function App() {
     <div className="App">
       <Stats food={state.food} population={state.population} />
       <Hand hand={state.hand} onClick={(x) => toggleTeamMember(state, dispatch, x)} />
-      <div>
-        TEAM:
-        <GooberGroup goobers={state.team} onClick={(x) => toggleTeamMember(state, dispatch, x)} />
-        {state.team.length && <div>
-          <button onClick={() => stay(state, dispatch)}>STAY</button>
-          <button onClick={() => breed(state, dispatch)}>BREED</button>
-          <button onClick={toggleExpedition}>EXPEDITION</button>
-          {showExpeditions && <div>
-            {state.zones.map(zone => (
-              <button key={zone.name} onClick={() => expedition(state, dispatch, zone)}>
-                {zone.name}
-              </button>
-            ))}
-          </div>}
-        </div>}
-      </div>
-      <button onClick={() => turn(state, dispatch)}>TURN</button>
+      <TeamBar
+        team={state.team}
+        onGooberClick={(x) => toggleTeamMember(state, dispatch, x)}
+        onStayClick={() => stay(state, dispatch)}
+        onBreedClick={() => breed(state, dispatch)}
+        onExpeditionClick={toggleExpedition}
+      />
+      {showExpeditions && <div>
+        {state.zones.map(zone => (
+          <button key={zone.name} onClick={() => expedition(state, dispatch, zone)}>
+            {zone.name}
+          </button>
+        ))}
+      </div>}
+      <button onClick={() => turn(state, dispatch)}>End Turn</button>
       <pre>{state.results.length > 0 && JSON.stringify(state.results, null, 2)}</pre>
     </div>)
 }
