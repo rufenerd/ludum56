@@ -52,7 +52,7 @@
   padding: 20px;
 }
 
-.actions button {
+button {
   width: 130px;
   margin: 3px 0;
   background-color: #4CAF50;
@@ -90,4 +90,15 @@
 
 .goober.selectable {
   cursor: pointer;
+}
+
+.results .title {
+    font-size: 60px;
+    font-weight: bold;
+    padding: 20px;
+}
+
+.results .message {
+  padding: 20px;
+  font-size: 48px;
 }
