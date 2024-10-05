@@ -10,7 +10,7 @@ import Map from './Map'
 import GameOver from './GameOver';
 import Intro from './Intro';
 import PlayArea from './PlayArea';
-import { Goober } from './classes';
+import { Asexual, Goober } from './classes';
 import { names } from './names'
 
 const START_HAND_SIZE = 3
@@ -107,17 +107,24 @@ function App() {
   }
 
   const breed = (state, dispatch) => {
-    if (state.team.length < 2 && !state.team.map(x => x.klass).includes("asexual")) {
+    if (state.team.length == 1 && state.team[0].klass == "asexual") {
+      return [new Asexual(randomName())]
+    }
+
+    if (state.team.length < 2) {
       return
     }
 
-    const randomGoober = () => {
+    const randomName = () => {
       let name = null
       while (name == null || state.population.map(x => x.name).includes(name)) {
         name = _.sample(names, 1)[0]
       }
-      console.log(name)
-      return new Goober(name)
+      return name
+    }
+
+    const randomGoober = () => {
+      return new Goober(randomName())
     }
 
     const studCount = state.team.filter(x => x.klass == "stud").length
