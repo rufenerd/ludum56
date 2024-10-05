@@ -139,6 +139,12 @@ const gameReducer = (state, action) => {
                     goobers: alive,
                     gainedFood
                 })
+                const depletedZone = {
+                    ...targetZone,
+                    remaining: targetZone.remaining - gainedFood
+                }
+                zones = zones.map(zone => zone === targetZone ? depletedZone : zone)
+
             }
 
             if (savingDoctors.length > 0) {
