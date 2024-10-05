@@ -10,7 +10,7 @@ import Map from './Map'
 import GameOver from './GameOver';
 import Intro from './Intro';
 import PlayArea from './PlayArea';
-import { Asexual, Goober } from './classes';
+import { Asexual, Goober, Recruiter } from './classes';
 import { names } from './names'
 
 const START_HAND_SIZE = 3
@@ -122,6 +122,8 @@ function App() {
     let offspring
     if (state.team.length == 1 && state.team[0].klass == "asexual") {
       offspring = [new Asexual(randomName())]
+    } else if (state.team.length > 4) {
+      offspring = [new Recruiter(randomName())]
     } else {
       if (state.team.length < 2) {
         return
