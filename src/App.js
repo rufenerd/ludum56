@@ -1,21 +1,24 @@
-import './App.css';
-import { useGame } from './GameProvider';
 import _ from 'underscore';
-import { Goober } from './classes';
-import { names } from './names'
+
+import './App.css';
+
+import { useGame } from './GameProvider';
 import React, { useState } from 'react';
-import Hand from './Hand';
-import Stats from './Stats';
-import TeamBar from './TeamBar';
+
 import Results from './Results';
 import Map from './Map'
 import GameOver from './GameOver';
+import Intro from './Intro';
+import PlayArea from './PlayArea';
+import { Goober } from './classes';
+import { names } from './names'
 
 const HAND_SIZE = 3
 const DIFFICULTY = 0.5
 
 function App() {
   const { state, dispatch } = useGame();
+  const [showIntro, setShowIntro] = useState(true);
   const [showMap, setShowMap] = useState(false);
   const [showResults, setShowResults] = useState(true);
 
@@ -132,6 +135,14 @@ function App() {
     toggleShowMap()
   }
 
+  if (showIntro) {
+    return (
+      <div className="App">
+        <Intro onClick={() => { setShowIntro(false) }} />
+      </div>
+    );
+  }
+
   if (state.gameOver) {
     return (
       <div className="App">
@@ -142,11 +153,12 @@ function App() {
 
   return (
     <div className="App">
-      <Stats food={state.food} population={state.population} />
-      <Hand hand={state.hand} onClick={(x) => toggleTeamMember(state, dispatch, x)} />
-      <TeamBar
+      <PlayArea
+        food={state.food}
+        hand={state.hand}
+        population={state.population}
         team={state.team}
-        onGooberClick={(x) => toggleTeamMember(state, dispatch, x)}
+        onAddGooberToTeam={(x) => toggleTeamMember(state, dispatch, x)}
         onStayClick={() => stay(state, dispatch)}
         onBreedClick={() => breed(state, dispatch)}
         onExpeditionClick={toggleShowMap}
