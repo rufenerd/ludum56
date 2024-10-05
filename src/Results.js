@@ -21,6 +21,11 @@ function Results(props) {
             message = "Braving the elements, some food was retrieved!"
             extra = <div className="title">{result.gainedFood}</div>
             break;
+        case "birth":
+            title = "Birth!"
+            message = "These parents produced offspring!"
+            extra = <GooberGroup goobers={result.offspring}></GooberGroup>
+            break;
         case "death":
             title = "RIP"
             message = "These brave souls have perished!"

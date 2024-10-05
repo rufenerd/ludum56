@@ -75,7 +75,8 @@ const gameReducer = (state, action) => {
                 team: [],
                 results: [...state.results, {
                     type: "birth",
-                    goobers: [action.payload.goober]
+                    goobers: state.team,
+                    offspring: [action.payload.goober]
                 }]
             }
         case 'EXPEDITION':
