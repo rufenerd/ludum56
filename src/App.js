@@ -28,7 +28,7 @@ function App() {
   }
 
   const onResultsFinish = () => {
-    setShowResults(!showResults)
+    setShowResults(false)
   }
 
   const onIntroClick = () => {
@@ -156,9 +156,11 @@ function App() {
     );
   }
 
+  const hidePlayArea = showMap || (showResults && state.results.length > 0)
+
   return (
     <div className="App">
-      {!showMap && <PlayArea
+      {!hidePlayArea && <PlayArea
         food={state.food}
         hand={state.hand}
         population={state.population}
