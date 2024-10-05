@@ -25,7 +25,8 @@ const initialState = {
     hand: [],
     team: [],
     zones,
-    results: []
+    results: [],
+    unlockedRooms: [1]
 };
 
 const gameReducer = (state, action) => {
@@ -99,8 +100,7 @@ const gameReducer = (state, action) => {
             const { died, alive, gainedFood, unlockedZone, savingDoctors, savedGoobers, targetZone, failedUnlockZone } = action.payload
 
             let expeditionResults = []
-
-
+            let unlockedRooms = state.unlockedRooms
             let zones = state.zones
             if (unlockedZone) {
                 const newZone = {
@@ -108,11 +108,22 @@ const gameReducer = (state, action) => {
                     unlocked: true
                 }
                 zones = zones.map(zone => zone === unlockedZone ? newZone : zone)
-                expeditionResults.push({
-                    type: "unlockedZone",
-                    goobers: alive,
-                    zone: newZone
-                })
+
+
+                if (newZone.unlocksRoom) {
+                    unlockedRooms = [...unlockedRooms, unlockedZone.unlocksRoom]
+                    expeditionResults.push({
+                        type: "unlockedRoom",
+                        goobers: alive,
+                        newRoom: newZone.unlocksRoom
+                    })
+                } else {
+                    expeditionResults.push({
+                        type: "unlockedZone",
+                        goobers: alive,
+                        zone: newZone
+                    })
+                }
             }
 
             if (failedUnlockZone) {
@@ -153,6 +164,7 @@ const gameReducer = (state, action) => {
                 hand: state.hand.filter(member => !state.team.includes(member)),
                 team: [],
                 zones,
+                unlockedRooms,
                 results: [...state.results, ...expeditionResults],
             }
         default:
