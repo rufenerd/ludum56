@@ -20,7 +20,7 @@ function App() {
   const { state, dispatch } = useGame();
   const [showIntro, setShowIntro] = useState(true);
   const [showMap, setShowMap] = useState(false);
-  const [showResults, setShowResults] = useState(true);
+  const [showResults, setShowResults] = useState(false);
 
 
   const toggleShowMap = () => {
@@ -29,10 +29,11 @@ function App() {
 
   const onResultsFinish = () => {
     setShowResults(false)
+    startTurn(state, dispatch)
   }
 
   const onIntroClick = () => {
-    turn(state, dispatch)
+    startTurn(state, dispatch)
     setShowIntro(false)
   }
 
@@ -44,9 +45,12 @@ function App() {
     return _.sample(state.population, HAND_SIZE)
   }
 
-  const turn = (state, dispatch) => {
-    setShowMap(false)
+  const endTurn = (state, dispatch) => {
     setShowResults(true)
+  }
+
+  const startTurn = (state, dispatch) => {
+    setShowMap(false)
     const foodRequirement = foodRequired(state)
     if (foodRequirement > state.food || state.population.length == 0) {
       dispatch({
@@ -134,6 +138,7 @@ function App() {
       payload: {
         gainedFood,
         died,
+        alive,
         unlockedZone: unlockedZone
       }
     })
@@ -169,7 +174,7 @@ function App() {
         onStayClick={() => stay(state, dispatch)}
         onBreedClick={() => breed(state, dispatch)}
         onExpeditionClick={toggleShowMap}
-        onEndTurn={() => turn(state, dispatch)}
+        onEndTurn={() => endTurn(state, dispatch)}
       />}
       {showMap && <Map zones={state.zones} onZoneClick={(zone) => expedition(state, dispatch, zone)} />}
       {showResults && state.results.length > 0 && <Results results={state.results} onFinish={onResultsFinish} />}

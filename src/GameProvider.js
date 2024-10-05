@@ -34,7 +34,10 @@ const gameReducer = (state, action) => {
         case 'GAME_OVER':
             return {
                 ...state,
-                gameOver: true
+                gameOver: true,
+                results: [{
+                    type: "game_over"
+                }]
             }
         case 'CLEAR':
             return {
@@ -95,11 +98,13 @@ const gameReducer = (state, action) => {
                 })
             }
 
-            expeditionResults.push({
-                type: "food",
-                goobers: alive,
-                gainedFood
-            })
+            if (gainedFood > 0) {
+                expeditionResults.push({
+                    type: "food",
+                    goobers: alive,
+                    gainedFood
+                })
+            }
 
             if (died.length) {
                 expeditionResults.push({
