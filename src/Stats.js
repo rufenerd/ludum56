@@ -1,7 +1,7 @@
 
 function Stats(props) {
     return (
-        <div>
+        <div className='stats'>
             <div>
                 FOOD: {props.food}
             </div>

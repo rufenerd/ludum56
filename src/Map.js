@@ -1,8 +1,7 @@
-
 function Map(props) {
     const { zones, onZoneClick } = props
     return (
-        <div>
+        <div className="map">
             {zones.map(zone => (
                 <button key={zone.name} onClick={() => onZoneClick(zone)}>
                     {zone.name}

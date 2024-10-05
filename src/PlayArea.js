@@ -5,7 +5,7 @@ import TeamBar from './TeamBar';
 function PlayArea(props) {
     const { food, hand, population, team, onAddGooberToTeam, onStayClick, onBreedClick, onExpeditionClick, onEndTurn } = props
     return (
-        <div>
+        <div className="play-area">
             <Stats food={food} population={population} />
             <Hand hand={hand} onClick={(x) => onAddGooberToTeam(x)} />
             <TeamBar
@@ -14,8 +14,8 @@ function PlayArea(props) {
                 onStayClick={onStayClick}
                 onBreedClick={onBreedClick}
                 onExpeditionClick={onExpeditionClick}
+                onEndTurn={onEndTurn}
             />
-            <button onClick={onEndTurn}>End Turn</button>
         </div >
     );
 }

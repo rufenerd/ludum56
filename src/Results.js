@@ -12,7 +12,7 @@ function Results(props) {
     const result = results[resultsIndex]
 
     return (
-        <div>
+        <div className='results'>
             <div>{result.type}</div>
             {result.goobers && <GooberGroup goobers={result.goobers} />}
             <pre>{JSON.stringify(result, null, 2)}</pre>

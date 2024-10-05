@@ -1,16 +1,16 @@
 import GooberGroup from './GooberGroup';
 
 function TeamBar(props) {
-    const { team, onGooberClick, onStayClick, onBreedClick, onExpeditionClick } = props
+    const { team, onGooberClick, onStayClick, onBreedClick, onExpeditionClick, onEndTurn } = props
     return (
-        <div>
-            TEAM:
+        <div className="team-bar">
             <GooberGroup goobers={team} onClick={onGooberClick} />
-            {team.length && <div>
-                <button onClick={onStayClick}>STAY</button>
-                <button onClick={onBreedClick}>BREED</button>
-                <button onClick={onExpeditionClick}>EXPEDITION</button>
-            </div>}
+            <div className="actions">
+                {team.length > 0 && <button onClick={onStayClick}>STAY</button>}
+                {team.length > 0 && <button onClick={onBreedClick}>BREED</button>}
+                {team.length > 0 && <button onClick={onExpeditionClick}>ADVENTURE</button>}
+                <button onClick={onEndTurn}>END TURN</button>
+            </div>
         </div>
     );
 }

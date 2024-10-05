@@ -1,7 +1,7 @@
 
 function GameOver(props) {
     return (
-        <div>GAME OVER</div >
+        <div className="game-over">GAME OVER</div >
     );
 }
 

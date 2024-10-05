@@ -1,9 +1,12 @@
 
 function GooberGroup(props) {
     return (
-        <div>
+        <div className="goober-group">
             {props.goobers.map(x => (
-                <div key={x.name} onClick={() => props.onClick(x)}>
+                <div
+                    className={"goober" + (props.onClick ? " selectable" : "")}
+                    key={x.name}
+                    onClick={() => props.onClick && props.onClick(x)}>
                     {x.name} ({x.klass})
                 </div>
             ))}

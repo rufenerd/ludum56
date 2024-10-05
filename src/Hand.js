@@ -1,12 +1,10 @@
+import GooberGroup from "./GooberGroup";
+
 function Hand(props) {
     return (
-        <div>
+        <div className="hand">
             HAND:
-            {props.hand.map(x => (
-                <div key={x.name} onClick={() => props.onClick(x)}>
-                    {x.name} ({x.klass})
-                </div>
-            ))}
+            <GooberGroup goobers={props.hand} onClick={(x) => props.onClick(x)} />
         </div>
     );
 }
