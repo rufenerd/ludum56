@@ -163,7 +163,9 @@ function App() {
       offspring = [new Doctor(randomName())]
     } else {
       if (state.team.length < 2) {
-        //TODO
+        dispatch({
+          type: "FAILED_BIRTH"
+        })
         return
       }
 

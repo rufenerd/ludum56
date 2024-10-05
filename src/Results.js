@@ -26,6 +26,10 @@ function Results(props) {
             message = "These parents produced offspring!"
             extra = <GooberGroup goobers={result.offspring}></GooberGroup>
             break;
+        case "failedBirth":
+            title = "Hmm..."
+            message = "Fun was had, but no offspring was produced."
+            break;
         case "death":
             title = "RIP"
             message = `These brave souls have perished adventuring to ${result.targetZone.name}`

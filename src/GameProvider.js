@@ -85,6 +85,16 @@ const gameReducer = (state, action) => {
                     offspring: action.payload.offspring
                 }]
             }
+        case 'FAILED_BIRTH':
+            return {
+                ...state,
+                hand: state.hand.filter(member => !state.team.includes(member)),
+                team: [],
+                results: [...state.results, {
+                    type: "failedBirth",
+                    goobers: state.team
+                }]
+            }
         case 'EXPEDITION':
             const { died, alive, gainedFood, unlockedZone, savingDoctors, savedGoobers, targetZone, failedUnlockZone } = action.payload
 
