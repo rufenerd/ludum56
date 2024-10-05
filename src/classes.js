@@ -9,6 +9,14 @@ export class Goober {
     }
 }
 
+export class Stud extends Goober {
+    constructor(name) {
+        super(name);
+        this.klass = "stud";
+        this.foodRequirement = 3;
+    }
+}
+
 export class Packer extends Goober {
     constructor(name) {
         super(name);

@@ -1,5 +1,5 @@
 import React, { createContext, useReducer, useContext } from 'react';
-import { Goober, Hungry, Packer, Protector } from './classes';
+import { Goober, Hungry, Packer, Protector, Stud } from './classes';
 import { zones } from './zones'
 
 const GameContext = createContext();
@@ -10,7 +10,7 @@ const initialState = {
         new Protector("Jez"),
         new Hungry("Derb"),
         new Packer("Stelbo"),
-        new Goober("Malx"),
+        new Stud("Malx"),
         new Goober("Weebie"),
         new Goober("Toogie"),
         new Goober("Ilva")
@@ -70,13 +70,13 @@ const gameReducer = (state, action) => {
         case 'BIRTH':
             return {
                 ...state,
-                population: [...state.population, action.payload.goober],
+                population: [...state.population, ...action.payload.offspring],
                 hand: state.hand.filter(member => !state.team.includes(member)),
                 team: [],
                 results: [...state.results, {
                     type: "birth",
                     goobers: state.team,
-                    offspring: [action.payload.goober]
+                    offspring: action.payload.offspring
                 }]
             }
         case 'EXPEDITION':

@@ -96,10 +96,26 @@ function App() {
     if (state.team.length < 2) {
       return
     }
+
+    const randomGoober = () => {
+      let name = null
+      while (name == null || state.population.map(x => x.name).includes(name)) {
+        name = _.sample(names, 1)[0]
+      }
+      console.log(name)
+      return new Goober(name)
+    }
+
+    const studCount = state.team.filter(x => x.klass == "stud").length
+    const nonStudCount = state.team.length - studCount
+
+    const offspringCount = studCount > 0 ? studCount * nonStudCount : 1
+    const offspring = Array.from({ length: offspringCount }, randomGoober);
+
     dispatch({
       type: "BIRTH",
       payload: {
-        goober: new Goober(_.sample(names, 1))
+        offspring
       }
     })
   }
