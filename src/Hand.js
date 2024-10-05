@@ -3,9 +3,8 @@ function Hand(props) {
         <div>
             HAND:
             {props.hand.map(x => (
-                <div key={x.name}>
+                <div key={x.name} onClick={() => props.onClick(x)}>
                     {x.name} ({x.klass})
-                    <button onClick={() => props.onClick(x)}>Toggle</button>
                 </div>
             ))}
         </div>
