@@ -129,7 +129,10 @@ function App() {
     let unusedDoctors = state.team.filter(x => x.klass == "doctor").length;
     const savingDoctors = [];
     const savedGoobers = [];
-    const died = team.filter(x => {
+
+    let unusedBozos = state.team.filter(x => x.klass == "bozo");
+    let usedBozos = []
+    let died = team.filter(x => {
       const shouldDie = Math.random() < risk;
       const doctorAvailable = unusedDoctors > 0;
 
@@ -140,8 +143,15 @@ function App() {
         return false;
       }
 
+      if (shouldDie && unusedBozos.length > 0) {
+        usedBozos.push(unusedBozos.pop())
+        return false
+      }
+
       return shouldDie;
     });
+
+    died = [...died, ...usedBozos]
 
     const alive = team.filter(x => !died.includes(x))
 

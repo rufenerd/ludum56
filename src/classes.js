@@ -71,3 +71,13 @@ export class Protector extends Goober {
         this.description = "Halves the odds of death on adventures"
     }
 }
+
+export class Bozo extends Goober {
+    constructor(name) {
+        super(name);
+        this.klass = "bozo";
+        this.foodRequirement = 2;
+        this.protect = 2
+        this.description = "Dies first"
+    }
+}
