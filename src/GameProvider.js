@@ -17,7 +17,7 @@ const initialState = {
         new Goober("Ilva"),
         new Goober("Darf"),
     ],
-    food: 110,
+    food: 210,
     hand: [],
     team: [],
     zones,
