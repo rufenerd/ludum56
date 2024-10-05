@@ -56,7 +56,11 @@ function App() {
   }
 
   const endTurn = (state, dispatch) => {
-    setShowResults(true)
+    if (state.results.length > 0) {
+      setShowResults(true)
+    } else {
+      onResultsFinish()
+    }
   }
 
   const startTurn = (state, dispatch) => {
