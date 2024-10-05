@@ -186,7 +186,8 @@ function App() {
             alive,
             savingDoctors,
             savedGoobers,
-            targetZone: zone
+            targetZone: zone,
+            failedUnlockZone: zone
           }
         })
         return

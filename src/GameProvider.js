@@ -1,5 +1,5 @@
 import React, { createContext, useReducer, useContext } from 'react';
-import { Goober, Hungry, Packer, Protector, Stud, Explorer, Doctor, Scavenger, Bozo, Asexual, Buddy, Recruiter } from './classes';
+import { Goober, Hungry, Packer, Protector, Stud, Explorer, Doctor, Scavenger, Bozo, Asexual, Buddy, Recruiter, Opener } from './classes';
 import { zones } from './zones'
 
 const GameContext = createContext();
@@ -19,6 +19,7 @@ const initialState = {
         new Buddy("Waz"),
         new Buddy("Wav"),
         new Recruiter("Darf"),
+        new Opener("Chimi"),
     ],
     food: 1000,
     hand: [],
@@ -85,7 +86,7 @@ const gameReducer = (state, action) => {
                 }]
             }
         case 'EXPEDITION':
-            const { died, alive, gainedFood, unlockedZone, savingDoctors, savedGoobers, targetZone } = action.payload
+            const { died, alive, gainedFood, unlockedZone, savingDoctors, savedGoobers, targetZone, failedUnlockZone } = action.payload
 
             let expeditionResults = []
 
@@ -101,6 +102,13 @@ const gameReducer = (state, action) => {
                     type: "unlockedZone",
                     goobers: alive,
                     zone: newZone
+                })
+            }
+
+            if (failedUnlockZone) {
+                expeditionResults.push({
+                    type: "failedUnlockZone",
+                    goobers: [...alive, ...died],
                 })
             }
 
