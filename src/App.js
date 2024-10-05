@@ -9,6 +9,7 @@ import Stats from './Stats';
 import TeamBar from './TeamBar';
 import Results from './Results';
 import Map from './Map'
+import GameOver from './GameOver';
 
 const HAND_SIZE = 3
 const DIFFICULTY = 0.5
@@ -134,7 +135,7 @@ function App() {
   if (state.gameOver) {
     return (
       <div className="App">
-        <div>GAME OVER</div>
+        <GameOver />
       </div>
     );
   }
