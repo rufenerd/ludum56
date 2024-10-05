@@ -51,6 +51,14 @@ export class Asexual extends Goober {
     }
 }
 
+export class Buddy extends Goober {
+    constructor(name) {
+        super(name);
+        this.klass = "buddy";
+        this.description = "Adds 2 to hand"
+    }
+}
+
 export class Packer extends Goober {
     constructor(name) {
         super(name);

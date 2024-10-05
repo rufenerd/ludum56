@@ -42,7 +42,16 @@ function App() {
   }
 
   const draw = (state) => {
-    return _.sample(state.population, HAND_SIZE)
+    let hand = _.sample(state.population, HAND_SIZE)
+    let unusedBuddies = hand.filter(x => x.klass == "buddy").length
+    let usedBuddies = 0
+    while (unusedBuddies > 0) {
+      const remainingPopulation = state.population.filter(member => !hand.includes(member))
+      hand = [...hand, ..._.sample(remainingPopulation, 2)]
+      usedBuddies++
+      unusedBuddies = hand.filter(x => x.klass == "buddy").length - usedBuddies
+    }
+    return hand
   }
 
   const endTurn = (state, dispatch) => {
