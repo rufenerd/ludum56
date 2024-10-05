@@ -4,6 +4,7 @@ import _ from 'underscore';
 import { Goober } from './classes';
 import { names } from './names'
 import React, { useState } from 'react';
+import Hand from './Hand';
 
 const HAND_SIZE = 3
 const DIFFICULTY = 0.5
@@ -135,15 +136,7 @@ function App() {
       <div>
         POPULATION: {state.population.length}
       </div>
-      <div>
-        HAND:
-        {state.hand.map(x => (
-          <div key={x.name}>
-            {x.name} ({x.klass})
-            <button onClick={() => toggleTeamMember(state, dispatch, x)}>Toggle</button>
-          </div>
-        ))}
-      </div>
+      <Hand hand={state.hand} onClick={(x) => toggleTeamMember(state, dispatch, x)} />
       <div>
         TEAM:
         {state.team.map(x => (
