@@ -106,32 +106,33 @@ function App() {
     })
   }
 
+  const randomName = () => {
+    let name = null
+    while (name == null || state.population.map(x => x.name).includes(name)) {
+      name = _.sample(names, 1)[0]
+    }
+    return name
+  }
+
+  const randomGoober = () => {
+    return new Goober(randomName())
+  }
+
   const breed = (state, dispatch) => {
+    let offspring
     if (state.team.length == 1 && state.team[0].klass == "asexual") {
-      return [new Asexual(randomName())]
-    }
-
-    if (state.team.length < 2) {
-      return
-    }
-
-    const randomName = () => {
-      let name = null
-      while (name == null || state.population.map(x => x.name).includes(name)) {
-        name = _.sample(names, 1)[0]
+      offspring = [new Asexual(randomName())]
+    } else {
+      if (state.team.length < 2) {
+        return
       }
-      return name
+
+      const studCount = state.team.filter(x => x.klass == "stud").length
+      const nonStudCount = state.team.length - studCount
+
+      const offspringCount = studCount > 0 ? studCount * nonStudCount : 1
+      offspring = Array.from({ length: offspringCount }, randomGoober);
     }
-
-    const randomGoober = () => {
-      return new Goober(randomName())
-    }
-
-    const studCount = state.team.filter(x => x.klass == "stud").length
-    const nonStudCount = state.team.length - studCount
-
-    const offspringCount = studCount > 0 ? studCount * nonStudCount : 1
-    const offspring = Array.from({ length: offspringCount }, randomGoober);
 
     dispatch({
       type: "BIRTH",
