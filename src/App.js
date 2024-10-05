@@ -10,7 +10,7 @@ import Map from './Map'
 import GameOver from './GameOver';
 import Intro from './Intro';
 import PlayArea from './PlayArea';
-import { Asexual, Goober, Recruiter } from './classes';
+import { Goober, Hungry, Packer, Protector, Stud, Explorer, Doctor, Scavenger, Bozo, Asexual, Buddy, Recruiter, Opener } from './classes';
 import { names } from './names'
 
 const START_HAND_SIZE = 3
@@ -118,12 +118,27 @@ function App() {
     return new Goober(randomName())
   }
 
+  const nOfClass = (team, n, klass) => {
+    return team.length == n && team.filter(x => x.klass == klass).length == n
+  }
+
   const breed = (state, dispatch) => {
+    const { team } = state
     let offspring
-    if (state.team.length == 1 && state.team[0].klass == "asexual") {
+    if (nOfClass(team, 1, "asexual")) {
       offspring = [new Asexual(randomName())]
-    } else if (state.team.length > 4) {
+    } else if (team.length == 5) {
       offspring = [new Recruiter(randomName())]
+    } else if (nOfClass(team, 2, "recruiter")) {
+      offspring = [new Stud(randomName())]
+    } else if (nOfClass(team, 2, "explorer")) {
+      offspring = [new Opener(randomName())]
+    } else if (nOfClass(team, 4, "goober")) {
+      offspring = [new Doctor(randomName())]
+    } else if (nOfClass(team, 3, "goober")) {
+      offspring = [new Explorer(randomName())]
+    } else if (nOfClass(team, 2, "goober")) {
+      offspring = [new Asexual(randomName())]
     } else {
       if (state.team.length < 2) {
         return
