@@ -31,6 +31,11 @@ function App() {
     setShowResults(!showResults)
   }
 
+  const onIntroClick = () => {
+    turn(state, dispatch)
+    setShowIntro(false)
+  }
+
   const foodRequired = (state) => {
     return state.population.reduce((m, a) => m + a.foodRequirement, 0)
   }
@@ -138,7 +143,7 @@ function App() {
   if (showIntro) {
     return (
       <div className="App">
-        <Intro onClick={() => { setShowIntro(false) }} />
+        <Intro onClick={onIntroClick} />
       </div>
     );
   }
