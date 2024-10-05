@@ -14,7 +14,8 @@ const initialState = {
     food: 100,
     hand: [],
     team: [],
-    zones
+    zones,
+    results: []
 };
 
 const gameReducer = (state, action) => {
@@ -35,7 +36,8 @@ const gameReducer = (state, action) => {
             return {
                 ...state,
                 team: [],
-                message: null
+                message: null,
+                results: []
             }
         case 'DRAW':
             return {
@@ -64,31 +66,43 @@ const gameReducer = (state, action) => {
                 population: [...state.population, action.payload.goober],
                 hand: state.hand.filter(member => !state.team.includes(member)),
                 team: [],
-                message: action.payload.goober.name + " was born!"
+                results: [...state.results, {
+                    type: "birth",
+                    goober: action.payload.goober
+                }]
             }
         case 'EXPEDITION':
-            const { died, gainedFood, unlockedZone } = action.payload
+            const { died, alive, gainedFood, unlockedZone } = action.payload
 
-            let deathMessage;
-            if (died.length == 0)
-                deathMessage = ''
-            else if (died.length == state.team.length) {
-                deathMessage = 'They all died!'
-            } else {
-                deathMessage = `${died.map(x => x.name).join(' and ')} died!`
-            }
+            let expeditionResults = []
 
-            const foundMessage = `Retrieved ${gainedFood} food.`
 
             let zones = state.zones
-            let zoneMessage = ''
             if (unlockedZone) {
                 zones = zones.map(zone => zone === unlockedZone ? {
                     ...unlockedZone,
                     unlocked: true
                 } : zone)
-                zoneMessage = `You discovered ${unlockedZone.name}!`
+                expeditionResults.push({
+                    type: "unlockedZone",
+                    goobers: alive,
+                    zone: unlockedZone
+                })
             }
+
+            expeditionResults.push({
+                type: "food",
+                goobers: alive,
+                gainedFood
+            })
+
+            if (died.length) {
+                expeditionResults.push({
+                    type: "death",
+                    goobers: died
+                })
+            }
+
 
             return {
                 ...state,
@@ -96,8 +110,8 @@ const gameReducer = (state, action) => {
                 population: state.population.filter(member => !died.includes(member)),
                 hand: state.hand.filter(member => !state.team.includes(member)),
                 team: [],
-                message: zoneMessage + " " + deathMessage + " " + foundMessage,
-                zones
+                zones,
+                results: [...state.results, ...expeditionResults],
             }
         default:
             return state;

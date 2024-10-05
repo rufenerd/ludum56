@@ -96,7 +96,8 @@ function App() {
           type: "EXPEDITION",
           payload: {
             gainedFood: 0,
-            died
+            died,
+            alive
           }
         })
         return
@@ -164,9 +165,8 @@ function App() {
         </div>}
       </div>
       <button onClick={() => turn(state, dispatch)}>TURN</button>
-      <div>{state.message}</div>
-    </div >
-  );
+      <pre>{state.results.length > 0 && JSON.stringify(state.results, null, 2)}</pre>
+    </div>)
 }
 
 export default App;
