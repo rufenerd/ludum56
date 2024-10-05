@@ -4,72 +4,9 @@ import _ from 'underscore';
 import { Goober } from './classes';
 import { names } from './names'
 import React, { useState } from 'react';
-import { zones } from './zones';
 
 const HAND_SIZE = 3
 const DIFFICULTY = 0.5
-
-const foodRequired = (state) => {
-  return state.population.reduce((m, a) => m + a.foodRequirement, 0)
-}
-
-const draw = (state) => {
-  return _.sample(state.population, HAND_SIZE)
-}
-
-const turn = (state, dispatch) => {
-  const foodRequirement = foodRequired(state)
-  if (foodRequirement > state.food) {
-    dispatch({
-      type: "GAME_OVER"
-    })
-    return
-  }
-
-  dispatch({
-    type: "CLEAR"
-  })
-
-  dispatch({
-    type: "CONSUME",
-    payload: {
-      consume: foodRequirement
-    }
-  })
-  dispatch({
-    type: "DRAW",
-    payload: {
-      hand: draw(state)
-    }
-  })
-}
-
-const toggleTeamMember = (state, dispatch, goober) => {
-  dispatch({
-    type: "TOGGLE_TEAM_MEMBER",
-    payload: {
-      goober
-    }
-  })
-}
-
-const stay = (state, dispatch) => {
-  dispatch({
-    type: "STAY"
-  })
-}
-
-const breed = (state, dispatch) => {
-  if (state.team.length < 2) {
-    return
-  }
-  dispatch({
-    type: "BIRTH",
-    payload: {
-      goober: new Goober(_.sample(names, 1))
-    }
-  })
-}
 
 function App() {
   const { state, dispatch } = useGame();
@@ -80,11 +17,91 @@ function App() {
     setShowExpeditions(!showExpeditions)
   }
 
+  const foodRequired = (state) => {
+    return state.population.reduce((m, a) => m + a.foodRequirement, 0)
+  }
+
+  const draw = (state) => {
+    return _.sample(state.population, HAND_SIZE)
+  }
+
+  const turn = (state, dispatch) => {
+    setShowExpeditions(false)
+    const foodRequirement = foodRequired(state)
+    if (foodRequirement > state.food) {
+      dispatch({
+        type: "GAME_OVER"
+      })
+      return
+    }
+
+    dispatch({
+      type: "CLEAR"
+    })
+
+    dispatch({
+      type: "CONSUME",
+      payload: {
+        consume: foodRequirement
+      }
+    })
+    dispatch({
+      type: "DRAW",
+      payload: {
+        hand: draw(state)
+      }
+    })
+  }
+
+  const toggleTeamMember = (state, dispatch, goober) => {
+    dispatch({
+      type: "TOGGLE_TEAM_MEMBER",
+      payload: {
+        goober
+      }
+    })
+  }
+
+  const stay = (state, dispatch) => {
+    dispatch({
+      type: "STAY"
+    })
+  }
+
+  const breed = (state, dispatch) => {
+    if (state.team.length < 2) {
+      return
+    }
+    dispatch({
+      type: "BIRTH",
+      payload: {
+        goober: new Goober(_.sample(names, 1))
+      }
+    })
+  }
+
   const expedition = (state, dispatch, zone) => {
     const { team } = state
+
     const risk = DIFFICULTY * zone.risk / team.reduce((m, a) => m * a.protect, 1)
     const died = team.filter(x => Math.random() < risk)
     const alive = team.filter(x => !died.includes(x))
+
+    let unlockedZone = null
+    if (!zone.unlocked) {
+      if (zone.canUnlock(alive)) {
+        unlockedZone = zone
+      } else {
+        dispatch({
+          type: "EXPEDITION",
+          payload: {
+            gainedFood: 0,
+            died
+          }
+        })
+        return
+      }
+    }
 
     const found = team.reduce((m, a) => m * a.scavenge, 1) * zone.bounty
     const aliveCapacity = alive.reduce((m, a) => m + a.carryingCapacity, 0)
@@ -94,7 +111,8 @@ function App() {
       type: "EXPEDITION",
       payload: {
         gainedFood,
-        died
+        died,
+        unlockedZone: unlockedZone
       }
     })
     toggleExpedition()

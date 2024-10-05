@@ -3,7 +3,7 @@ export class Goober {
         this.name = name;
         this.klass = "goober";
         this.foodRequirement = 1;
-        this.carryingCapacity = 1;
+        this.carryingCapacity = 5;
         this.scavenge = 1;
         this.protect = 1;
     }
@@ -13,7 +13,7 @@ export class Packer extends Goober {
     constructor(name) {
         super(name);
         this.klass = "packer";
-        this.carryingCapacity = 2;
+        this.carryingCapacity = 20;
     }
 }
 

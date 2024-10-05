@@ -67,16 +67,37 @@ const gameReducer = (state, action) => {
                 message: action.payload.goober.name + " was born!"
             }
         case 'EXPEDITION':
-            const { died, gainedFood } = action.payload
-            const deathMessage = died.length ? `${died.map(x => x.name).join(' and ')} died!` : ''
+            const { died, gainedFood, unlockedZone } = action.payload
+
+            let deathMessage;
+            if (died.length == 0)
+                deathMessage = ''
+            else if (died.length == state.team.length) {
+                deathMessage = 'They all died!'
+            } else {
+                deathMessage = `${died.map(x => x.name).join(' and ')} died!`
+            }
+
             const foundMessage = `Retrieved ${gainedFood} food.`
+
+            let zones = state.zones
+            let zoneMessage = ''
+            if (unlockedZone) {
+                zones = zones.map(zone => zone === unlockedZone ? {
+                    ...unlockedZone,
+                    unlocked: true
+                } : zone)
+                zoneMessage = `You discovered ${unlockedZone.name}!`
+            }
+
             return {
                 ...state,
                 food: state.food + gainedFood,
                 population: state.population.filter(member => !died.includes(member)),
                 hand: state.hand.filter(member => !state.team.includes(member)),
                 team: [],
-                message: deathMessage + " " + foundMessage
+                message: zoneMessage + " " + deathMessage + " " + foundMessage,
+                zones
             }
         default:
             return state;

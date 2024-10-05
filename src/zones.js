@@ -11,13 +11,15 @@ export const zones = [
         risk: 2,
         bounty: 2,
         remaining: 200,
-        unlocked: false
+        unlocked: false,
+        canUnlock: (team) => team.length > 0
     },
     {
         name: "zone3",
         risk: 3,
         bounty: 4,
         remaining: 1000,
-        unlocked: false
+        unlocked: false,
+        canUnlock: (team) => team.length > 1
     }
 ]
