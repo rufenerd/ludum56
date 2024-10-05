@@ -80,12 +80,10 @@ button {
 .goober {
   padding: 5px;
   width: 100px;
-  height: 100px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #f0f0f0;
-  border-radius: 10px;
 }
 
 .goober.selectable {
@@ -101,4 +99,9 @@ button {
 .results .message {
   padding: 20px;
   font-size: 48px;
+}
+
+.goober-image {
+  max-width: 100px;
+  max-height: 100px;
 }
