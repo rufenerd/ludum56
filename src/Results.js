@@ -3,9 +3,10 @@ import GooberGroup from './GooberGroup';
 
 function Results(props) {
     const [resultsIndex, setResultsIndex] = useState(0);
-    const { results } = props
+    const { results, onFinish } = props
 
     if (resultsIndex >= results.length) {
+        onFinish()
         return <div />
     }
 

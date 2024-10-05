@@ -9,7 +9,11 @@ const initialState = {
         new Goober("Stev"),
         new Protector("Jez"),
         new Hungry("Derb"),
-        new Packer("Stelbo")
+        new Packer("Stelbo"),
+        new Goober("Malx"),
+        new Goober("Weebie"),
+        new Goober("Toogie"),
+        new Goober("Ilva")
     ],
     food: 100,
     hand: [],

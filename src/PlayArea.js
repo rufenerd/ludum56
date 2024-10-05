@@ -4,10 +4,11 @@ import TeamBar from './TeamBar';
 
 function PlayArea(props) {
     const { food, hand, population, team, onAddGooberToTeam, onStayClick, onBreedClick, onExpeditionClick, onEndTurn } = props
+    const stillInHand = hand.filter(x => !team.includes(x))
     return (
         <div className="play-area">
             <Stats food={food} population={population} />
-            <Hand hand={hand} onClick={(x) => onAddGooberToTeam(x)} />
+            <Hand hand={stillInHand} onClick={(x) => onAddGooberToTeam(x)} />
             <TeamBar
                 team={team}
                 onGooberClick={(x) => onAddGooberToTeam(x)}

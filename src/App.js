@@ -27,7 +27,7 @@ function App() {
     setShowMap(!showMap)
   }
 
-  const toggleResults = () => {
+  const onResultsFinish = () => {
     setShowResults(!showResults)
   }
 
@@ -170,7 +170,7 @@ function App() {
         onEndTurn={() => turn(state, dispatch)}
       />}
       {showMap && <Map zones={state.zones} onZoneClick={(zone) => expedition(state, dispatch, zone)} />}
-      {showResults && state.results.length > 0 && <Results results={state.results} onFinish={toggleResults} />}
+      {showResults && state.results.length > 0 && <Results results={state.results} onFinish={onResultsFinish} />}
     </div>)
 }
 
