@@ -1,18 +1,20 @@
 import React, { createContext, useReducer, useContext } from 'react';
-import { Goober, Hungry, Packer } from './classes';
+import { Goober, Hungry, Packer, Protector } from './classes';
+import { zones } from './zones'
 
 const GameContext = createContext();
 
 const initialState = {
     population: [
         new Goober("Stev"),
-        new Goober("Jez"),
+        new Protector("Jez"),
         new Hungry("Derb"),
         new Packer("Stelbo")
     ],
     food: 100,
     hand: [],
-    team: []
+    team: [],
+    zones
 };
 
 const gameReducer = (state, action) => {
@@ -29,10 +31,11 @@ const gameReducer = (state, action) => {
                 ...state,
                 gameOver: true
             }
-        case 'CLEAR_TEAM':
+        case 'CLEAR':
             return {
                 ...state,
-                team: []
+                team: [],
+                message: null
             }
         case 'DRAW':
             return {
@@ -60,9 +63,21 @@ const gameReducer = (state, action) => {
                 ...state,
                 population: [...state.population, action.payload.goober],
                 hand: state.hand.filter(member => !state.team.includes(member)),
-                team: []
+                team: [],
+                message: action.payload.goober.name + " was born!"
             }
         case 'EXPEDITION':
+            const { died, gainedFood } = action.payload
+            const deathMessage = died.length ? `${died.map(x => x.name).join(' and ')} died!` : ''
+            const foundMessage = `Retrieved ${gainedFood} food.`
+            return {
+                ...state,
+                food: state.food + gainedFood,
+                population: state.population.filter(member => !died.includes(member)),
+                hand: state.hand.filter(member => !state.team.includes(member)),
+                team: [],
+                message: deathMessage + " " + foundMessage
+            }
         default:
             return state;
     }

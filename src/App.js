@@ -3,8 +3,11 @@ import { useGame } from './GameProvider';
 import _ from 'underscore';
 import { Goober } from './classes';
 import { names } from './names'
+import React, { useState } from 'react';
+import { zones } from './zones';
 
-const HAND_SIZE = 2
+const HAND_SIZE = 3
+const DIFFICULTY = 0.5
 
 const foodRequired = (state) => {
   return state.population.reduce((m, a) => m + a.foodRequirement, 0)
@@ -24,7 +27,7 @@ const turn = (state, dispatch) => {
   }
 
   dispatch({
-    type: "CLEAR_TEAM"
+    type: "CLEAR"
   })
 
   dispatch({
@@ -68,14 +71,34 @@ const breed = (state, dispatch) => {
   })
 }
 
-const expedition = (state, dispatch) => {
-  dispatch({
-    type: "EXPEDITION"
-  })
-}
-
 function App() {
   const { state, dispatch } = useGame();
+  const [showExpeditions, setShowExpeditions] = useState(false);
+
+
+  const toggleExpedition = () => {
+    setShowExpeditions(!showExpeditions)
+  }
+
+  const expedition = (state, dispatch, zone) => {
+    const { team } = state
+    const risk = DIFFICULTY * zone.risk / team.reduce((m, a) => m * a.protect, 1)
+    const died = team.filter(x => Math.random() < risk)
+    const alive = team.filter(x => !died.includes(x))
+
+    const found = team.reduce((m, a) => m * a.scavenge, 1) * zone.bounty
+    const aliveCapacity = alive.reduce((m, a) => m + a.carryingCapacity, 0)
+    const gainedFood = Math.min(found, aliveCapacity)
+
+    dispatch({
+      type: "EXPEDITION",
+      payload: {
+        gainedFood,
+        died
+      }
+    })
+    toggleExpedition()
+  }
 
   if (state.gameOver) {
     return (
@@ -109,13 +132,21 @@ function App() {
             {x.name} ({x.klass})
           </div>
         ))}
-        <div>
+        {state.team.length && <div>
           <button onClick={() => stay(state, dispatch)}>STAY</button>
           <button onClick={() => breed(state, dispatch)}>BREED</button>
-          <button onClick={() => expedition(state, dispatch)}>EXPEDITION</button>
-        </div>
+          <button onClick={toggleExpedition}>EXPEDITION</button>
+          {showExpeditions && <div>
+            {state.zones.map(zone => (
+              <button key={zone.name} onClick={() => expedition(state, dispatch, zone)}>
+                {zone.name}
+              </button>
+            ))}
+          </div>}
+        </div>}
       </div>
       <button onClick={() => turn(state, dispatch)}>TURN</button>
+      <div>{state.message}</div>
     </div >
   );
 }

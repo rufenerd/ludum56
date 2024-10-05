@@ -5,7 +5,7 @@ export class Goober {
         this.foodRequirement = 1;
         this.carryingCapacity = 1;
         this.scavenge = 1;
-        this.protect = 0;
+        this.protect = 1;
     }
 }
 
@@ -22,5 +22,14 @@ export class Hungry extends Goober {
         super(name);
         this.klass = "hungry";
         this.foodRequirement = 30;
+    }
+}
+
+export class Protector extends Goober {
+    constructor(name) {
+        super(name);
+        this.klass = "protector";
+        this.foodRequirement = 2;
+        this.protect = 2
     }
 }
