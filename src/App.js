@@ -10,7 +10,7 @@ import Map from './Map'
 import GameOver from './GameOver';
 import Intro from './Intro';
 import PlayArea from './PlayArea';
-import { Goober, Hungry, Packer, Protector, Stud, Explorer, Doctor, Scavenger, Bozo, Asexual, Buddy, Recruiter, Opener } from './classes';
+import { Goober, Hungry, Packer, Immortal, Protector, Stud, Explorer, Doctor, Scavenger, Bozo, Asexual, Buddy, Recruiter, Opener } from './classes';
 import { names } from './names'
 
 const START_HAND_SIZE = 3
@@ -119,7 +119,15 @@ function App() {
   }
 
   const nOfClass = (team, n, klass) => {
-    return team.length == n && team.filter(x => x.klass == klass).length == n
+    return team.length == n && containsNofClass(team, n, klass)
+  }
+
+  const containsNofClass = (team, n, klass) => {
+    return team.filter(x => x.klass == klass).length == n
+  }
+
+  const containsExactly = (team, klasses) => {
+    return JSON.stringify(team.map(x => x.klass).sort()) == JSON.stringify(klasses.sort())
   }
 
   const breed = (state, dispatch) => {
@@ -127,20 +135,35 @@ function App() {
     let offspring
     if (nOfClass(team, 1, "asexual")) {
       offspring = [new Asexual(randomName())]
-    } else if (team.length == 5) {
+    } else if (team.length > 6) {
       offspring = [new Recruiter(randomName())]
     } else if (nOfClass(team, 2, "recruiter")) {
       offspring = [new Stud(randomName())]
     } else if (nOfClass(team, 2, "explorer")) {
       offspring = [new Opener(randomName())]
+    } else if (nOfClass(team, 5, "goober")) {
+      offspring = [new Buddy(randomName())]
     } else if (nOfClass(team, 4, "goober")) {
-      offspring = [new Doctor(randomName())]
+      offspring = [new Protector(randomName())]
     } else if (nOfClass(team, 3, "goober")) {
-      offspring = [new Explorer(randomName())]
+      offspring = [new Packer(randomName())]
     } else if (nOfClass(team, 2, "goober")) {
       offspring = [new Asexual(randomName())]
+    } else if (nOfClass(team, 2, "buddy")) {
+      offspring = [new Bozo(randomName())]
+    } else if (nOfClass(team, 2, "packer")) {
+      offspring = [new Scavenger(randomName())]
+    } else if (nOfClass(team, 2, "hungry")) {
+      offspring = [new Immortal(randomName())]
+    } else if (containsExactly(team, ["goober", "packer"])) {
+      offspring = [new Explorer(randomName())]
+    } else if (containsExactly(team, ["protector", "packer"])) {
+      offspring = [new Hungry(randomName())]
+    } else if (containsExactly(team, ["protector", "goober"])) {
+      offspring = [new Doctor(randomName())]
     } else {
       if (state.team.length < 2) {
+        //TODO
         return
       }
 

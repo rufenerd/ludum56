@@ -63,7 +63,10 @@ export class Immortal extends Goober {
     constructor(name) {
         super(name);
         this.klass = "immortal";
-        this.description = "Can not die"
+        this.description = "Can not die. 5x carry. Halves odds of death."
+        this.carryingCapacity = 5;
+        this.scavenge = 5;
+        this.protect = 2;
     }
 }
 
@@ -100,7 +103,7 @@ export class Protector extends Goober {
         this.klass = "protector";
         this.foodRequirement = 2;
         this.protect = 2
-        this.description = "Halves the odds of death on adventures"
+        this.description = "Halves the odds of any death on adventures"
     }
 }
 
