@@ -6,6 +6,7 @@ import { names } from './names'
 import React, { useState } from 'react';
 import Hand from './Hand';
 import Stats from './Stats';
+import GooberGroup from './GooberGroup';
 
 const HAND_SIZE = 3
 const DIFFICULTY = 0.5
@@ -135,11 +136,7 @@ function App() {
       <Hand hand={state.hand} onClick={(x) => toggleTeamMember(state, dispatch, x)} />
       <div>
         TEAM:
-        {state.team.map(x => (
-          <div key={x.name}>
-            {x.name} ({x.klass})
-          </div>
-        ))}
+        <GooberGroup goobers={state.team} />
         {state.team.length && <div>
           <button onClick={() => stay(state, dispatch)}>STAY</button>
           <button onClick={() => breed(state, dispatch)}>BREED</button>
