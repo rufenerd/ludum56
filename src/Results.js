@@ -15,6 +15,7 @@ function Results(props) {
     let title = result.type
     let message = JSON.stringify(result, null, 2)
     let extra = <div></div>
+    let dead = false
     switch (result.type) {
         case "food":
             title = "Food!"
@@ -33,6 +34,7 @@ function Results(props) {
         case "death":
             title = "RIP"
             message = `These brave souls have perished adventuring to ${result.targetZone.name}`
+            dead = true
             break;
         case 'unlockedZone':
             title = "Discovery!"
@@ -57,7 +59,7 @@ function Results(props) {
         <div className='results'>
             <div className="title">{title}</div>
             <div className="message">{message}</div>
-            {result.goobers && <GooberGroup goobers={result.goobers} />}
+            {result.goobers && <GooberGroup goobers={result.goobers} dead={dead} />}
             {extra}
             <button onClick={() => setResultsIndex(resultsIndex + 1)}>OK</button>
         </div>
