@@ -153,7 +153,7 @@ function App() {
 
   return (
     <div className="App">
-      <PlayArea
+      {!showMap && <PlayArea
         food={state.food}
         hand={state.hand}
         population={state.population}
@@ -162,9 +162,9 @@ function App() {
         onStayClick={() => stay(state, dispatch)}
         onBreedClick={() => breed(state, dispatch)}
         onExpeditionClick={toggleShowMap}
-      />
+        onEndTurn={() => turn(state, dispatch)}
+      />}
       {showMap && <Map zones={state.zones} onZoneClick={(zone) => expedition(state, dispatch, zone)} />}
-      <button onClick={() => turn(state, dispatch)}>End Turn</button>
       {showResults && state.results.length > 0 && <Results results={state.results} onFinish={toggleResults} />}
     </div>)
 }

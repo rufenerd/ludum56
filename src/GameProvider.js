@@ -104,7 +104,6 @@ const gameReducer = (state, action) => {
                 })
             }
 
-
             return {
                 ...state,
                 food: state.food + gainedFood,
