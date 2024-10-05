@@ -14,7 +14,7 @@ import { Goober } from './classes';
 import { names } from './names'
 
 const HAND_SIZE = 3
-const DIFFICULTY = 0.5
+const DIFFICULTY = 0.2
 
 function App() {
   const { state, dispatch } = useGame();

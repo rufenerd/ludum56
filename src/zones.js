@@ -20,6 +20,6 @@ export const zones = [
         bounty: 4,
         remaining: 1000,
         unlocked: false,
-        canUnlock: (team) => team.length > 1
+        canUnlock: (team) => team.map(x => x.klass).includes("explorer")
     }
 ]

@@ -17,6 +17,13 @@ export class Stud extends Goober {
     }
 }
 
+export class Explorer extends Goober {
+    constructor(name) {
+        super(name);
+        this.klass = "explorer";
+    }
+}
+
 export class Packer extends Goober {
     constructor(name) {
         super(name);

@@ -1,5 +1,5 @@
 import React, { createContext, useReducer, useContext } from 'react';
-import { Goober, Hungry, Packer, Protector, Stud } from './classes';
+import { Goober, Hungry, Packer, Protector, Stud, Explorer } from './classes';
 import { zones } from './zones'
 
 const GameContext = createContext();
@@ -11,7 +11,7 @@ const initialState = {
         new Hungry("Derb"),
         new Packer("Stelbo"),
         new Stud("Malx"),
-        new Goober("Weebie"),
+        new Explorer("Weebie"),
         new Goober("Toogie"),
         new Goober("Ilva")
     ],
