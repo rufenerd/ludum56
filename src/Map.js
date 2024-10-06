@@ -32,9 +32,7 @@ function Map(props) {
                         top: `${zone.y || 500 * Math.random()}px`,
                         left: `${zone.x || 500 * Math.random()}px`,
                     }}>
-                        <div className="tooltip">
-                            <ZoneTooltip zone={zone} />
-                        </div>
+                        <ZoneTooltip zone={zone} />
                     </div>
                 ))}
             </div>
