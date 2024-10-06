@@ -6,6 +6,8 @@ export const zones = [
         remaining: 100,
         unlocked: true,
         room: "start",
+        x: 5150,
+        y: 0
     },
     {
         name: "zone1-2",

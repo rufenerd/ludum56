@@ -26,7 +26,7 @@ function Map(props) {
         <div className="map">
             <div className="zones">
                 {zones.filter(z => unlockedRooms.includes(z.room)).map(zone => (
-                    <div className="zone" key={zone.name} onClick={() => onZoneClick(zone)} style={{
+                    <div className="zone tooltip-container" key={zone.name} onClick={() => onZoneClick(zone)} style={{
                         position: 'absolute',
                         zIndex: 999,
                         top: `${zone.y || 500 * Math.random()}px`,

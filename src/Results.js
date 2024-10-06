@@ -25,7 +25,7 @@ function Results(props) {
         case "birth":
             title = "Birth!"
             message = "These parents produced offspring!"
-            extra = <GooberGroup goobers={result.offspring}></GooberGroup>
+            extra = <GooberGroup goobers={result.offspring} hideTootlip={true}></GooberGroup>
             break;
         case "failedBirth":
             title = "Hmm..."
@@ -52,14 +52,14 @@ function Results(props) {
         case 'savingDoctors':
             title = "Saved!"
             message = 'These doctors prevented the following deaths!'
-            extra = <GooberGroup goobers={result.savedGoobers}></GooberGroup>
+            extra = <GooberGroup goobers={result.savedGoobers} hideTootlip={true}></GooberGroup>
     }
 
     return (
         <div className='results'>
             <div className="title">{title}</div>
             <div className="message">{message}</div>
-            {result.goobers && <GooberGroup goobers={result.goobers} dead={dead} />}
+            {result.goobers && <GooberGroup goobers={result.goobers} dead={dead} hideTooltip={true} />}
             {extra}
             <button className="big" onClick={() => setResultsIndex(resultsIndex + 1)}>OK</button>
         </div>
