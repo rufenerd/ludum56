@@ -41,7 +41,7 @@
   background: linear-gradient(to bottom right, #888, #cfdef3);
 }
 .hand .goober-group {
-  height: 80vh;
+  height: 75vh;
 }
 
 .team-bar {
@@ -49,7 +49,7 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 20vh;
+  height: 25vh;
   background-color: #f2f2f2;
   border-top: 5px solid #000;
   display: flex;
