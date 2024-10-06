@@ -1,32 +1,42 @@
 export const rooms = [
     {
         name: "start",
-        x: 5150,
+        x: 8000,
         y: 0
     },
     {
         name: "breakroom",
-        x: 4150,
+        x: 6570,
         y: 0
     },
     {
         name: "hall",
-        x: 3250,
-        y: 1035
+        x: 4850,
+        y: 1491
     },
     {
         name: "kitchen",
-        x: 2245,
-        y: 0
+        x: 3470,
+        y: -198
     },
     {
         name: "office",
-        x: 1670,
-        y: 1600
+        x: 2560,
+        y: 2567
     },
     {
         name: "lobby",
-        x: 0,
-        y: 1358
+        x: 160,
+        y: 2230
     },
+    {
+        name: "hall2",
+        x: 5700,
+        y: 3730
+    },
+    {
+        name: "experiment",
+        x: 7450,
+        y: 14430
+    }
 ]

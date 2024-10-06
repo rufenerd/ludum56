@@ -234,7 +234,7 @@ button.big {
 
 .map-container {
   width: 100000px;
-  height: 2500px;
+  height: 100000px;
   overflow: scroll;
   position: relative;
   touch-action: pan-x pan-y;
@@ -245,7 +245,7 @@ button.big {
 
 .map {
   width: 100000px;
-  height: 2500px;
+  height: 100000px;
   position: relative;
   transform-origin: 0 0;
   overflow: scroll;

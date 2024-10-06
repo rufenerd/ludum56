@@ -29,7 +29,9 @@ const initialState = {
         "breakroom",
         "office",
         "kitchen",
-        "lobby"
+        "lobby",
+        "hall2",
+        "experiment"
     ],
     initialTeam: true
 };
