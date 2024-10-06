@@ -66,12 +66,6 @@ function App() {
   const startTurn = (state, dispatch) => {
     setShowMap(false)
     const foodRequirement = foodRequired(state)
-    if (foodRequirement > state.food || state.population.length == 0) {
-      dispatch({
-        type: "GAME_OVER"
-      })
-      return
-    }
 
     dispatch({
       type: "CLEAR"
@@ -83,6 +77,14 @@ function App() {
         consume: foodRequirement
       }
     })
+
+    if (foodRequirement > state.food || state.population.length == 0) {
+      dispatch({
+        type: "GAME_OVER"
+      })
+      return
+    }
+
     dispatch({
       type: "DRAW",
       payload: {
