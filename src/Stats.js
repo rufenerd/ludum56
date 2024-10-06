@@ -1,3 +1,4 @@
+import GooberGroup from "./GooberGroup";
 
 function Stats(props) {
     return (

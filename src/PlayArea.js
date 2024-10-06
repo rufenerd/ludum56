@@ -1,6 +1,7 @@
 import Hand from './Hand';
 import Stats from './Stats';
 import TeamBar from './TeamBar';
+import Deck from './Deck';
 
 function PlayArea(props) {
     const { food, hand, population, team, onAddGooberToTeam, onStayClick, onBreedClick, onExpeditionClick, onEndTurn } = props
@@ -13,6 +14,7 @@ function PlayArea(props) {
     return (
         <div className="play-area">
             <Stats food={food} population={population} />
+            <Deck population={population} />
             <Hand hand={stillInHand} onClick={(x) => onAddGooberToTeam(x)} />
             <TeamBar
                 team={team}
