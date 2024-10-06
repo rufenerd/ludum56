@@ -202,7 +202,7 @@ button.big {
   }
 }
 
-.bounce {
+.bounce img {
   animation: bounce 2s infinite;
 }
 
