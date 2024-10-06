@@ -12,20 +12,25 @@ function PlayArea(props) {
     }
 
     return (
-        <div className="play-area">
-            <Stats food={food} population={population} lastRoundGainedFood={lastRoundGainedFood} />
-            <Deck population={population} />
-            <Hand popIn={initialTeam} hand={stillInHand} onClick={(x) => onAddGooberToTeam(x)} />
-            <TeamBar
-                team={team}
-                bounce={true}
-                onGooberClick={(x) => onAddGooberToTeam(x)}
-                onStayClick={onStayClick}
-                onBreedClick={onBreedClick}
-                onExpeditionClick={onExpeditionClick}
-                onEndTurn={onEndTurn}
-            />
-        </div >
+        <div>
+            <div className="play-area" style={{
+                backgroundImage: "url('assets/play_area_bg.png')",
+                backgroundSize: "cover",
+            }}>
+                <Stats food={food} population={population} lastRoundGainedFood={lastRoundGainedFood} />
+                <Deck population={population} />
+                <Hand popIn={initialTeam} hand={stillInHand} onClick={(x) => onAddGooberToTeam(x)} />
+                <TeamBar
+                    team={team}
+                    bounce={true}
+                    onGooberClick={(x) => onAddGooberToTeam(x)}
+                    onStayClick={onStayClick}
+                    onBreedClick={onBreedClick}
+                    onExpeditionClick={onExpeditionClick}
+                    onEndTurn={onEndTurn}
+                />
+            </div >
+        </div>
     );
 }
 
