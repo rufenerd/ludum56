@@ -16,7 +16,7 @@ function Map(props) {
     };
 
     useEffect(() => {
-        window.scrollTo(rooms[0].x, rooms[0].y)
+        window.scrollTo(8430, 260)
     }, []);
 
     // console.log("Scrolling", rooms[0].x, rooms[0].y)
