@@ -9,9 +9,9 @@ function TeamBar(props) {
         <div className="team-bar">
             <GooberGroup goobers={team} onClick={onGooberClick} />
             <div className="actions">
-                {<button className={noTeam} onClick={onStayClick}>CHILL</button>}
-                {<button className={noTeam} onClick={onBreedClick}>BREED</button>}
+                {<button className={noTeam} onClick={onBreedClick}>REPRODUCE</button>}
                 {<button className={noTeam} onClick={onExpeditionClick}>ADVENTURE</button>}
+                {<button className={noTeam} onClick={onStayClick}>CHILL</button>}
                 <button onClick={onEndTurn}>END TURN</button>
             </div>
         </div>

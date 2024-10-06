@@ -42,6 +42,7 @@
 }
 .hand .goober-group {
   height: 75vh;
+  width: 90%;
 }
 
 .team-bar {
@@ -99,15 +100,16 @@ button.big {
 }
 
 .goober-group {
-  width: 100%;
   display: flex;
   justify-content: center;
   text-align: center;
+  flex-wrap: wrap;
+  align-content: center;
 }
 
 
 .goober {
-  padding: 15px;
+  padding: 0 15px;
   width: 100px;
   display: flex;
   flex-direction: column;

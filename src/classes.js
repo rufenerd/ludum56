@@ -47,7 +47,8 @@ export class Asexual extends Goober {
     constructor(name) {
         super(name);
         this.klass = "asexual";
-        this.description = "Can breed on its own"
+        this.description = "Can breed on its own. Double carry.";
+        this.carryingCapacity = 2;
     }
 }
 
