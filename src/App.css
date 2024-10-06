@@ -1,5 +1,8 @@
 .App {
   text-align: center;
+  font-family: 'Trebuchet MS';
+  font-weight: bold;
+  text-transform: uppercase;
 }
 
 .intro {
@@ -23,17 +26,19 @@
 
 .stats {
   position: absolute;
-  right: 0px;
-  background-color: rgba(0, 0, 0, 0.7);
-  color: white;
+  right: 20px;
+  top: 20px;
+  border: solid 5px #000;
+  background-color: #646ef5;
+  color: #ddd;
   padding: 15px;
   text-align: left;
   max-width: 300px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .hand {
   height: 80vh;
+  background: linear-gradient(to bottom right, #888, #cfdef3);
 }
 .hand .goober-group {
   height: 80vh;
@@ -46,7 +51,7 @@
   width: 100%;
   height: 20vh;
   background-color: #f2f2f2;
-  border-top: 2px solid #ccc;
+  border-top: 5px solid #000;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -62,18 +67,24 @@
 button {
   width: 130px;
   margin: 3px 0;
-  background-color: #4CAF50;
-  color: white;
+  background-color: #646ef5;
+  color: #ddd;
   border: none;
-  border-radius: 10px;
+  border-radius: 3px;
   cursor: pointer;
   font-size: 16px;
   padding: 5px 10px;
   transition: background-color 0.3s ease;
 }
 
+button.big {
+  margin: 18px;
+  padding: 12px;
+  font-size: 26px;
+}
+
 .actions button:hover {
-  background-color: #45a049;
+  background-color: #6474e6;
 }
 
 .goober-group {
@@ -105,7 +116,7 @@ button {
 
 .results .message {
   padding: 20px;
-  font-size: 48px;
+  font-size: 40px;
 }
 
 .goober-image {

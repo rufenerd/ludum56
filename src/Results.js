@@ -61,7 +61,7 @@ function Results(props) {
             <div className="message">{message}</div>
             {result.goobers && <GooberGroup goobers={result.goobers} dead={dead} />}
             {extra}
-            <button onClick={() => setResultsIndex(resultsIndex + 1)}>OK</button>
+            <button className="big" onClick={() => setResultsIndex(resultsIndex + 1)}>OK</button>
         </div>
     );
 }
