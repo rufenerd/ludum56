@@ -1,9 +1,11 @@
 import GooberGroup from "./GooberGroup";
 
 function Deck(props) {
+    const { population } = props
     return (
         <div className="deck">
-            <GooberGroup goobers={props.population} mini={true} />
+            <div className="deck-title">{`Population (${population.length})`}</div>
+            <GooberGroup goobers={population} mini={true} />
         </div>
     );
 }

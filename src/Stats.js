@@ -3,10 +3,6 @@ import GooberGroup from "./GooberGroup";
 function Stats(props) {
     return (
         <div className='stats'>
-
-            <div>
-                POPULATION: {props.population.length}
-            </div>
             <div>
                 FOOD SUPPLY: {props.food}
             </div>

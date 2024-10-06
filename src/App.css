@@ -42,7 +42,7 @@
 }
 .hand .goober-group {
   height: 75vh;
-  width: 90%;
+  width: 80%;
 }
 
 .team-bar {
@@ -107,9 +107,12 @@ button.big {
   align-content: center;
 }
 
-
 .goober {
-  padding: 0 15px;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  padding: 5px 15px;
   width: 100px;
   display: flex;
   flex-direction: column;
@@ -124,7 +127,7 @@ button.big {
 .deck {
   position: absolute;
   right: 20px;
-  top: 140px;
+  top: 120px;
   max-height: 55vh;
   overflow: scroll;
   overflow-y: scroll;
@@ -136,6 +139,12 @@ button.big {
   padding: 15px;
   text-align: left;
   max-width: 300px;
+}
+
+.deck-title {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 5px
 }
 
 .goober.mini {
