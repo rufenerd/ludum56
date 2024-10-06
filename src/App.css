@@ -240,6 +240,7 @@ button.big {
   height: 2500px;
   position: relative;
   transform-origin: 0 0;
+  overflow: scroll;
 }
 
 .room {

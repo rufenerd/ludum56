@@ -20,7 +20,7 @@ function GooberGroup(props) {
                     className={className}
                     key={x.name + (!props.bounce ? Math.random() : '')}
                     onClick={() => props.onClick && props.onClick(x)}>
-                    <img className={`goober-image ${props.dead ? "dead" : ''}`} src={`assets/${x.klass}.webp`} alt="goober" />
+                    <img className={`goober-image ${props.dead ? "dead" : ''}`} src={`assets/${x.klass}.png`} alt="goober" />
                     {!props.mini && <div>{x.name}</div>}
                     {!props.mini && <div>({x.klass})</div>}
                 </div>

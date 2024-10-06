@@ -38,8 +38,8 @@ function Map(props) {
             </div>
             <div className="map-container" onWheel={handleWheel}>
                 <div className="map" style={{ transform: `scale(${scale})` }}>
-                    {rooms.filter(room => unlockedRooms.includes(room.name)).map(room => {
-                        return <img key={room.name} src={`assets/room_${room.name}.webp`} className="room" alt={room.name} style={{ left: room.x, top: room.y }} />
+                    {rooms.filter(room => true || unlockedRooms.includes(room.name)).map(room => {
+                        return <img key={room.name} src={`assets/room_${room.name}.png`} className="room" alt={room.name} style={{ left: room.x, top: room.y }} />
                     })}
                 </div>
             </div>
