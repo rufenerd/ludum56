@@ -27,6 +27,10 @@
 .stats {
   position: absolute;
   right: 20px;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   top: 20px;
   border: solid 5px #000;
   background-color: #646ef5;
@@ -61,8 +65,7 @@
 .actions {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  padding: 20px;
+  align-items: center;
 }
 
 .actions .no-team {
@@ -76,13 +79,20 @@
   background-color: #ccc;     /* Keep the grey background on hover */
 }
 
+.actions button {
+  width: 200px;
+}
+
+.actions button:hover {
+  background-color: #6474e6;
+}
+
 button {
   width: 130px;
   margin: 3px 0;
   background-color: #646ef5;
+  border: solid 5px #000;
   color: #ddd;
-  border: none;
-  border-radius: 3px;
   cursor: pointer;
   font-size: 16px;
   padding: 5px 10px;
@@ -95,16 +105,16 @@ button.big {
   font-size: 26px;
 }
 
-.actions button:hover {
-  background-color: #6474e6;
-}
-
 .goober-group {
   display: flex;
   justify-content: center;
   text-align: center;
   flex-wrap: wrap;
   align-content: center;
+}
+
+.team-bar .goober-group {
+  width: 100%;
 }
 
 .goober {
@@ -128,7 +138,7 @@ button.big {
   position: absolute;
   right: 20px;
   top: 120px;
-  max-height: 55vh;
+  height: 50vh;
   overflow: scroll;
   overflow-y: scroll;
   width: 200px;
@@ -144,7 +154,7 @@ button.big {
 .deck-title {
   display: flex;
   justify-content: center;
-  padding-bottom: 5px
+  padding-bottom: 10px
 }
 
 .goober.mini {

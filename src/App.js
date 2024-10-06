@@ -1,4 +1,4 @@
-import _ from 'underscore';
+import _, { random } from 'underscore';
 
 import './App.css';
 
@@ -10,7 +10,7 @@ import Map from './Map'
 import GameOver from './GameOver';
 import Intro from './Intro';
 import PlayArea from './PlayArea';
-import { Goober, Hungry, Packer, Immortal, Protector, Stud, Explorer, Doctor, Scavenger, Bozo, Asexual, Buddy, Recruiter, Opener } from './classes';
+import { makeOneOfKlass, Goober, Hungry, Packer, Immortal, Protector, Stud, Explorer, Doctor, Scavenger, Bozo, Asexual, Buddy, Recruiter, Opener, Replicator } from './classes';
 import { names } from './names'
 
 const START_HAND_SIZE = 5
@@ -140,7 +140,7 @@ function App() {
     } else if (nOfClass(team, 2, "recruiter")) {
       offspring = [new Stud(randomName())]
     } else if (nOfClass(team, 2, "explorer")) {
-      offspring = [new Opener(randomName())]
+      offspring = [new Replicator(randomName())]
     } else if (nOfClass(team, 5, "goober")) {
       offspring = [new Buddy(randomName())]
     } else if (nOfClass(team, 4, "goober")) {
@@ -159,8 +159,17 @@ function App() {
       offspring = [new Packer(randomName())]
     } else if (containsExactly(team, ["protector", "packer"])) {
       offspring = [new Hungry(randomName())]
+    } else if (containsExactly(team, ["explorer", "goober"])) {
+      offspring = [new Opener(randomName())]
     } else if (containsExactly(team, ["protector", "goober"])) {
       offspring = [new Protector(randomName())]
+    } else if (team.length == 2 && team.map(x => x.klass).includes("replicator")) {
+      if (nOfClass(team, 2, "replicator")) {
+        offspring = [new Replicator(randomName())]
+      } else {
+        const klass = team.filter(x => x.klass != "replicator")[0].klass
+        offspring = [makeOneOfKlass(randomName(), klass)]
+      }
     } else {
       if (state.team.length < 2) {
         dispatch({

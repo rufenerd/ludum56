@@ -125,3 +125,46 @@ export class Recruiter extends Goober {
         this.description = "Adds 1 to hand size when in population"
     }
 }
+
+export class Replicator extends Goober {
+    constructor(name) {
+        super(name);
+        this.klass = "replicator";
+        this.description = "Replicates partner when breeding with one other"
+    }
+}
+
+export const makeOneOfKlass = (name, klass) => {
+    switch (klass) {
+        case "goober":
+            return new Goober(name)
+        case "stud":
+            return new Stud(name)
+        case "explorer":
+            return new Explorer(name)
+        case "opener":
+            return new Opener(name)
+        case "doctor":
+            return new Doctor(name)
+        case "asexual":
+            return new Asexual(name)
+        case "buddy":
+            return new Buddy(name)
+        case "immortal":
+            return new Immortal(name)
+        case "packer":
+            return new Packer(name)
+        case "scavenger":
+            return new Scavenger(name)
+        case "hungry":
+            return new Hungry(name)
+        case "recruiter":
+            return new Recruiter(name)
+        case "bozo":
+            return new Bozo(name)
+        case "recruiter":
+            return new Recruiter(name)
+        case "replicator":
+            return new Replicator(name)
+    }
+}
