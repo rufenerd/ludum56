@@ -22,7 +22,14 @@ const initialState = {
     team: [],
     zones,
     results: [],
-    unlockedRooms: [1]
+    unlockedRooms: [
+        "start",
+        "hall",
+        "breakroom",
+        "office",
+        "kitchen",
+        "lobby"
+    ]
 };
 
 const gameReducer = (state, action) => {

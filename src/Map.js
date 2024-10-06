@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Zone from './Zone'
+import { rooms } from './rooms';
 
 function Map(props) {
     const { zones, onZoneClick, unlockedRooms } = props
@@ -14,6 +15,12 @@ function Map(props) {
         }
     };
 
+    useEffect(() => {
+        window.scrollTo(rooms[0].x, rooms[0].y)
+    }, []);
+
+    console.log("Scrolling", rooms[0].x, rooms[0].y)
+    console.log(rooms.filter(room => unlockedRooms.includes(room.name)))
 
     return (
         <div className="map">
@@ -33,8 +40,9 @@ function Map(props) {
             </div>
             <div className="map-container" onWheel={handleWheel}>
                 <div className="map" style={{ transform: `scale(${scale})` }}>
-                    {unlockedRooms.includes(1) && <img src="assets/room_1.webp" className="room" alt="Room 1" style={{ top: '0', left: '0px' }} />}
-                    {unlockedRooms.includes(2) && <img src="assets/room_2.webp" className="room" alt="Room 2" style={{ top: '0', left: '1360px' }} />}
+                    {rooms.filter(room => unlockedRooms.includes(room.name)).map(room => {
+                        return <img key={room.name} src={`assets/room_${room.name}.webp`} className="room" alt={room.name} style={{ left: room.x, top: room.y }} />
+                    })}
                 </div>
             </div>
         </div >
