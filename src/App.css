@@ -244,7 +244,7 @@ button.big {
   border-radius: 5px;
   padding: 5px;
   position: absolute;
-  z-index: 1000;
+  z-index: 10000;
   left: 110%; /* Positioned to the right of the circle */
   top: 50%;
   transform: translateY(-50%);
