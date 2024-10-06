@@ -20,14 +20,14 @@ export const zones = [
     {
         name: "Vent",
         risk: 3,
-        bounty: 0,
-        remaining: 0,
+        bounty: 100,
+        remaining: 100,
         unlocked: false,
         canUnlock: (team) => team.map(x => x.klass).includes("explorer"),
         room: 1,
         unlocksRoom: 2,
-        x: 600,
-        y: 150,
+        x: 603,
+        y: 152,
         requires: "explorer"
     },
     {

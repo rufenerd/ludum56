@@ -23,6 +23,11 @@ function App() {
   const [showResults, setShowResults] = useState(false);
 
 
+
+  document.addEventListener('click', function (e) {
+    console.log(e.pageX - 50, e.pageY - 50);
+  });
+
   const toggleShowMap = () => {
     setShowMap(!showMap)
   }
