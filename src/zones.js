@@ -10,8 +10,8 @@ export const zones = [
         y: 1316
     },
     {
-        name: "Cabinet",
-        risk: 2,
+        name: "Locker",
+        risk: 1,
         bounty: 20,
         remaining: 200,
         unlocked: false,
