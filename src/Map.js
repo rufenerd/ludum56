@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import Zone from './Zone'
+import ZoneTooltip from './ZoneTooltip'
 import { rooms } from './rooms';
 
 function Map(props) {
@@ -33,7 +33,7 @@ function Map(props) {
                         left: `${zone.x || 500 * Math.random()}px`,
                     }}>
                         <div className="tooltip">
-                            <Zone zone={zone} />
+                            <ZoneTooltip zone={zone} />
                         </div>
                     </div>
                 ))}
