@@ -308,6 +308,7 @@ function App() {
         hand={state.hand}
         population={state.population}
         team={state.team}
+        initialTeam={state.initialTeam}
         onAddGooberToTeam={(x) => toggleTeamMember(state, dispatch, x)}
         onStayClick={() => stay(state, dispatch)}
         onBreedClick={() => breed(state, dispatch)}

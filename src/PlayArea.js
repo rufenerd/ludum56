@@ -4,7 +4,7 @@ import TeamBar from './TeamBar';
 import Deck from './Deck';
 
 function PlayArea(props) {
-    const { food, lastRoundGainedFood, hand, population, team, onAddGooberToTeam, onStayClick, onBreedClick, onExpeditionClick, onEndTurn } = props
+    const { food, lastRoundGainedFood, hand, population, team, initialTeam, onAddGooberToTeam, onStayClick, onBreedClick, onExpeditionClick, onEndTurn } = props
     const stillInHand = hand.filter(x => !team.includes(x))
 
     if (hand.length == 0 && team.length == 0) {
@@ -15,9 +15,10 @@ function PlayArea(props) {
         <div className="play-area">
             <Stats food={food} population={population} lastRoundGainedFood={lastRoundGainedFood} />
             <Deck population={population} />
-            <Hand hand={stillInHand} onClick={(x) => onAddGooberToTeam(x)} />
+            <Hand popIn={initialTeam} hand={stillInHand} onClick={(x) => onAddGooberToTeam(x)} />
             <TeamBar
                 team={team}
+                bounce={true}
                 onGooberClick={(x) => onAddGooberToTeam(x)}
                 onStayClick={onStayClick}
                 onBreedClick={onBreedClick}

@@ -30,7 +30,8 @@ const initialState = {
         "office",
         "kitchen",
         "lobby"
-    ]
+    ],
+    initialTeam: true
 };
 
 const gameReducer = (state, action) => {
@@ -67,6 +68,7 @@ const gameReducer = (state, action) => {
                 results: [],
                 roundGainedFood: 0,
                 lastRoundGainedFood: state.roundGainedFood,
+                initialTeam: true
             }
         case 'DRAW':
             return {
@@ -79,6 +81,7 @@ const gameReducer = (state, action) => {
 
             return {
                 ...state,
+                initialTeam: false,
                 team: memberExists
                     ? state.team.filter(member => member !== goober)
                     : [...state.team, action.payload.goober],
