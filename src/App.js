@@ -24,9 +24,9 @@ function App() {
 
 
 
-  document.addEventListener('click', function (e) {
-    console.log(e.pageX - 50, e.pageY - 50);
-  });
+  // document.addEventListener('click', function (e) {
+  // console.log(e.pageX - 50, e.pageY - 50);
+  // });
 
   const toggleShowMap = () => {
     setShowMap(!showMap)
@@ -39,6 +39,9 @@ function App() {
 
   const onIntroClick = () => {
     startTurn(state, dispatch)
+    dispatch({
+      type: "GAME_START"
+    })
     setShowIntro(false)
   }
 
@@ -301,6 +304,7 @@ function App() {
     <div className="App">
       {!hidePlayArea && <PlayArea
         food={state.food}
+        lastRoundGainedFood={state.lastRoundGainedFood}
         hand={state.hand}
         population={state.population}
         team={state.team}

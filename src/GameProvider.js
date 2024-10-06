@@ -18,6 +18,7 @@ const initialState = {
         new Goober("Darf"),
     ],
     food: 310,
+    roundGainedFood: 0,
     hand: [],
     team: [],
     zones,
@@ -34,8 +35,15 @@ const initialState = {
 
 const gameReducer = (state, action) => {
     console.log(action.type)
+    console.log(JSON.stringify(action.payload))
+    console.log("------")
 
     switch (action.type) {
+        case 'GAME_START':
+            return {
+                ...state,
+                lastRoundGainedFood: 10 //hack to fix first turn delta
+            };
         case 'CONSUME':
             const newFood = state.food - action.payload.consume
             return {
@@ -56,7 +64,9 @@ const gameReducer = (state, action) => {
                 ...state,
                 team: [],
                 message: null,
-                results: []
+                results: [],
+                roundGainedFood: 0,
+                lastRoundGainedFood: state.roundGainedFood,
             }
         case 'DRAW':
             return {
@@ -171,6 +181,7 @@ const gameReducer = (state, action) => {
             return {
                 ...state,
                 food: state.food + gainedFood,
+                roundGainedFood: state.roundGainedFood + gainedFood,
                 population: state.population.filter(member => !died.includes(member)),
                 hand: state.hand.filter(member => !state.team.includes(member)),
                 team: [],

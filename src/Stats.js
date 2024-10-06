@@ -1,15 +1,17 @@
-import GooberGroup from "./GooberGroup";
-
 function Stats(props) {
+    const foodDemand = props.population.reduce((m, a) => m + a.foodRequirement, 0)
     return (
         <div className='stats'>
             <div>
                 FOOD SUPPLY: {props.food}
             </div>
             <div>
-                FOOD DEMAND: {props.population.reduce((m, a) => m + a.foodRequirement, 0)}
+                FOOD DEMAND: {foodDemand}
             </div>
-        </div>
+            {props.lastRoundGainedFood !== null && < div >
+                CHANGE: {props.lastRoundGainedFood - foodDemand}
+            </div>}
+        </div >
     );
 }
 

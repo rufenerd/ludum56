@@ -19,8 +19,8 @@ function Map(props) {
         window.scrollTo(rooms[0].x, rooms[0].y)
     }, []);
 
-    console.log("Scrolling", rooms[0].x, rooms[0].y)
-    console.log(rooms.filter(room => unlockedRooms.includes(room.name)))
+    // console.log("Scrolling", rooms[0].x, rooms[0].y)
+    // console.log(rooms.filter(room => unlockedRooms.includes(room.name)).map(x => x.name).join(','))
 
     return (
         <div className="map">
