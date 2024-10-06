@@ -131,12 +131,14 @@ const gameReducer = (state, action) => {
 
 
                 if (newZone.unlocksRoom) {
-                    unlockedRooms = [...unlockedRooms, unlockedZone.unlocksRoom]
-                    expeditionResults.push({
-                        type: "unlockedRoom",
-                        goobers: alive,
-                        newRoom: newZone.unlocksRoom
-                    })
+                    if (!unlockedRooms.includes(unlockedZone.unlocksRoom)) {
+                        unlockedRooms = [...unlockedRooms, unlockedZone.unlocksRoom]
+                        expeditionResults.push({
+                            type: "unlockedRoom",
+                            goobers: alive,
+                            newRoom: newZone.unlocksRoom
+                        })
+                    }
                 } else {
                     expeditionResults.push({
                         type: "unlockedZone",

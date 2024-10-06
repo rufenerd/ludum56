@@ -86,5 +86,16 @@ export const zones = [
         room: "breakroom",
         x: 6838,
         y: 1334
+    },
+    {
+        name: "Breakroom Door",
+        risk: 1,
+        bounty: 100,
+        remaining: 100,
+        unlocked: true,
+        unlocksRoom: "hall",
+        room: "breakroom",
+        x: 6838,
+        y: 1334
     }
 ]
