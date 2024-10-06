@@ -144,9 +144,9 @@ function App() {
     } else if (nOfClass(team, 5, "goober")) {
       offspring = [new Buddy(randomName())]
     } else if (nOfClass(team, 4, "goober")) {
-      offspring = [new Protector(randomName())]
+      offspring = [new Doctor(randomName())]
     } else if (nOfClass(team, 3, "goober")) {
-      offspring = [new Packer(randomName())]
+      offspring = [new Explorer(randomName())]
     } else if (nOfClass(team, 2, "goober")) {
       offspring = [new Asexual(randomName())]
     } else if (nOfClass(team, 2, "buddy")) {
@@ -156,11 +156,11 @@ function App() {
     } else if (nOfClass(team, 2, "hungry")) {
       offspring = [new Immortal(randomName())]
     } else if (containsExactly(team, ["goober", "packer"])) {
-      offspring = [new Explorer(randomName())]
+      offspring = [new Packer(randomName())]
     } else if (containsExactly(team, ["protector", "packer"])) {
       offspring = [new Hungry(randomName())]
     } else if (containsExactly(team, ["protector", "goober"])) {
-      offspring = [new Doctor(randomName())]
+      offspring = [new Protector(randomName())]
     } else {
       if (state.team.length < 2) {
         dispatch({
