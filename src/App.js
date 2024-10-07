@@ -3,7 +3,7 @@ import _ from 'underscore';
 import './App.css';
 
 import { useGame } from './GameProvider';
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
 import Results from './Results';
 import Map from './Map'
@@ -64,12 +64,22 @@ function App() {
     return hand
   }
 
-  const endTurn = (state, dispatch) => {
-    if (state.results.length > 0) {
-      setScene(SCENE_RESULTS)
-    } else {
-      onResultsFinish()
+  const dispatchQueue = useRef([])
+  const queueDispatch = (op) => {
+    dispatch({ type: 'STAY' })
+    dispatchQueue.current.push(op)
+  }
+
+  const executeQueue = () => {
+    for (const op of dispatchQueue.current) {
+      dispatch(op)
     }
+    dispatchQueue.current = []
+  }
+
+  const endTurn = (state, dispatch) => {
+    executeQueue()
+    setScene(SCENE_RESULTS)
   }
 
   const startTurn = (state, dispatch) => {
@@ -88,9 +98,7 @@ function App() {
     })
 
     if (foodRequirement > state.food || state.population.length == 0) {
-      dispatch({
-        type: "GAME_OVER"
-      })
+      setScene(SCENE_GAME_OVER)
       return
     }
 
@@ -301,11 +309,11 @@ function App() {
         initialTeam={state.initialTeam}
         onAddGooberToTeam={(x) => toggleTeamMember(state, dispatch, x)}
         onStayClick={() => stay(state, dispatch)}
-        onBreedClick={() => breed(state, dispatch)}
+        onBreedClick={() => breed(state, queueDispatch)}
         onExpeditionClick={() => setScene(SCENE_MAP_SELECT)}
         onEndTurn={() => endTurn(state, dispatch)}
       />}
-      {scene === SCENE_MAP_SELECT && <Map zones={state.zones} unlockedRooms={state.unlockedRooms} team={state.team} onAdventureCancel={onAdventureCancel} onZoneClick={(zone) => expedition(state, dispatch, zone)} />}
+      {scene === SCENE_MAP_SELECT && <Map zones={state.zones} unlockedRooms={state.unlockedRooms} team={state.team} onAdventureCancel={onAdventureCancel} onZoneClick={(zone) => expedition(state, queueDispatch, zone)} />}
       {scene === SCENE_RESULTS && state.results.length > 0 && <Results results={state.results} onFinish={onResultsFinish} />}
     </div>)
 }
