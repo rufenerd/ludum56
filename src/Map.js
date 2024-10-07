@@ -4,7 +4,11 @@ import { rooms } from './rooms';
 import React, { useState } from 'react';
 import GooberGroup from './GooberGroup';
 
-function getZoneColor(zone) {
+function getZoneColor(zone, team) {
+    if (!zone.unlocked && !zone.canUnlock(team)) {
+        return "#cfcfcf"
+    }
+
     if (zone.remaining <= 0 && zone.unlocked) {
         return "#cfcfcf"
     }
@@ -80,7 +84,7 @@ function Map(props) {
                                 position: 'absolute',
                                 zIndex: 999,
                                 opacity: 0.66,
-                                backgroundColor: getZoneColor(zone),
+                                backgroundColor: getZoneColor(zone, team),
                                 top: `${zone.y || 500 * Math.random()}px`,
                                 left: `${zone.x || 500 * Math.random()}px`,
                             }}>
