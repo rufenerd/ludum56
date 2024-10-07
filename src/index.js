@@ -4,12 +4,13 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { GameProvider } from './GameProvider';  // Import GameProvider
-
+import MusicProvider from './MusicProvider';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <React.StrictMode>
   <GameProvider>
+    <MusicProvider />
     <App />
   </GameProvider>
   // </React.StrictMode>

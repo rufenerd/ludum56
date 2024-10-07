@@ -81,6 +81,7 @@
   width: 16em;
 }
 
+
 .game-win>.goober-group {
   background-color: #fff;
   border: solid 5px #000;
@@ -195,13 +196,12 @@ button.big {
 .map-tools {
   position: fixed;
   z-index: 1000;
-  top: 0px;
-  left: 0px;
-  margin: 10px;
+  top: 10px;
+  left: 140px;
 }
 
 .map-tools>button {
-  margin: 10px;
+  margin: 0px;
   font-size: 14pt;
   max-width: 5em;
   min-width: 2em;
@@ -441,4 +441,17 @@ button.big {
 .play-area {
   width: 100vw;
   height: 100vh;
+}
+
+.music-controls {
+  position: fixed;
+  top: 0px;
+  left: 10px;
+}
+
+.music-controls>button {
+  z-index: 500000;
+  margin: 10px;
+  width: 6em;
+  font-size: 14pt;
 }
