@@ -447,6 +447,7 @@ button.big {
   position: fixed;
   top: 0px;
   left: 10px;
+  z-index: 500000;
 }
 
 .music-controls>button {
