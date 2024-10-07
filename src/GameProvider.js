@@ -1,12 +1,50 @@
 import React, { createContext, useReducer, useContext } from 'react';
 import { Goober, Lugger, Protector } from './classes';
 import { zones } from './zones'
+import { makeOneOfKlass } from './classes';
 
 const GameContext = createContext();
 
 const foodRequired = (state) => {
     return state.population.reduce((m, a) => m + a.foodRequirement, 0)
 }
+
+const LOCAL_STORAGE_KEY = "gameState";
+
+const serializeState = (state) => {
+    const serializedState = {
+        ...state,
+        population: state.population.map(goober => ({
+            name: goober.name,
+            klass: goober.klass,
+        })),
+        hand: state.hand.map(goober => ({
+            name: goober.name,
+            klass: goober.klass,
+        })),
+        team: state.team.map(goober => ({
+            name: goober.name,
+            klass: goober.klass,
+        })),
+    };
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(serializedState));
+};
+
+const deserializeState = () => {
+    const serializedState = localStorage.getItem(LOCAL_STORAGE_KEY);
+    if (!serializedState) return null;
+
+    const parsedState = JSON.parse(serializedState);
+
+    // Rebuild goobers
+    return {
+        ...parsedState,
+        population: parsedState.population.map(goober => makeOneOfKlass(goober.name, goober.klass)),
+        hand: parsedState.hand.map(goober => makeOneOfKlass(goober.name, goober.klass)),
+        team: parsedState.team.map(goober => makeOneOfKlass(goober.name, goober.klass)),
+    };
+};
+
 
 const initialState = {
     population: [
@@ -27,6 +65,7 @@ const initialState = {
     team: [],
     zones,
     results: [],
+    continue: false,
     unlockedRooms: [
         "start",
         // "hall",
@@ -39,15 +78,27 @@ const initialState = {
     ],
     turn: 0,
     initialTeam: true
+}
+
+const gameReducerWithLocalStorage = (state, action) => {
+    const newState = gameReducer(state, action);
+    serializeState(newState);
+    return newState;
 };
+
 
 const gameReducer = (state, action) => {
     switch (action.type) {
         case 'GAME_START':
             return {
                 ...state,
-                lastRoundGainedFood: 10 //hack to fix first turn delta
+                lastRoundGainedFood: 10
             };
+        case 'CONTINUE_GAME':
+            return {
+                ...deserializeState(),
+                continue: true
+            }
         case 'CONSUME':
             const consumed = foodRequired(state)
             const newFood = state.food - consumed
@@ -223,7 +274,7 @@ const gameReducer = (state, action) => {
 };
 
 export const GameProvider = ({ children }) => {
-    const [state, dispatch] = useReducer(gameReducer, initialState);
+    const [state, dispatch] = useReducer(gameReducerWithLocalStorage, initialState);
 
     return (
         <GameContext.Provider value={{ state, dispatch }}>

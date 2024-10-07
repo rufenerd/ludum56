@@ -63,10 +63,17 @@ function App() {
     startTurn(state, dispatch)
   }
 
-  const onIntroClick = () => {
+  const startGame = () => {
     startTurn(state, dispatch)
     dispatch({
       type: "GAME_START"
+    })
+  }
+
+  const continueGame = () => {
+    setScene(SCENE_PLAY_AREA)
+    dispatch({
+      type: "CONTINUE_GAME"
     })
   }
 
@@ -366,8 +373,8 @@ function App() {
 
   return (
     <div className="App">
-      {scene === SCENE_INTRO && <Intro onClick={() => setScene(SCENE_TUTORIAL)} />}
-      {scene === SCENE_TUTORIAL && <Tutorial onClick={onIntroClick} />}
+      {scene === SCENE_INTRO && <Intro onClick={(skipTutorial) => skipTutorial ? continueGame() : setScene(SCENE_TUTORIAL)} />}
+      {scene === SCENE_TUTORIAL && <Tutorial onClick={startGame} />}
       {scene === SCENE_NEW_DAY && <NewDay onFinish={() => setScene(SCENE_PLAY_AREA)} />}
       {scene === SCENE_GAME_OVER && <GameOver state={state} />}
       {scene === SCENE_GAME_WIN && <GameWin state={state} />}

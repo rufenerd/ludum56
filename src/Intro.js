@@ -7,7 +7,8 @@ function Intro(props) {
         }}>
             <h1>Goobers!</h1>
             <p>The escape from Laboratory 8</p>
-            <button onClick={props.onClick}>Start Game</button>
+            <button onClick={() => props.onClick(false)}>Start Game</button>
+            <button onClick={() => props.onClick(true)}>Continue</button>
         </div >
     );
 }
