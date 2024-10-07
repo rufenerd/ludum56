@@ -25,13 +25,13 @@ const initialState = {
     results: [],
     unlockedRooms: [
         "start",
-        "hall",
-        "breakroom",
-        "office",
-        "kitchen",
-        "lobby",
-        "hall2",
-        "experiment"
+        // "hall",
+        // "breakroom",
+        // "office",
+        // "kitchen",
+        // "lobby",
+        // "hall2",
+        // "experiment"
     ],
     initialTeam: true
 };
@@ -54,12 +54,12 @@ const gameReducer = (state, action) => {
                 food: newFood,
                 gameOver: newFood < 0,
                 results: [...state.results,
-                    {
-                      type: "consume",
-                      goobers: state.population,
-                      consumed: action.payload.consume,
-                      newFood
-                    }
+                {
+                    type: "consume",
+                    goobers: state.population,
+                    consumed: action.payload.consume,
+                    newFood
+                }
                 ]
             };
         case 'GAME_OVER':

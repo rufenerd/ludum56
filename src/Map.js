@@ -64,7 +64,7 @@ function Map(props) {
                     </div>
                     <div className="map-container">
                         <div className="map">
-                            {rooms.filter(room => true || unlockedRooms.includes(room.name)).map(room => {
+                            {rooms.filter(room => unlockedRooms.includes(room.name)).map(room => {
                                 return <img key={room.name} src={`assets/room_${room.name}.png`} className="room" alt={room.name} style={{ left: room.x, top: room.y }} />
                             })}
                         </div>
