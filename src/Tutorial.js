@@ -21,8 +21,11 @@ function Tutorial(props) {
             img: 'assets/reproduce_tutorial.png',
         },
         {
-            text: 'Goobers can combine to produce new types of offspring. Experiment with pairing different combinations!',
+            text: 'Goobers can combine to produce new types of offspring. Experiment with pairing different combinations.',
             img: 'assets/combination_tutorial.png',
+        },
+        {
+            text: 'Gather food, reproduce, and explore to escape the lab!'
         }
 
     ]} />
