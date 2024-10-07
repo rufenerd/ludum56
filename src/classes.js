@@ -16,7 +16,6 @@ export class Stud extends Goober {
     constructor(name) {
         super(name);
         this.klass = "stud";
-        this.foodRequirement = 3;
         this.description = "Can have multiple non-stud reproduction partners in same round"
     }
 }
@@ -50,7 +49,6 @@ export class Asexual extends Goober {
         super(name);
         this.klass = "asexual";
         this.description = "Reproduces on its own. Might reproduce anything.";
-        this.carryingCapacity = 2;
     }
 }
 
@@ -104,7 +102,6 @@ export class Protector extends Goober {
     constructor(name) {
         super(name);
         this.klass = "protector";
-        this.foodRequirement = 2;
         this.protect = 2
         this.description = "Halves the odds of any death on adventures"
     }
@@ -114,7 +111,6 @@ export class Bozo extends Goober {
     constructor(name) {
         super(name);
         this.klass = "bozo";
-        this.foodRequirement = 2;
         this.protect = 2
         this.description = "Dies first"
     }
