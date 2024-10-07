@@ -24,7 +24,7 @@ const SCENE_RESULTS = "results"
 
 function App() {
   const { state, dispatch } = useGame();
-  const [ scene, setScene ] = useState(SCENE_INTRO);
+  const [scene, setScene] = useState(SCENE_INTRO);
 
   document.addEventListener('click', function (e) {
     console.log(e.pageX - 50, e.pageY - 50);
@@ -150,11 +150,11 @@ function App() {
     } else if (nOfClass(team, 5, "goober")) {
       offspring = [new Buddy(randomName())]
     } else if (nOfClass(team, 4, "goober")) {
-      offspring = [new Doctor(randomName())]
-    } else if (nOfClass(team, 3, "goober")) {
-      offspring = [new Explorer(randomName())]
-    } else if (nOfClass(team, 2, "goober")) {
       offspring = [new Asexual(randomName())]
+    } else if (nOfClass(team, 3, "goober")) {
+      offspring = [new Doctor(randomName())]
+    } else if (nOfClass(team, 2, "goober")) {
+      offspring = [new Explorer(randomName())]
     } else if (nOfClass(team, 2, "buddy")) {
       offspring = [new Bozo(randomName())]
     } else if (nOfClass(team, 2, "packer")) {
@@ -167,7 +167,7 @@ function App() {
       offspring = [new Hungry(randomName())]
     } else if (containsExactly(team, ["explorer", "goober"])) {
       offspring = [new Opener(randomName())]
-    } else if (containsExactly(team, ["protector", "goober"])) {
+    } else if (containsExactly(team, ["doctor", "goober"])) {
       offspring = [new Protector(randomName())]
     } else if (team.length == 2 && team.map(x => x.klass).includes("replicator")) {
       if (nOfClass(team, 2, "replicator")) {
