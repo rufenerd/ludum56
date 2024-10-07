@@ -17,6 +17,15 @@ import { names } from './names'
 import Dialogue from './Dialogue';
 import NewDay from './NewDay';
 
+import goob1 from './sound/goob1m.wav'
+import goob2 from './sound/goob2m.wav'
+import goob3 from './sound/goob3m.wav'
+import goob5 from './sound/goob5m.wav'
+import goob6 from './sound/goob6m.wav'
+import goob7 from './sound/goob7m.wav'
+import goob8 from './sound/goob8.wav'
+import useSound from 'use-sound';
+
 const START_HAND_SIZE = 5
 const DIFFICULTY = 0.2
 
@@ -33,9 +42,22 @@ function App() {
   const { state, dispatch } = useGame();
   const [scene, setScene] = useState(SCENE_INTRO);
 
-  document.addEventListener('click', function (e) {
-    console.log(e.pageX - 50, e.pageY - 50);
-  });
+  const [g1] = useSound(goob1)
+  const [g2] = useSound(goob2)
+  const [g3] = useSound(goob3)
+  const [g5] = useSound(goob5)
+  const [g6] = useSound(goob6)
+  const [g7] = useSound(goob7)
+  const [g8] = useSound(goob8)
+  const goobSounds = [
+    g1,
+    g2,
+    g3,
+    g5,
+    g6,
+    g7,
+    g8,
+  ]
 
   const onResultsFinish = () => {
     startTurn(state, dispatch)
@@ -357,7 +379,12 @@ function App() {
         population={state.population}
         team={state.team}
         initialTeam={state.initialTeam}
-        onAddGooberToTeam={(x) => toggleTeamMember(state, dispatch, x)}
+        onAddGooberToTeam={(x) => {
+          if (!state.team.find(i => i === x)) {
+            goobSounds[Math.floor(Math.random() * goobSounds.length)]()
+          } 
+          toggleTeamMember(state, dispatch, x)
+        }}
         onStayClick={() => stay(state, dispatch)}
         onBreedClick={() => breed(state, queueDispatch)}
         onExpeditionClick={() => setScene(SCENE_MAP_SELECT)}

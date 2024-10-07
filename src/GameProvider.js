@@ -42,10 +42,6 @@ const initialState = {
 };
 
 const gameReducer = (state, action) => {
-    console.log(action.type)
-    console.log(JSON.stringify(action.payload))
-    console.log("------")
-
     switch (action.type) {
         case 'GAME_START':
             return {

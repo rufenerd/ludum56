@@ -8,7 +8,6 @@ function ZoneTooltip(props) {
     const [scale, setScale] = useState(0.5)
 
     useTransformEffect(({ state }) => {
-        console.log(state.scale)
         setScale(state.scale)
     })
 

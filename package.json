@@ -13,6 +13,7 @@
     "react-scripts": "5.0.1",
     "react-zoom-pan-pinch": "^3.6.1",
     "underscore": "^1.13.7",
+    "use-sound": "^4.0.3",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

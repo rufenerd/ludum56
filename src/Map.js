@@ -38,10 +38,6 @@ function getZoneColor(zone, team) {
 
 function MapControls() {
     const { zoomIn, zoomOut, resetTransform } = useControls()
-    useTransformEffect(({ state }) => {
-        console.log(state)
-    })
-
 
     return <div className="map-tools">
         <button onClick={() => resetTransform()}>recenter</button>
