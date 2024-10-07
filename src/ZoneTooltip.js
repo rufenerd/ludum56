@@ -1,5 +1,7 @@
 import React, { useState } from "react"
 import { useTransformEffect } from "react-zoom-pan-pinch"
+import { makeOneOfKlass } from "./classes"
+import GooberGroup from "./GooberGroup"
 
 function ZoneTooltip(props) {
     const { zone } = props
@@ -10,13 +12,17 @@ function ZoneTooltip(props) {
         setScale(state.scale)
     })
 
+    const hasRequirements = zone.requires && zone.requires.length > 0
+    const exampleRequiresGoobers = hasRequirements ? zone.requires.map(x => makeOneOfKlass("", x)) : []
+
     if (!zone.unlocked) {
         return (<div className="tooltip zone-tooltip" style={{
             transform: `scale(${Math.max(1 / scale, 1)})`,
         }}>
             <div className="zone-title">{zone.name}</div>
             <div>{`Risk level: ${zone.risk}`}</div>
-            <div>{`Requires: ${zone.requires}`}</div>
+            {hasRequirements && <div>Requires: {zone.requires.join(" and ")}</div>}
+            {hasRequirements && <GooberGroup goobers={exampleRequiresGoobers} mini={true} hideTooltip={true} />}
         </div>)
     }
     return (

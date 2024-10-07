@@ -15,13 +15,13 @@
   justify-content: top;
   align-items: center;
   text-align: center;
-  cursor: pointer;
   font-size: 60px;
 }
 
 .intro>button {
   font-size: 24pt;
   width: 16em;
+  cursor: pointer;
 }
 .intro>h1 {
   margin-bottom: 0px;
@@ -250,7 +250,8 @@ button.big {
 .goober.mini {
   max-height: 40px;
   max-width: 40px;
-  padding: 3px;
+  padding: 0;
+  margin: 0;
 }
 
 .goober.mini .goober-image{
