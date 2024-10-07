@@ -79,7 +79,7 @@ function Map(props) {
             <TransformComponent >
                 <div className="map">
                     <div className="zones">
-                        {zones.filter(z => unlockedRooms.includes(z.room) && !(z.unlocksRoom && z.unlocked)).map(zone => (
+                        {zones.filter(z => unlockedRooms.includes(z.room) && !(unlockedRooms.includes(z.unlocksRoom))).map(zone => (
                             <div className="zone tooltip-container" key={zone.name} onClick={() => onZoneCircleClick(zone)} style={{
                                 position: 'absolute',
                                 zIndex: 999,
