@@ -4,6 +4,22 @@ import { rooms } from './rooms';
 import React, { useState } from 'react';
 import GooberGroup from './GooberGroup';
 
+function getZoneColor (zone) {
+    if (!zone.unlocked) {
+        return "#646ef5"
+    }
+
+    if (zone.risk > 3) {
+        return "#f56464"
+    }
+
+    if (zone.remaining > 0) {
+        return "#90f564"
+    }
+
+    return "#cfcfcf"
+}
+
 function Map(props) {
     const { zones, onZoneClick, onAdventureCancel, unlockedRooms, team } = props
     const [selectedZone, setSelectedZone] = useState(null);
@@ -35,6 +51,8 @@ function Map(props) {
                             <div className="zone tooltip-container" key={zone.name} onClick={() => onZoneCircleClick(zone)} style={{
                                 position: 'absolute',
                                 zIndex: 999,
+                                opacity: 0.66,
+                                backgroundColor: getZoneColor(zone),
                                 top: `${zone.y || 500 * Math.random()}px`,
                                 left: `${zone.x || 500 * Math.random()}px`,
                             }}>

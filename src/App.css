@@ -281,9 +281,9 @@ button.big {
   cursor: pointer;
   width: 100px;
   height: 100px;
-  background-color: #646ef599;
   border-radius: 50%;
 }
+
 .tooltip {
   visibility: hidden;
   background-color: #fff;
