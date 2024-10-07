@@ -39,7 +39,7 @@ function Results(props) {
             break;
         case 'unlockedZone':
             title = "Discovery!"
-            message = `These fine adventurers have discovered a new zone.`
+            message = `These fine adventurers have discovered a new zone. Check the map your next adventure!`
             extra = <div className="title">{result.zone.name}</div>
             break;
         case 'unlockedRoom':

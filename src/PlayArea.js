@@ -13,7 +13,8 @@ function PlayArea(props) {
                 backgroundImage: "url('assets/play_area_bg.png')",
                 backgroundSize: "cover",
             }}>
-                <h1 className="play-area-title">{hand.length} goobers are ready for orders!</h1>
+                {hand.length > 0 && <h1 className="play-area-title">{hand.length} goobers are ready for orders!</h1>}
+                {hand.length == 0 && <h1 className="play-area-title">Great! Click "End Turn" to continue.</h1>}
                 <Stats food={food} population={population} lastRoundGainedFood={lastRoundGainedFood} turn={turn} />
                 <Deck population={population} />
                 <Hand popIn={initialTeam} hand={stillInHand} onClick={(x) => onAddGooberToTeam(x)} />
