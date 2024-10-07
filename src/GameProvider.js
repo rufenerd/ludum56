@@ -37,6 +37,7 @@ const initialState = {
         // "hall2",
         // "experiment"
     ],
+    turn: 0,
     initialTeam: true
 };
 
@@ -77,10 +78,11 @@ const gameReducer = (state, action) => {
                     type: "game_over"
                 }]
             }
-        case 'CLEAR':
+        case 'START_TURN':
             return {
                 ...state,
                 team: [],
+                turn: state.turn + 1,
                 message: null,
                 results: [],
                 roundGainedFood: 0,

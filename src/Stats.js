@@ -3,6 +3,9 @@ function Stats(props) {
     return (
         <div className='stats'>
             <div>
+                Day: {props.turn}
+            </div>
+            <div>
                 FOOD SUPPLY: {props.food}
             </div>
             <div>

@@ -103,7 +103,7 @@ function App() {
     setScene(SCENE_NEW_DAY)
 
     dispatch({
-      type: "CLEAR"
+      type: "START_TURN"
     })
 
     dispatch({
@@ -353,6 +353,7 @@ function App() {
         food={state.food}
         lastRoundGainedFood={state.lastRoundGainedFood}
         hand={state.hand}
+        turn={state.turn}
         population={state.population}
         team={state.team}
         initialTeam={state.initialTeam}
