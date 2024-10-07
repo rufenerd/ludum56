@@ -330,7 +330,7 @@ function App() {
 
     let unlockedZone = null
     if (!zone.unlocked) {
-      if (zone.canUnlock(alive)) {
+      if (zone.canUnlock && zone.canUnlock(alive)) {
         unlockedZone = zone
       } else {
         dispatch({
@@ -389,7 +389,7 @@ function App() {
         onAddGooberToTeam={(x) => {
           if (!state.team.find(i => i === x)) {
             goobSounds[Math.floor(Math.random() * goobSounds.length)]()
-          } 
+          }
           toggleTeamMember(state, dispatch, x)
         }}
         onStayClick={() => stay(state, dispatch)}

@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 import GooberGroup from './GooberGroup';
 
 function getZoneColor(zone, team) {
-    if (!zone.unlocked && !zone.canUnlock(team)) {
+    if (!zone.unlocked && !(zone.canUnlock && zone.canUnlock(team))) {
         return "#cfcfcf"
     }
 
