@@ -54,11 +54,13 @@ function Results(props) {
             title = "Saved!"
             message = 'These doctors prevented the following deaths!'
             extra = <GooberGroup goobers={result.savedGoobers} hideTooltip={true}></GooberGroup>
+            break;
         case 'consume':
             title = "Food Consumed"
             message = `This population of goobers ate ${result.consumed} food!`
             mini = true
             extra = <div className='title'>You have {result.newFood} remaining!</div>
+            break;
     }
 
     return (
