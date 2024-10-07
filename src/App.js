@@ -12,7 +12,7 @@ import GameWin from './GameWin';
 import Intro from './Intro';
 import PlayArea from './PlayArea';
 import Tutorial from './Tutorial';
-import { makeOneOfKlass, Goober, Hungry, Packer, Immortal, Protector, Stud, Explorer, Doctor, Scavenger, Bozo, Asexual, Buddy, Recruiter, Opener, Replicator, weightedRandomClass } from './classes';
+import { makeOneOfKlass, Goober, Hungry, Lugger, Immortal, Protector, Stud, Explorer, Doctor, Scavenger, Bozo, Asexual, Buddy, Recruiter, Opener, Replicator, weightedRandomClass } from './classes';
 import { names } from './names'
 import Dialogue from './Dialogue';
 import NewDay from './NewDay';
@@ -156,39 +156,95 @@ function App() {
     return JSON.stringify(team.map(x => x.klass).sort()) == JSON.stringify(klasses.sort())
   }
 
+  const defaultBreed = (parentA, parentB) => {
+    const r = Math.random()
+    if (r < 0.5) {
+      return new Goober(randomName())
+    } else if (r < 0.75) {
+      return makeOneOfKlass(randomName(), parentA.klass)
+    } else {
+      return makeOneOfKlass(randomName(), parentB.klass)
+    }
+  }
+
   const breed = (state, dispatch) => {
     const { team } = state
+
     let offspring
-    if (nOfClass(team, 1, "asexual")) {
-      offspring = [weightedRandomClass(randomName())]
-    } else if (team.length > 6) {
-      offspring = [new Recruiter(randomName())]
-    } else if (nOfClass(team, 2, "recruiter")) {
-      offspring = [new Stud(randomName())]
-    } else if (nOfClass(team, 2, "explorer")) {
-      offspring = [new Replicator(randomName())]
-    } else if (nOfClass(team, 5, "goober")) {
-      offspring = [new Buddy(randomName())]
-    } else if (nOfClass(team, 4, "goober")) {
-      offspring = [new Asexual(randomName())]
-    } else if (nOfClass(team, 3, "goober")) {
-      offspring = [new Doctor(randomName())]
-    } else if (nOfClass(team, 2, "goober")) {
-      offspring = [new Explorer(randomName())]
-    } else if (nOfClass(team, 2, "buddy")) {
-      offspring = [new Bozo(randomName())]
-    } else if (nOfClass(team, 2, "packer")) {
-      offspring = [new Scavenger(randomName())]
-    } else if (nOfClass(team, 2, "hungry")) {
-      offspring = [new Immortal(randomName())]
-    } else if (containsExactly(team, ["goober", "packer"])) {
-      offspring = [new Packer(randomName())]
-    } else if (containsExactly(team, ["protector", "packer"])) {
-      offspring = [new Hungry(randomName())]
-    } else if (containsExactly(team, ["explorer", "goober"])) {
-      offspring = [new Opener(randomName())]
-    } else if (containsExactly(team, ["doctor", "goober"])) {
+    debugger
+    if (team.length == 1) {
+      if (nOfClass(team, 1, "asexual")) {
+        offspring = [weightedRandomClass(randomName())]
+      } else {
+        dispatch({
+          type: "FAILED_BIRTH",
+          payload: {
+            goobers: team
+          }
+        })
+        return
+      }
+    }
+
+    if (team.length > 2) {
+      if (team.map(x => x.klass).includes("stud")) {
+        offspring = []
+        const studs = team.filter(x => x.klass == "stud")
+        const nonStuds = team.filter(x => x.klass != "stud")
+
+        for (let i = 0; i < studs.length; i++) {
+          for (let j = 0; j < nonStuds.length; j++) {
+            offspring.push(defaultBreed(nonStuds[j], nonStuds[j]))
+          }
+        }
+      } else {
+        dispatch({
+          type: "FAILED_BIRTH",
+          payload: {
+            goobers: team
+          }
+        })
+        return
+      }
+    }
+
+    if (containsExactly(team, ["goober", "goober"])) {
+      const r = Math.random()
+      if (r < 0.5) {
+        offspring = [new Goober(randomName())]
+      } else if (r < 0.75) {
+        offspring = [new Lugger(randomName())]
+      } else {
+        offspring = [new Protector(randomName())]
+      }
+    } else if (containsExactly(team, ["goober", "lugger"])) {
+      offspring = [new Lugger(randomName())]
+    } else if (containsExactly(team, ["goober", "protector"])) {
       offspring = [new Protector(randomName())]
+    } else if (containsExactly(team, ["lugger", "protector"])) {
+      offspring = [new Explorer(randomName())]
+    } else if (containsExactly(team, ["lugger", "lugger"])) {
+      offspring = [new Scavenger(randomName())]
+    } else if (containsExactly(team, ["protector", "protector"])) {
+      offspring = [new Doctor(randomName())]
+    } else if (containsExactly(team, ["lugger", "explorer"])) {
+      offspring = [new Buddy(randomName())]
+    } else if (containsExactly(team, ["protector", "explorer"])) {
+      offspring = [new Opener(randomName())]
+    } else if (containsExactly(team, ["protector", "doctor"])) {
+      offspring = [new Bozo(randomName())]
+    } else if (containsExactly(team, ["lugger", "doctor"])) {
+      offspring = [new Replicator(randomName())]
+    } else if (containsExactly(team, ["scavenger", "scavenger"])) {
+      offspring = [new Hungry(randomName())]
+    } else if (containsExactly(team, ["buddy", "buddy"])) {
+      offspring = [new Recruiter(randomName())]
+    } else if (containsExactly(team, ["bozo", "bozo"])) {
+      offspring = [new Asexual(randomName())]
+    } else if (containsExactly(team, ["hungry", "hungry"])) {
+      offspring = [new Immortal(randomName())]
+    } else if (containsExactly(team, ["recruiter", "recruiter"])) {
+      offspring = [new Stud(randomName())]
     } else if (team.length == 2 && team.map(x => x.klass).includes("replicator")) {
       if (nOfClass(team, 2, "replicator")) {
         offspring = [new Replicator(randomName())]
@@ -197,23 +253,66 @@ function App() {
         offspring = [makeOneOfKlass(randomName(), klass)]
       }
     } else {
-      if (state.team.length < 2) {
-        dispatch({
-          type: "FAILED_BIRTH"
-        })
-        return
-      }
-
-      const studCount = state.team.filter(x => x.klass == "stud").length
-      const nonStudCount = state.team.length - studCount
-
-      const offspringCount = studCount > 0 ? studCount * nonStudCount : 1
-      offspring = Array.from({ length: offspringCount }, randomGoober);
+      offspring = [defaultBreed(team[0], team[1])]
     }
+
+    // 
+    // if (nOfClass(team, 1, "asexual")) {
+    //   offspring = [weightedRandomClass(randomName())]
+    // } else if (team.length > 6) {
+    //   offspring = [new Recruiter(randomName())]
+    // } else if (nOfClass(team, 2, "recruiter")) {
+    //   offspring = [new Stud(randomName())]
+    // } else if (nOfClass(team, 2, "explorer")) {
+    //   offspring = [new Replicator(randomName())]
+    // } else if (nOfClass(team, 5, "goober")) {
+    //   offspring = [new Buddy(randomName())]
+    // } else if (nOfClass(team, 4, "goober")) {
+    //   offspring = [new Asexual(randomName())]
+    // } else if (nOfClass(team, 3, "goober")) {
+    //   offspring = [new Doctor(randomName())]
+    // } else if (nOfClass(team, 2, "goober")) {
+    //   offspring = [new Explorer(randomName())]
+    // } else if (nOfClass(team, 2, "buddy")) {
+    //   offspring = [new Bozo(randomName())]
+    // } else if (nOfClass(team, 2, "packer")) {
+    //   offspring = [new Scavenger(randomName())]
+    // } else if (nOfClass(team, 2, "hungry")) {
+    //   offspring = [new Immortal(randomName())]
+    // } else if (containsExactly(team, ["goober", "packer"])) {
+    //   offspring = [new Packer(randomName())]
+    // } else if (containsExactly(team, ["protector", "packer"])) {
+    //   offspring = [new Hungry(randomName())]
+    // } else if (containsExactly(team, ["explorer", "goober"])) {
+    //   offspring = [new Opener(randomName())]
+    // } else if (containsExactly(team, ["doctor", "goober"])) {
+    //   offspring = [new Protector(randomName())]
+    // } else if (team.length == 2 && team.map(x => x.klass).includes("replicator")) {
+    //   if (nOfClass(team, 2, "replicator")) {
+    //     offspring = [new Replicator(randomName())]
+    //   } else {
+    //     const klass = team.filter(x => x.klass != "replicator")[0].klass
+    //     offspring = [makeOneOfKlass(randomName(), klass)]
+    //   }
+    // } else {
+    //   if (state.team.length < 2) {
+    //     dispatch({
+    //       type: "FAILED_BIRTH"
+    //     })
+    //     return
+    //   }
+
+    //   const studCount = state.team.filter(x => x.klass == "stud").length
+    //   const nonStudCount = state.team.length - studCount
+
+    //   const offspringCount = studCount > 0 ? studCount * nonStudCount : 1
+    //   offspring = Array.from({ length: offspringCount }, randomGoober);
+    // }
 
     dispatch({
       type: "BIRTH",
       payload: {
+        parents: team,
         offspring
       }
     })

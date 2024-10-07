@@ -17,7 +17,7 @@ export class Stud extends Goober {
         super(name);
         this.klass = "stud";
         this.foodRequirement = 3;
-        this.description = "Can have multiple reproduction partners in same round"
+        this.description = "Can have multiple non-stud reproduction partners in same round"
     }
 }
 
@@ -73,7 +73,7 @@ export class Immortal extends Goober {
     }
 }
 
-export class Packer extends Goober {
+export class Lugger extends Goober {
     constructor(name) {
         super(name);
         this.klass = "lugger";
@@ -143,7 +143,7 @@ const weightedRandomKlass = () => {
     } else if (r < 0.6) {
         return "asexual"
     } else {
-        return _.sample(["stud", "explorer", "opener", "doctor", "buddy", "immortal", "packer", "scavenger", "hungry", "protector", "bozo", "recruiter", "replicator"], 1)[0]
+        return _.sample(["stud", "explorer", "opener", "doctor", "buddy", "immortal", "lugger", "scavenger", "hungry", "protector", "bozo", "recruiter", "replicator"], 1)[0]
     }
 }
 
@@ -169,8 +169,8 @@ export const makeOneOfKlass = (name, klass) => {
             return new Buddy(name)
         case "immortal":
             return new Immortal(name)
-        case "packer":
-            return new Packer(name)
+        case "lugger":
+            return new Lugger(name)
         case "scavenger":
             return new Scavenger(name)
         case "hungry":
