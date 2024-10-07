@@ -2,6 +2,10 @@
   text-align: center;
   font-weight: bold;
   text-transform: uppercase;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 .intro {
@@ -148,10 +152,6 @@ button.big {
 }
 
 .goober {
-  user-select: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   padding: 5px 15px;
   width: 100px;
   display: flex;

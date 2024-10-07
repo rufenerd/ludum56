@@ -4,7 +4,7 @@ import { rooms } from './rooms';
 import React, { useState } from 'react';
 import GooberGroup from './GooberGroup';
 
-function getZoneColor (zone) {
+function getZoneColor(zone) {
     if (!zone.unlocked) {
         return "#646ef5"
     }
