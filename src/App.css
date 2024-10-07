@@ -266,18 +266,31 @@ button.big {
 
 @keyframes bounce {
   0%, 20%, 50%, 80%, 100% {
-      transform: translateY(0);
+      transform: translateY(0) rotate(0deg); /* No rotation at these points */
   }
   40% {
-      transform: translateY(-10px);
+      transform: translateY(-10px) rotate(5deg); /* Slight clockwise rotation */
   }
   60% {
-      transform: translateY(-5px);
+      transform: translateY(-5px) rotate(-5deg); /* Slight counterclockwise rotation */
   }
 }
 
 .bounce img {
   animation: bounce 2s infinite;
+}
+
+@keyframes slowWave {
+  0%, 100% {
+      transform: translateY(0);
+  }
+  50% {
+      transform: translateY(-10px); /* Small wave-like movement */
+  }
+}
+
+.slow-wave img {
+  animation: slowWave 5s infinite ease-in-out; /* Slow and smooth */
 }
 
 @keyframes popIn {

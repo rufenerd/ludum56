@@ -10,6 +10,8 @@ function GooberGroup(props) {
     }
     if (props.bounce) {
         className += " bounce"
+    } else if (props.wave) {
+        className += " slow-wave"
     }
     if (props.popIn) {
         className += " pop-in"
