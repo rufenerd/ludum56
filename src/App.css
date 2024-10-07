@@ -119,6 +119,8 @@ button.big {
   flex-wrap: wrap;
   align-content: center;
   font-size: 18pt;
+  overflow-x: scroll;
+  overflow-y: scroll;
 }
 
 .team-bar .goober-group {
