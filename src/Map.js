@@ -26,7 +26,7 @@ function MapControls() {
         console.log(state)
     })
 
-    
+
     return <div className="map-tools">
         <button onClick={() => resetTransform()}>recenter</button>
     </div>
@@ -53,9 +53,9 @@ function Map(props) {
             initialScale={0.43}
             initialPositionX={-3400}
             initialPositionY={50}
-            wheel={{ step: 0.1 }}
             minScale={0.1}
             maxScale={2}
+            wheel={{ step: 0.1 }}
             limitToBounds={false}
             panning={{ disabled: false }}
         >

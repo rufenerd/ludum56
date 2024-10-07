@@ -309,6 +309,7 @@ button.big {
 }
 
 .expedition-confirmation-bar {
+  opacity: 0.97;
   font-size: 20px;
   position: fixed;
   background-color: #222;
