@@ -11,7 +11,7 @@ function ZoneTooltip(props) {
             <div className="zone-title">{zone.name}</div>
             <div>{`Risk level: ${zone.risk}`}</div>
             <div>{`Remaining food: ${zone.remaining}`}</div>
-            {zone.boutry > 1 && <div>{`Food Multiplier: ${zone.bountry}x`}</div>}
+            {zone.bounty > 10 && <div>{`Food Multiplier: ${zone.bounty / 10}x`}</div>}
         </div>
     );
 }
