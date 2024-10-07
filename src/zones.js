@@ -202,6 +202,18 @@ export const zones = [
         y: 2000,
     },
     {
+        name: "Breakroom Hall Door",
+        risk: 1,
+        bounty: 0,
+        remaining: 0,
+        unlocked: false,
+        room: "hall",
+        canUnlock: (team) => team.map(x => x.klass).includes("explorer"),
+        requires: ["explorer"],
+        x: 7580,
+        y: 2000,
+    },
+    {
         name: "Test Kitchen Door",
         risk: 1,
         bounty: 1,
