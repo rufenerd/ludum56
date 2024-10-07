@@ -155,9 +155,9 @@ function App() {
 
   const defaultBreed = (parentA, parentB) => {
     const r = Math.random()
-    if (r < 0.5) {
+    if (r < 0.333) {
       return new Goober(randomName())
-    } else if (r < 0.75) {
+    } else if (r < 0.666) {
       return makeOneOfKlass(randomName(), parentA.klass)
     } else {
       return makeOneOfKlass(randomName(), parentB.klass)
