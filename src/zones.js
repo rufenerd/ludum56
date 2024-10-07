@@ -1,7 +1,7 @@
 export const zones = [
     {
         name: "Cheep-o Animal Feed",
-        risk: 1,
+        risk: 0,
         bounty: 10,
         remaining: 100,
         unlocked: true,
@@ -11,7 +11,7 @@ export const zones = [
     },
     {
         name: "Locker",
-        risk: 1,
+        risk: 0,
         bounty: 20,
         remaining: 40,
         unlocked: false,
@@ -123,7 +123,7 @@ export const zones = [
     },
     {
         name: "Suspicious Smoothie",
-        risk: 2,
+        risk: 1,
         bounty: 10,
         remaining: 20,
         unlocked: true,
@@ -133,7 +133,7 @@ export const zones = [
     },
     {
         name: "Discarded Soup",
-        risk: 1,
+        risk: 0,
         bounty: 10,
         remaining: 10,
         unlocked: true,
@@ -153,7 +153,7 @@ export const zones = [
     },
     {
         name: "Freezer",
-        risk: 2,
+        risk: 1,
         bounty: 30,
         remaining: 30,
         unlocked: true,
@@ -163,7 +163,7 @@ export const zones = [
     },
     {
         name: "Discarded Leftovers",
-        risk: 2,
+        risk: 0,
         bounty: 20,
         remaining: 20,
         unlocked: true,
