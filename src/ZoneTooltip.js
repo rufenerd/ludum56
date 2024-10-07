@@ -14,7 +14,7 @@ function ZoneTooltip(props) {
         return (<div className="tooltip zone-tooltip" style={{
             transform: `scale(${Math.max(1 / scale, 1)})`,
         }}>
-            <div className="zone-title">???</div>
+            <div className="zone-title">{zone.name}</div>
             <div>{`Requires: ${zone.requires}`}</div>
         </div>)
     }
