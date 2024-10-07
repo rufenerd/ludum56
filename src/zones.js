@@ -22,23 +22,34 @@ export const zones = [
         y: 1146
     },
     {
+        name: "Standard Moustrap",
+        risk: 4,
+        bounty: 80,
+        remaining: 80,
+        unlocked: true,
+        room: "start",
+        requires: "opener",
+        x: 8461,
+        y: 1338
+    },
+    {
         name: "Vent",
         risk: 2,
-        bounty: 100,
-        remaining: 100,
+        bounty: 0,
+        remaining: 0,
         unlocked: false,
         canUnlock: (team) => team.map(x => x.klass).includes("explorer"),
         room: "start",
         unlocksRoom: "breakroom",
-        x: 8881,
+        x: 8873,
         y: 233,
         requires: "explorer"
     },
     {
         name: "Containment Room Door",
         risk: 2,
-        bounty: 100,
-        remaining: 100,
+        bounty: 0,
+        remaining: 0,
         unlocked: false,
         canUnlock: (team) => team.map(x => x.klass).includes("explorer"),
         room: "start",
@@ -78,7 +89,7 @@ export const zones = [
         y: 983
     },
     {
-        name: "Mouse Trap Bait",
+        name: "Gun Mouse Trap",
         risk: 5,
         bounty: 100,
         remaining: 100,

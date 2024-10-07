@@ -1,4 +1,4 @@
-import _, { random } from 'underscore';
+import _ from 'underscore';
 
 import './App.css';
 
