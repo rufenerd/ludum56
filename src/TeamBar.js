@@ -11,7 +11,6 @@ function TeamBar(props) {
             <div className="actions">
                 {<button className={noTeam} disabled={noTeam} onClick={onBreedClick}>REPRODUCE</button>}
                 {<button className={noTeam} disabled={noTeam} onClick={onExpeditionClick}>ADVENTURE</button>}
-                {<button className={noTeam} disabled={noTeam} onClick={onStayClick}>REST</button>}
                 <button onClick={onEndTurn}>END TURN</button>
             </div>
         </div>
