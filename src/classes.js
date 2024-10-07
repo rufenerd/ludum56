@@ -1,3 +1,5 @@
+import _ from "underscore";
+
 export class Goober {
     constructor(name) {
         this.name = name;
@@ -134,6 +136,21 @@ export class Replicator extends Goober {
     }
 }
 
+const weightedRandomKlass = () => {
+    const r = Math.random()
+    if (r < 0.3) {
+        return "goober"
+    } else if (r < 0.6) {
+        return "asexual"
+    } else {
+        return _.sample(["stud", "explorer", "opener", "doctor", "buddy", "immortal", "packer", "scavenger", "hungry", "protector", "bozo", "recruiter", "replicator"], 1)[0]
+    }
+}
+
+export const weightedRandomClass = (name) => {
+    return makeOneOfKlass(name, weightedRandomKlass())
+}
+
 export const makeOneOfKlass = (name, klass) => {
     switch (klass) {
         case "goober":
@@ -158,8 +175,8 @@ export const makeOneOfKlass = (name, klass) => {
             return new Scavenger(name)
         case "hungry":
             return new Hungry(name)
-        case "recruiter":
-            return new Recruiter(name)
+        case "protector":
+            return new Protector(name)
         case "bozo":
             return new Bozo(name)
         case "recruiter":

@@ -10,7 +10,7 @@ import Map from './Map'
 import GameOver from './GameOver';
 import Intro from './Intro';
 import PlayArea from './PlayArea';
-import { makeOneOfKlass, Goober, Hungry, Packer, Immortal, Protector, Stud, Explorer, Doctor, Scavenger, Bozo, Asexual, Buddy, Recruiter, Opener, Replicator } from './classes';
+import { makeOneOfKlass, Goober, Hungry, Packer, Immortal, Protector, Stud, Explorer, Doctor, Scavenger, Bozo, Asexual, Buddy, Recruiter, Opener, Replicator, weightedRandomClass } from './classes';
 import { names } from './names'
 
 const START_HAND_SIZE = 5
@@ -140,7 +140,7 @@ function App() {
     const { team } = state
     let offspring
     if (nOfClass(team, 1, "asexual")) {
-      offspring = [new Asexual(randomName())]
+      offspring = [weightedRandomClass(randomName())]
     } else if (team.length > 6) {
       offspring = [new Recruiter(randomName())]
     } else if (nOfClass(team, 2, "recruiter")) {
