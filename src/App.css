@@ -178,12 +178,14 @@ button.big {
 }
 
 .results .title {
+    color: #fff;
     font-size: 60px;
     font-weight: bold;
     padding: 20px;
 }
 
 .results .message {
+  color: #fff;
   padding: 20px;
   font-size: 40px;
 }
@@ -233,22 +235,20 @@ button.big {
 }
 
 .map-container {
+  display: block;
   width: 100000px;
   height: 100000px;
-  overflow: scroll;
+  overflow: visible;
   position: relative;
-  touch-action: pan-x pan-y;
   display: block;
-  overscroll-behavior: none;
-  background-color: black;
 }
 
 .map {
+  display: block;
   width: 100000px;
   height: 100000px;
   position: relative;
-  transform-origin: 0 0;
-  overflow: scroll;
+  overflow: visible;
 }
 
 .room {

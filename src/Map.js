@@ -1,49 +1,42 @@
-import { useState, useEffect } from 'react';
+import { TransformWrapper, TransformComponent, useControls } from 'react-zoom-pan-pinch'
 import ZoneTooltip from './ZoneTooltip'
 import { rooms } from './rooms';
 
 function Map(props) {
     const { zones, onZoneClick, unlockedRooms } = props
 
-    const [scale, setScale] = useState(1);
-    const handleWheel = (e) => {
-        if (e.ctrlKey) { // Detect pinch-to-zoom gesture on mobile
-            e.preventDefault();
-            let newScale = scale - e.deltaY * 0.01;
-            newScale = Math.min(Math.max(.5, newScale), 3); // Clamp scale between 0.5x and 3x
-            setScale(newScale);
-        }
-    };
-
-    useEffect(() => {
-        window.scrollTo(8430, 260)
-    }, []);
-
-    // console.log("Scrolling", rooms[0].x, rooms[0].y)
-    // console.log(rooms.filter(room => unlockedRooms.includes(room.name)).map(x => x.name).join(','))
-
     return (
-        <div className="map">
-            <div className="zones">
-                {zones.filter(z => unlockedRooms.includes(z.room) && !(z.unlocksRoom && z.unlocked)).map(zone => (
-                    <div className="zone tooltip-container" key={zone.name} onClick={() => onZoneClick(zone)} style={{
-                        position: 'absolute',
-                        zIndex: 999,
-                        top: `${zone.y || 500 * Math.random()}px`,
-                        left: `${zone.x || 500 * Math.random()}px`,
-                    }}>
-                        <ZoneTooltip zone={zone} />
+        <TransformWrapper
+            initialScale={0.1}
+            minScale={0.1}
+            maxScale={2}
+            limitToBounds={false}
+            panning={{disabled: false }}
+        >
+            <TransformComponent >
+                <div className="map">
+                    <div className="zones">
+                        {zones.filter(z => unlockedRooms.includes(z.room) && !(z.unlocksRoom && z.unlocked)).map(zone => (
+                            <div className="zone tooltip-container" key={zone.name} onClick={() => onZoneClick(zone)} style={{
+                                position: 'absolute',
+                                zIndex: 999,
+                                top: `${zone.y || 500 * Math.random()}px`,
+                                left: `${zone.x || 500 * Math.random()}px`,
+                            }}>
+                                <ZoneTooltip zone={zone} />
+                            </div>
+                        ))}
                     </div>
-                ))}
-            </div>
-            <div className="map-container" onWheel={handleWheel}>
-                <div className="map" style={{ transform: `scale(${scale})` }}>
-                    {rooms.filter(room => true || unlockedRooms.includes(room.name)).map(room => {
-                        return <img key={room.name} src={`assets/room_${room.name}.png`} className="room" alt={room.name} style={{ left: room.x, top: room.y }} />
-                    })}
-                </div>
-            </div>
-        </div >
+                    <div className="map-container">
+                        <div className="map">
+                            {rooms.filter(room => true || unlockedRooms.includes(room.name)).map(room => {
+                                return <img key={room.name} src={`assets/room_${room.name}.png`} className="room" alt={room.name} style={{ left: room.x, top: room.y }} />
+                            })}
+                        </div>
+                    </div>
+                </div >
+            </TransformComponent>
+        </TransformWrapper>
     );
 }
 

@@ -6,8 +6,10 @@
 body {
   margin: 0;
   font-family: 'PatrickHand';
+  color: #fff;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #000;
 }
 
 code {
