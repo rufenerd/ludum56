@@ -17,15 +17,18 @@ function Tutorial(props) {
             text: 'In this game you\'ll lead the goobers to freedom from their laboratory. You\'ll control the population of goobers, sending them on expeditions in this unknown environment to gather food and explore new locations. But be careful! Danger lurks around every corner.'
         },
         {
-            text: 'They won\'t be able to make it on their own, but they can reproduce to get more help.',
+            text: 'They won\'t be able to make it on their own, but they can reproduce to get more help...',
             img: 'assets/reproduce_tutorial.png',
+        },
+        {
+            text: '...But larger populations require more food. If you can\'t feed every goober each day, you lose!',
         },
         {
             text: 'Goobers can combine to produce new types of offspring. Experiment with pairing different combinations.',
             img: 'assets/combination_tutorial.png',
         },
         {
-            text: 'Gather food, reproduce, and explore to escape the lab!'
+            text: 'Gather food, reproduce, and explore to escape the lab and win!'
         }
 
     ]} />
