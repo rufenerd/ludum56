@@ -125,6 +125,7 @@ function App() {
     }
 
     if (state.food < 0 || state.population.length == 0) {
+      localStorage.removeItem("gooberGameState")
       setScene(SCENE_GAME_OVER)
       return
     }
