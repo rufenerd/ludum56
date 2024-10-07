@@ -93,8 +93,8 @@ export class Hungry extends Goober {
     constructor(name) {
         super(name);
         this.klass = "hungry";
-        this.foodRequirement = 30;
-        this.description = "Requires 30x food"
+        this.foodRequirement = 10;
+        this.description = "Requires 10x food"
     }
 }
 
