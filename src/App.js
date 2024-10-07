@@ -381,7 +381,7 @@ function App() {
 
     const multiplier = team.reduce((m, a) => m * a.scavenge, 1) * zone.bounty
     const aliveCapacity = alive.reduce((m, a) => m + a.carryingCapacity, 0)
-    const gainedFood = Math.min(found, aliveCapacity, zone.remaining)
+    const gainedFood = Math.min(multiplier * aliveCapacity, zone.remaining)
 
     dispatch({
       type: "EXPEDITION",
