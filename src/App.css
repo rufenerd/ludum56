@@ -413,6 +413,10 @@ button.big {
   font-weight: bold;
 }
 
+.zone-tooltip {
+  cursor: pointer;
+}
+
 .play-area-bg {
   position: absolute;
   display: block;

@@ -80,14 +80,17 @@ function Map(props) {
                 <div className="map">
                     <div className="zones">
                         {zones.filter(z => unlockedRooms.includes(z.room) && !(unlockedRooms.includes(z.unlocksRoom))).map(zone => (
-                            <div className="zone tooltip-container" key={zone.name} onClick={() => onZoneCircleClick(zone)} style={{
+                            <div className="tooltip-container" key={zone.name} onClick={() => onZoneCircleClick(zone)} style={{
                                 position: 'absolute',
                                 zIndex: 999,
-                                opacity: 0.75,
-                                backgroundColor: getZoneColor(zone, team),
-                                top: `${zone.y || 500 * Math.random()}px`,
-                                left: `${zone.x || 500 * Math.random()}px`,
+                                top: `${zone.y}px`,
+                                left: `${zone.x}px`,
                             }}>
+                                <div className="zone" style={{
+                                    opacity: 0.65,
+                                    backgroundColor: getZoneColor(zone, team),
+                                }}>
+                                </div>
                                 <ZoneTooltip zone={zone} />
                             </div>
                         ))}
