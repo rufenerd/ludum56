@@ -123,7 +123,7 @@ export const zones = [
     },
     {
         name: "Suspicious Smoothie",
-        risk: 1,
+        risk: 2,
         bounty: 1,
         remaining: 80,
         unlocked: true,
@@ -133,7 +133,7 @@ export const zones = [
     },
     {
         name: "Discarded Soup",
-        risk: 0,
+        risk: 1,
         bounty: 1,
         remaining: 30,
         unlocked: true,
@@ -153,7 +153,7 @@ export const zones = [
     },
     {
         name: "Freezer",
-        risk: 1,
+        risk: 2,
         bounty: 3,
         remaining: 90,
         unlocked: true,
@@ -162,8 +162,8 @@ export const zones = [
         y: 733
     },
     {
-        name: "Discarded Leftovers",
-        risk: 0,
+        name: "Leftovers",
+        risk: 1,
         bounty: 2,
         remaining: 40,
         unlocked: true,
