@@ -76,5 +76,12 @@ export const names = [
     "Sambly",
     "Simgoo",
     "Swamble",
-    "Sav"
+    "Sav",
+    "Salgi",
+    "Swambi",
+    "Skarkle",
+    "Sloop",
+    "Smorp",
+    "Snorf",
+    "S"
 ]

@@ -34,7 +34,7 @@ export const zones = [
     },
     {
         name: "Vent",
-        risk: 2,
+        risk: 0,
         bounty: 1,
         remaining: 0,
         unlocked: false,
@@ -47,7 +47,7 @@ export const zones = [
     },
     {
         name: "Containment Room Door",
-        risk: 2,
+        risk: 1,
         bounty: 1,
         remaining: 0,
         unlocked: false,
