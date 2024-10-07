@@ -203,7 +203,7 @@ export const zones = [
     },
     {
         name: "Test Kitchen Door",
-        risk: 5,
+        risk: 1,
         bounty: 1,
         remaining: 0,
         unlocked: false,
@@ -216,7 +216,7 @@ export const zones = [
     },
     {
         name: "Elevator",
-        risk: 5,
+        risk: 2,
         bounty: 1,
         remaining: 0,
         unlocked: false,
@@ -229,7 +229,7 @@ export const zones = [
     },
     {
         name: "Basement Door",
-        risk: 5,
+        risk: 3,
         bounty: 1,
         remaining: 0,
         unlocked: false,
@@ -262,7 +262,7 @@ export const zones = [
     },
     {
         name: "Lobby Door",
-        risk: 5,
+        risk: 2,
         bounty: 1,
         remaining: 0,
         unlocked: false,
@@ -297,7 +297,7 @@ export const zones = [
     },
     {
         name: "Supply Closet Door",
-        risk: 5,
+        risk: 2,
         bounty: 1,
         remaining: 0,
         unlocked: false,
