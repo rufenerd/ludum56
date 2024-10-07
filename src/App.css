@@ -361,17 +361,6 @@ button.big {
   border: 1px solid #ccc;
 }
 
-.tooltip::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  border-width: 5px;
-  border-style: solid;
-  border-color: #fff transparent transparent transparent;
-}
-
 .tooltip-container:hover .tooltip {
   visibility: visible;
   opacity: 1;
