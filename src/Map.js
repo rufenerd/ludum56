@@ -20,6 +20,8 @@ function getZoneColor(zone) {
     return "#cfcfcf"
 }
 
+const INITIAL_SCALE = 0.1
+
 function Map(props) {
     const { zones, onZoneClick, onAdventureCancel, unlockedRooms, team } = props
     const [selectedZone, setSelectedZone] = useState(null);
@@ -38,7 +40,7 @@ function Map(props) {
 
     return (
         <TransformWrapper
-            initialScale={0.1}
+            initialScale={INITIAL_SCALE}
             minScale={0.1}
             maxScale={2}
             limitToBounds={false}
