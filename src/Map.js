@@ -83,7 +83,7 @@ function Map(props) {
                             <div className="zone tooltip-container" key={zone.name} onClick={() => onZoneCircleClick(zone)} style={{
                                 position: 'absolute',
                                 zIndex: 999,
-                                opacity: 0.66,
+                                opacity: 0.75,
                                 backgroundColor: getZoneColor(zone, team),
                                 top: `${zone.y || 500 * Math.random()}px`,
                                 left: `${zone.x || 500 * Math.random()}px`,
