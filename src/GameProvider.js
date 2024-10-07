@@ -4,6 +4,10 @@ import { zones } from './zones'
 
 const GameContext = createContext();
 
+const foodRequired = (state) => {
+    return state.population.reduce((m, a) => m + a.foodRequirement, 0)
+}
+
 const initialState = {
     population: [
         new Goober("Stev"),
@@ -48,19 +52,22 @@ const gameReducer = (state, action) => {
                 lastRoundGainedFood: 10 //hack to fix first turn delta
             };
         case 'CONSUME':
-            const newFood = state.food - action.payload.consume
+            const consumed = foodRequired(state)
+            const newFood = state.food - consumed
             return {
                 ...state,
                 food: newFood,
                 gameOver: newFood < 0,
-                results: [...state.results,
-                {
-                    type: "consume",
-                    goobers: state.population,
-                    consumed: action.payload.consume,
-                    newFood
-                }
-                ]
+                results: newFood < 0
+                    ? state.results
+                    : [...state.results,
+                        {
+                        type: "consume",
+                        goobers: state.population,
+                        consumed,
+                        newFood
+                        }
+                    ]
             };
         case 'GAME_OVER':
             return {

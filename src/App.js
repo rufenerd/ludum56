@@ -82,24 +82,21 @@ function App() {
   const endTurn = (state, dispatch) => {
     executeQueue()
 
-    const foodRequirement = foodRequired(state)
     dispatch({
       type: "CONSUME",
-      payload: {
-        consume: foodRequirement
-      }
     })
 
-    if (foodRequirement > state.food || state.population.length == 0) {
-      setScene(SCENE_GAME_OVER)
-    } else {
-      setScene(SCENE_RESULTS)
-    }
+    setScene(SCENE_RESULTS)
   }
 
   const startTurn = (state, dispatch) => {
     if (state.gameWin) {
       setScene(SCENE_GAME_WIN)
+      return
+    }
+
+    if (state.food < 0 || state.population.length == 0) {
+      setScene(SCENE_GAME_OVER)
       return
     }
 
@@ -409,7 +406,7 @@ function App() {
       {scene === SCENE_INTRO && <Intro onClick={() => setScene(SCENE_TUTORIAL)} />}
       {scene === SCENE_TUTORIAL && <Tutorial onClick={onIntroClick} />}
       {scene === SCENE_NEW_DAY && <NewDay onFinish={() => setScene(SCENE_PLAY_AREA)} />}
-      {scene === SCENE_GAME_OVER && <GameOver population={state.population} />}
+      {scene === SCENE_GAME_OVER && <GameOver state={state} />}
       {scene === SCENE_GAME_WIN && <GameWin />}
       {scene === SCENE_PLAY_AREA && <PlayArea
         food={state.food}
