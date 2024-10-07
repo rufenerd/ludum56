@@ -207,6 +207,7 @@ export const zones = [
         bounty: 0,
         remaining: 0,
         unlocked: false,
+        unlocksRoom: "breakroom",
         room: "hall",
         canUnlock: (team) => team.map(x => x.klass).includes("explorer"),
         requires: ["explorer"],
