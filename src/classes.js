@@ -76,7 +76,7 @@ export class Immortal extends Goober {
 export class Packer extends Goober {
     constructor(name) {
         super(name);
-        this.klass = "packer";
+        this.klass = "lugger";
         this.carryingCapacity = 20;
         this.description = "Can carry back 20x as much food as normal"
     }
