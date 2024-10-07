@@ -11,6 +11,7 @@ Each day, a random group of goobers is randomly drawn from your population and i
 
 - Maymay - Art, Programming, Sound/Music
 - Rufenerd - Programming
+- Lacunahag - Art
 
 ### Software and Assets used
 
