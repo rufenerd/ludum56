@@ -15,6 +15,7 @@ function ZoneTooltip(props) {
             transform: `scale(${Math.max(1 / scale, 1)})`,
         }}>
             <div className="zone-title">{zone.name}</div>
+            <div>{`Risk level: ${zone.risk}`}</div>
             <div>{`Requires: ${zone.requires}`}</div>
         </div>)
     }
