@@ -17,7 +17,7 @@ export class Stud extends Goober {
         super(name);
         this.klass = "stud";
         this.foodRequirement = 3;
-        this.description = "Produces 1 offspring per non-Stud mate"
+        this.description = "Can have multiple reproduction partners in same round"
     }
 }
 
@@ -49,7 +49,7 @@ export class Asexual extends Goober {
     constructor(name) {
         super(name);
         this.klass = "asexual";
-        this.description = "Can breed on its own. Double carry.";
+        this.description = "Reproduces on its own. Might reproduce anything.";
         this.carryingCapacity = 2;
     }
 }
