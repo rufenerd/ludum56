@@ -9,7 +9,7 @@ const foodRequired = (state) => {
     return state.population.reduce((m, a) => m + a.foodRequirement, 0)
 }
 
-const LOCAL_STORAGE_KEY = "gameState";
+const LOCAL_STORAGE_KEY = "gooberGameState";
 
 const serializeState = (state) => {
     const serializedState = {
@@ -90,6 +90,7 @@ const gameReducerWithLocalStorage = (state, action) => {
 const gameReducer = (state, action) => {
     switch (action.type) {
         case 'GAME_START':
+            localStorage.removeItem(LOCAL_STORAGE_KEY)
             return {
                 ...state,
                 lastRoundGainedFood: 10
