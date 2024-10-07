@@ -25,7 +25,7 @@ function Results(props) {
         case "birth":
             title = "Birth!"
             message = "These parents produced offspring!"
-            extra = <GooberGroup goobers={result.offspring} hideTootlip={true}></GooberGroup>
+            extra = <GooberGroup goobers={result.offspring} hideTooltip={true}></GooberGroup>
             break;
         case "failedBirth":
             title = "Hmm..."
@@ -52,7 +52,7 @@ function Results(props) {
         case 'savingDoctors':
             title = "Saved!"
             message = 'These doctors prevented the following deaths!'
-            extra = <GooberGroup goobers={result.savedGoobers} hideTootlip={true}></GooberGroup>
+            extra = <GooberGroup goobers={result.savedGoobers} hideTooltip={true}></GooberGroup>
     }
 
     return (
