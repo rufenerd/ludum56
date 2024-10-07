@@ -123,6 +123,14 @@ const gameReducer = (state, action) => {
             let unlockedRooms = state.unlockedRooms
             let zones = state.zones
             if (unlockedZone) {
+
+                if (unlockedZone.name == 'Exit to Freedom (Win Game)') {
+                    return {
+                        ...state,
+                        gameWin: true
+                    }
+                }
+
                 const newZone = {
                     ...unlockedZone,
                     unlocked: true

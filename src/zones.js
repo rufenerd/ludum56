@@ -284,11 +284,11 @@ export const zones = [
         y: 3177,
     },
     {
-        name: "Exit (End Game)",
+        name: "Exit to Freedom (Win Game)",
         risk: 5,
         bounty: 0,
         remaining: 0,
-        unlocked: true,
+        unlocked: false,
         room: "lobby",
         canUnlock: (team) => team.map(x => x.klass).includes("explorer") && team.map(x => x.klass).includes("opener") && team.map(x => x.klass).includes("opener") && team.length >= 12,
         requires: "explorer and opener and at least 10 others",

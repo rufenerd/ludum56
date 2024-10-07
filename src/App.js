@@ -8,6 +8,7 @@ import React, { useState, useRef } from 'react';
 import Results from './Results';
 import Map from './Map'
 import GameOver from './GameOver';
+import GameWin from './GameWin';
 import Intro from './Intro';
 import PlayArea from './PlayArea';
 import Tutorial from './Tutorial';
@@ -22,6 +23,7 @@ const DIFFICULTY = 0.2
 const SCENE_INTRO = "intro"
 const SCENE_TUTORIAL = "tutorial"
 const SCENE_GAME_OVER = "gameover"
+const SCENE_GAME_WIN = "gamewin"
 const SCENE_PLAY_AREA = "playarea"
 const SCENE_NEW_DAY = "newday"
 const SCENE_MAP_SELECT = "mapselect"
@@ -83,6 +85,12 @@ function App() {
   }
 
   const startTurn = (state, dispatch) => {
+    if (state.gameWin) {
+      alert("WIN")
+      setScene(SCENE_GAME_WIN)
+      return
+    }
+
     setScene(SCENE_NEW_DAY)
     const foodRequirement = foodRequired(state)
 
@@ -300,6 +308,7 @@ function App() {
       {scene === SCENE_TUTORIAL && <Tutorial onClick={onIntroClick} />}
       {scene === SCENE_NEW_DAY && <NewDay onFinish={() => setScene(SCENE_PLAY_AREA)} />}
       {scene === SCENE_GAME_OVER && <GameOver />}
+      {scene === SCENE_GAME_WIN && <GameWin />}
       {scene === SCENE_PLAY_AREA && <PlayArea
         food={state.food}
         lastRoundGainedFood={state.lastRoundGainedFood}
