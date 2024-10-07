@@ -302,6 +302,10 @@ function App() {
     })
   }
 
+  if (scene === SCENE_RESULTS && state.results.length === 0) {
+    setScene(SCENE_NEW_DAY)
+  }
+
   return (
     <div className="App">
       {scene === SCENE_INTRO && <Intro onClick={() => setScene(SCENE_TUTORIAL)} />}
