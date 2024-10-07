@@ -85,6 +85,13 @@
   font-size: 18pt;
 }
 
+.play-area>h1 {
+  position: absolute;
+  width: 100%;
+  align-items: center;
+  color: #fff;
+}
+
 .hand {
   height: 80vh;
   /*background: linear-gradient(to bottom right, #888, #cfdef3);*/

@@ -13,6 +13,7 @@ function PlayArea(props) {
                 backgroundImage: "url('assets/play_area_bg.png')",
                 backgroundSize: "cover",
             }}>
+                <h1>{hand.length} goobers are ready for orders!</h1>
                 <Stats food={food} population={population} lastRoundGainedFood={lastRoundGainedFood} />
                 <Deck population={population} />
                 <Hand popIn={initialTeam} hand={stillInHand} onClick={(x) => onAddGooberToTeam(x)} />

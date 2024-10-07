@@ -168,7 +168,6 @@ function App() {
     const { team } = state
 
     let offspring
-    debugger
     if (team.length == 1) {
       if (nOfClass(team, 1, "asexual")) {
         offspring = [weightedRandomClass(randomName())]
