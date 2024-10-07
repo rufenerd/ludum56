@@ -195,13 +195,7 @@ function App() {
           }
         }
       } else {
-        dispatch({
-          type: "FAILED_BIRTH",
-          payload: {
-            goobers: team
-          }
-        })
-        return
+        offspring = [new Goober(randomName())]
       }
     } else {
       if (containsExactly(team, ["goober", "goober"])) {
