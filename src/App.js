@@ -130,11 +130,12 @@ function App() {
   }
 
   const randomName = () => {
-    let name = null
-    while (name == null || state.population.map(x => x.name).includes(name)) {
-      name = _.sample(names, 1)[0]
+    const usedNames = state.population.map(x => x.name)
+    let eligibleNames = names.filter(x => !usedNames.includes(x))
+    if (eligibleNames.length == 0) {
+      eligibleNames = names
     }
-    return name
+    return _.sample(eligibleNames, 1)[0]
   }
 
   const randomGoober = () => {
