@@ -8,8 +8,8 @@ function Dialogue(props) {
         if (props.onFinish) {
             props.onFinish()
         }
-        return <div className="intro">
-        </div >
+        return <div className="dialogue">
+        </div>
     }
 
     const line = lines[lineNum]
@@ -19,7 +19,7 @@ function Dialogue(props) {
             {line.img && <img src={line.img} />}
             <p>{line.text}</p>
             <small>Click to continue...</small>
-        </div >
+        </div>
     );
 }
 

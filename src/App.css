@@ -11,11 +11,20 @@
 .intro {
   height: 100vh;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: top;
   align-items: center;
   text-align: center;
   cursor: pointer;
   font-size: 60px;
+}
+
+.intro>button {
+  font-size: 24pt;
+  width: 16em;
+}
+.intro>h1 {
+  margin-bottom: 0px;
 }
 
 .dialogue {
@@ -28,6 +37,10 @@
   text-align: center;
   cursor: pointer;
   font-size: 24pt;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 .dialogue>img {
