@@ -5,16 +5,28 @@ import React, { useState } from 'react';
 import GooberGroup from './GooberGroup';
 
 function getZoneColor(zone) {
-    if (!zone.unlocked) {
-        return "#646ef5"
+    if (zone.remaining <= 0 && zone.unlocked) {
+        return "#cfcfcf"
     }
 
-    if (zone.risk > 3) {
+    if (zone.risk == 0) {
+        return "#00ff44"
+    }
+
+    if (zone.risk == 1) {
+        return "#b7ff00"
+    }
+
+    if (zone.risk == 2) {
+        return "#fff019"
+    }
+
+    if (zone.risk == 3) {
+        return "#ffa200"
+    }
+
+    if (zone.risk >= 4) {
         return "#f56464"
-    }
-
-    if (zone.remaining > 0) {
-        return "#90f564"
     }
 
     return "#cfcfcf"
@@ -87,7 +99,7 @@ function Map(props) {
             </TransformComponent>
             <div className='expedition-confirmation-bar'>
                 <div className="adventurers">
-                    Adventurers
+                    click a location for your goobers to gather food or explore
                     <GooberGroup goobers={team} bounce={true} />
                 </div>
                 <div className='expedition-confirmation'>
