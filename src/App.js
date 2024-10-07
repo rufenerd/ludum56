@@ -251,125 +251,126 @@ function App() {
       } else {
         offspring = [defaultBreed(team[0], team[1])]
       }
-
-      dispatch({
-        type: "BIRTH",
-        payload: {
-          parents: team,
-          offspring
-        }
-      })
     }
 
-    const onAdventureCancel = () => {
-      setScene(SCENE_PLAY_AREA)
-    }
-
-    const expedition = (state, dispatch, zone) => {
-      setScene(SCENE_PLAY_AREA)
-      const { team } = state
-
-      const risk = DIFFICULTY * zone.risk / team.reduce((m, a) => m * a.protect, 1)
-
-      let unusedDoctors = state.team.filter(x => x.klass === "doctor").length;
-      const savingDoctors = [];
-      const savedGoobers = [];
-
-      let unusedBozos = state.team.filter(x => x.klass === "bozo");
-      let usedBozos = []
-      let died = team.filter(x => {
-        if (x.klass === "immortal") {
-          return false
-        }
-
-        const shouldDie = Math.random() < risk;
-        const doctorAvailable = unusedDoctors > 0;
-
-        if (shouldDie && doctorAvailable) {
-          unusedDoctors--;
-          savingDoctors.push(state.team.find(d => d.klass === "doctor" && !savingDoctors.includes(d)));
-          savedGoobers.push(x)
-          return false;
-        }
-
-        if (shouldDie && unusedBozos.length > 0) {
-          usedBozos.push(unusedBozos.pop())
-          return false
-        }
-
-        return shouldDie;
-      });
-
-      died = [...died, ...usedBozos]
-
-      const alive = team.filter(x => !died.includes(x))
-
-      let unlockedZone = null
-      if (!zone.unlocked) {
-        if (zone.canUnlock(alive)) {
-          unlockedZone = zone
-        } else {
-          dispatch({
-            type: "EXPEDITION",
-            payload: {
-              gainedFood: 0,
-              died,
-              alive,
-              savingDoctors,
-              savedGoobers,
-              targetZone: zone,
-              failedUnlockZone: zone
-            }
-          })
-          return
-        }
+    dispatch({
+      type: "BIRTH",
+      payload: {
+        parents: team,
+        offspring
       }
-
-      const multiplier = team.reduce((m, a) => m * a.scavenge, 1) * zone.bounty
-      const aliveCapacity = alive.reduce((m, a) => m + a.carryingCapacity, 0)
-      const gainedFood = Math.min(multiplier * aliveCapacity, zone.remaining)
-
-      dispatch({
-        type: "EXPEDITION",
-        payload: {
-          gainedFood,
-          died,
-          alive,
-          unlockedZone: unlockedZone,
-          savingDoctors,
-          savedGoobers,
-          targetZone: zone
-        }
-      })
-    }
-
-    if (scene === SCENE_RESULTS && state.results.length === 0) {
-      startTurn(state, dispatch)
-    }
-
-    return (
-      <div className="App">
-        {scene === SCENE_INTRO && <Intro onClick={() => setScene(SCENE_TUTORIAL)} />}
-        {scene === SCENE_TUTORIAL && <Tutorial onClick={onIntroClick} />}
-        {scene === SCENE_NEW_DAY && <NewDay onFinish={() => setScene(SCENE_PLAY_AREA)} />}
-        {scene === SCENE_GAME_OVER && <GameOver state={state} />}
-        {scene === SCENE_GAME_WIN && <GameWin />}
-        {scene === SCENE_PLAY_AREA && <PlayArea
-          food={state.food}
-          lastRoundGainedFood={state.lastRoundGainedFood}
-          hand={state.hand}
-          population={state.population}
-          team={state.team}
-          initialTeam={state.initialTeam}
-          onAddGooberToTeam={(x) => toggleTeamMember(state, dispatch, x)}
-          onStayClick={() => stay(state, dispatch)}
-          onBreedClick={() => breed(state, queueDispatch)}
-          onExpeditionClick={() => setScene(SCENE_MAP_SELECT)}
-          onEndTurn={() => endTurn(state, dispatch)}
-        />}
-        {scene === SCENE_MAP_SELECT && <Map zones={state.zones} unlockedRooms={state.unlockedRooms} team={state.team} onAdventureCancel={onAdventureCancel} onZoneClick={(zone) => expedition(state, queueDispatch, zone)} />}
-        {scene === SCENE_RESULTS && state.results.length > 0 && <Results results={state.results} onFinish={onResultsFinish} />}
-      </div>)
+    })
   }
 
-  export default App;
+  const onAdventureCancel = () => {
+    setScene(SCENE_PLAY_AREA)
+  }
+
+  const expedition = (state, dispatch, zone) => {
+    setScene(SCENE_PLAY_AREA)
+    const { team } = state
+
+    const risk = DIFFICULTY * zone.risk / team.reduce((m, a) => m * a.protect, 1)
+
+    let unusedDoctors = state.team.filter(x => x.klass === "doctor").length;
+    const savingDoctors = [];
+    const savedGoobers = [];
+
+    let unusedBozos = state.team.filter(x => x.klass === "bozo");
+    let usedBozos = []
+    let died = team.filter(x => {
+      if (x.klass === "immortal") {
+        return false
+      }
+
+      const shouldDie = Math.random() < risk;
+      const doctorAvailable = unusedDoctors > 0;
+
+      if (shouldDie && doctorAvailable) {
+        unusedDoctors--;
+        savingDoctors.push(state.team.find(d => d.klass === "doctor" && !savingDoctors.includes(d)));
+        savedGoobers.push(x)
+        return false;
+      }
+
+      if (shouldDie && unusedBozos.length > 0) {
+        usedBozos.push(unusedBozos.pop())
+        return false
+      }
+
+      return shouldDie;
+    });
+
+    died = [...died, ...usedBozos]
+
+    const alive = team.filter(x => !died.includes(x))
+
+    let unlockedZone = null
+    if (!zone.unlocked) {
+      if (zone.canUnlock(alive)) {
+        unlockedZone = zone
+      } else {
+        dispatch({
+          type: "EXPEDITION",
+          payload: {
+            gainedFood: 0,
+            died,
+            alive,
+            savingDoctors,
+            savedGoobers,
+            targetZone: zone,
+            failedUnlockZone: zone
+          }
+        })
+        return
+      }
+    }
+
+    const multiplier = team.reduce((m, a) => m * a.scavenge, 1) * zone.bounty
+    const aliveCapacity = alive.reduce((m, a) => m + a.carryingCapacity, 0)
+    const gainedFood = Math.min(multiplier * aliveCapacity, zone.remaining)
+
+    dispatch({
+      type: "EXPEDITION",
+      payload: {
+        gainedFood,
+        died,
+        alive,
+        unlockedZone: unlockedZone,
+        savingDoctors,
+        savedGoobers,
+        targetZone: zone
+      }
+    })
+  }
+
+  if (scene === SCENE_RESULTS && state.results.length === 0) {
+    startTurn(state, dispatch)
+  }
+
+  return (
+    <div className="App">
+      {scene === SCENE_INTRO && <Intro onClick={() => setScene(SCENE_TUTORIAL)} />}
+      {scene === SCENE_TUTORIAL && <Tutorial onClick={onIntroClick} />}
+      {scene === SCENE_NEW_DAY && <NewDay onFinish={() => setScene(SCENE_PLAY_AREA)} />}
+      {scene === SCENE_GAME_OVER && <GameOver state={state} />}
+      {scene === SCENE_GAME_WIN && <GameWin />}
+      {scene === SCENE_PLAY_AREA && <PlayArea
+        food={state.food}
+        lastRoundGainedFood={state.lastRoundGainedFood}
+        hand={state.hand}
+        population={state.population}
+        team={state.team}
+        initialTeam={state.initialTeam}
+        onAddGooberToTeam={(x) => toggleTeamMember(state, dispatch, x)}
+        onStayClick={() => stay(state, dispatch)}
+        onBreedClick={() => breed(state, queueDispatch)}
+        onExpeditionClick={() => setScene(SCENE_MAP_SELECT)}
+        onEndTurn={() => endTurn(state, dispatch)}
+      />}
+      {scene === SCENE_MAP_SELECT && <Map zones={state.zones} unlockedRooms={state.unlockedRooms} team={state.team} onAdventureCancel={onAdventureCancel} onZoneClick={(zone) => expedition(state, queueDispatch, zone)} />}
+      {scene === SCENE_RESULTS && state.results.length > 0 && <Results results={state.results} onFinish={onResultsFinish} />}
+    </div>)
+}
+
+export default App;
