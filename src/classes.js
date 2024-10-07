@@ -85,7 +85,7 @@ export class Scavenger extends Goober {
         super(name);
         this.klass = "scavenger";
         this.scavenge = 10
-        this.description = "10x amount of found food"
+        this.description = "2x amount of found food"
     }
 }
 

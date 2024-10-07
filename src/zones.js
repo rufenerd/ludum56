@@ -2,8 +2,8 @@ export const zones = [
     {
         name: "Cheep-o Animal Feed",
         risk: 0,
-        bounty: 10,
-        remaining: 100,
+        bounty: 1,
+        remaining: 50,
         unlocked: true,
         room: "start",
         x: 9285,
@@ -12,7 +12,7 @@ export const zones = [
     {
         name: "Locker",
         risk: 0,
-        bounty: 20,
+        bounty: 2,
         remaining: 40,
         unlocked: false,
         canUnlock: (team) => team.map(x => x.klass).includes("opener"),
@@ -24,7 +24,7 @@ export const zones = [
     {
         name: "Standard Moustrap",
         risk: 4,
-        bounty: 80,
+        bounty: 10,
         remaining: 80,
         unlocked: true,
         room: "start",
@@ -35,7 +35,7 @@ export const zones = [
     {
         name: "Vent",
         risk: 2,
-        bounty: 0,
+        bounty: 1,
         remaining: 0,
         unlocked: false,
         canUnlock: (team) => team.map(x => x.klass).includes("explorer"),
@@ -48,7 +48,7 @@ export const zones = [
     {
         name: "Containment Room Door",
         risk: 2,
-        bounty: 0,
+        bounty: 1,
         remaining: 0,
         unlocked: false,
         canUnlock: (team) => team.map(x => x.klass).includes("explorer"),
@@ -61,7 +61,7 @@ export const zones = [
     {
         name: "Food Cabinet",
         risk: 1,
-        bounty: 10,
+        bounty: 1,
         remaining: 30,
         unlocked: true,
         room: "breakroom",
@@ -71,7 +71,7 @@ export const zones = [
     {
         name: "Microwave",
         risk: 2,
-        bounty: 20,
+        bounty: 2,
         remaining: 20,
         unlocked: true,
         room: "breakroom",
@@ -81,7 +81,7 @@ export const zones = [
     {
         name: "Table",
         risk: 1,
-        bounty: 20,
+        bounty: 2,
         remaining: 30,
         unlocked: true,
         room: "breakroom",
@@ -91,7 +91,7 @@ export const zones = [
     {
         name: "Gun Mouse Trap",
         risk: 5,
-        bounty: 100,
+        bounty: 20,
         remaining: 100,
         unlocked: true,
         room: "breakroom",
@@ -101,7 +101,7 @@ export const zones = [
     {
         name: "Breakroom Door",
         risk: 1,
-        bounty: 0,
+        bounty: 1,
         remaining: 0,
         unlocked: false,
         canUnlock: (team) => team.map(x => x.klass).includes("explorer"),
@@ -114,7 +114,7 @@ export const zones = [
     {
         name: "Poison",
         risk: 5,
-        bounty: 0,
+        bounty: 1,
         remaining: 0,
         unlocked: true,
         room: "breakroom",
@@ -124,7 +124,7 @@ export const zones = [
     {
         name: "Suspicious Smoothie",
         risk: 1,
-        bounty: 10,
+        bounty: 1,
         remaining: 20,
         unlocked: true,
         room: "kitchen",
@@ -134,7 +134,7 @@ export const zones = [
     {
         name: "Discarded Soup",
         risk: 0,
-        bounty: 10,
+        bounty: 1,
         remaining: 10,
         unlocked: true,
         room: "kitchen",
@@ -144,7 +144,7 @@ export const zones = [
     {
         name: "Mouse Trap",
         risk: 5,
-        bounty: 100,
+        bounty: 10,
         remaining: 100,
         unlocked: true,
         room: "kitchen",
@@ -154,7 +154,7 @@ export const zones = [
     {
         name: "Freezer",
         risk: 1,
-        bounty: 30,
+        bounty: 3,
         remaining: 30,
         unlocked: true,
         room: "kitchen",
@@ -164,7 +164,7 @@ export const zones = [
     {
         name: "Discarded Leftovers",
         risk: 0,
-        bounty: 20,
+        bounty: 2,
         remaining: 20,
         unlocked: true,
         room: "kitchen",
@@ -174,7 +174,7 @@ export const zones = [
     {
         name: "Biohazardous Waste",
         risk: 3,
-        bounty: 30,
+        bounty: 3,
         remaining: 30,
         unlocked: true,
         room: "hall",
@@ -184,7 +184,7 @@ export const zones = [
     {
         name: "Walbert Flingerstein",
         risk: 2,
-        bounty: 10,
+        bounty: 1,
         remaining: 10,
         unlocked: true,
         room: "hall",
@@ -194,7 +194,7 @@ export const zones = [
     {
         name: "Frozen Tissue",
         risk: 2,
-        bounty: 20,
+        bounty: 2,
         remaining: 20,
         unlocked: true,
         room: "hall",
@@ -204,7 +204,7 @@ export const zones = [
     {
         name: "Test Kitchen Door",
         risk: 5,
-        bounty: 0,
+        bounty: 1,
         remaining: 0,
         unlocked: false,
         canUnlock: (team) => team.map(x => x.klass).includes("explorer"),
@@ -217,7 +217,7 @@ export const zones = [
     {
         name: "Elevator",
         risk: 5,
-        bounty: 0,
+        bounty: 1,
         remaining: 0,
         unlocked: false,
         canUnlock: (team) => team.map(x => x.klass).includes("explorer") && team.map(x => x.klass).includes("opener"),
@@ -230,7 +230,7 @@ export const zones = [
     {
         name: "Basement Door",
         risk: 5,
-        bounty: 0,
+        bounty: 1,
         remaining: 0,
         unlocked: false,
         canUnlock: (team) => team.map(x => x.klass).includes("explorer") && team.map(x => x.klass).includes("opener"),
@@ -253,7 +253,7 @@ export const zones = [
     {
         name: "Ted's Desk",
         risk: 1,
-        bounty: 10,
+        bounty: 1,
         remaining: 10,
         unlocked: true,
         room: "office",
@@ -263,7 +263,7 @@ export const zones = [
     {
         name: "Lobby Door",
         risk: 5,
-        bounty: 0,
+        bounty: 1,
         remaining: 0,
         unlocked: false,
         unlocksRoom: "lobby",
@@ -276,7 +276,7 @@ export const zones = [
     {
         name: "Security Guard",
         risk: 3,
-        bounty: 20,
+        bounty: 2,
         remaining: 20,
         unlocked: true,
         room: "lobby",
@@ -286,7 +286,7 @@ export const zones = [
     {
         name: "Exit to Freedom (Win Game)",
         risk: 5,
-        bounty: 0,
+        bounty: 1,
         remaining: 0,
         unlocked: false,
         room: "lobby",
@@ -298,7 +298,7 @@ export const zones = [
     {
         name: "Supply Closet Door",
         risk: 5,
-        bounty: 0,
+        bounty: 1,
         remaining: 0,
         unlocked: false,
         unlocksRoom: "experiment",
@@ -311,7 +311,7 @@ export const zones = [
     {
         name: "Large Specimen",
         risk: 1,
-        bounty: 10,
+        bounty: 1,
         remaining: 10,
         unlocked: true,
         room: "experiment",
@@ -321,7 +321,7 @@ export const zones = [
     {
         name: "Tony's Discount Organs",
         risk: 1,
-        bounty: 10,
+        bounty: 1,
         remaining: 10,
         unlocked: true,
         room: "experiment",
@@ -331,7 +331,7 @@ export const zones = [
     {
         name: "Amazon Rainforest Animal Parts",
         risk: 1,
-        bounty: 10,
+        bounty: 1,
         remaining: 10,
         unlocked: true,
         room: "experiment",
@@ -341,7 +341,7 @@ export const zones = [
     {
         name: "Box of Blood",
         risk: 1,
-        bounty: 10,
+        bounty: 1,
         remaining: 10,
         unlocked: true,
         room: "experiment",
@@ -351,7 +351,7 @@ export const zones = [
     {
         name: "Box of Body Parts",
         risk: 1,
-        bounty: 10,
+        bounty: 1,
         remaining: 10,
         unlocked: true,
         room: "experiment",
@@ -361,7 +361,7 @@ export const zones = [
     {
         name: "Jarred Specimens",
         risk: 1,
-        bounty: 10,
+        bounty: 1,
         remaining: 10,
         unlocked: true,
         room: "experiment",
@@ -371,7 +371,7 @@ export const zones = [
     {
         name: "Desk Drawer",
         risk: 1,
-        bounty: 50,
+        bounty: 5,
         remaining: 500,
         unlocked: false,
         canUnlock: (team) => team.map(x => x.klass).includes("explorer") && team.map(x => x.klass).includes("opener"),
@@ -383,7 +383,7 @@ export const zones = [
     {
         name: "Desk Cabinet",
         risk: 1,
-        bounty: 10,
+        bounty: 1,
         remaining: 10,
         unlocked: true,
         room: "experiment",
