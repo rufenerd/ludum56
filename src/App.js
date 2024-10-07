@@ -10,15 +10,20 @@ import Map from './Map'
 import GameOver from './GameOver';
 import Intro from './Intro';
 import PlayArea from './PlayArea';
+import Tutorial from './Tutorial';
 import { makeOneOfKlass, Goober, Hungry, Packer, Immortal, Protector, Stud, Explorer, Doctor, Scavenger, Bozo, Asexual, Buddy, Recruiter, Opener, Replicator, weightedRandomClass } from './classes';
 import { names } from './names'
+import Dialogue from './Dialogue';
+import NewDay from './NewDay';
 
 const START_HAND_SIZE = 5
 const DIFFICULTY = 0.2
 
 const SCENE_INTRO = "intro"
+const SCENE_TUTORIAL = "tutorial"
 const SCENE_GAME_OVER = "gameover"
 const SCENE_PLAY_AREA = "playarea"
+const SCENE_NEW_DAY = "newday"
 const SCENE_MAP_SELECT = "mapselect"
 const SCENE_RESULTS = "results"
 
@@ -68,7 +73,7 @@ function App() {
   }
 
   const startTurn = (state, dispatch) => {
-    setScene(SCENE_PLAY_AREA)
+    setScene(SCENE_NEW_DAY)
     const foodRequirement = foodRequired(state)
 
     dispatch({
@@ -281,24 +286,12 @@ function App() {
     })
   }
 
-  if (scene === SCENE_INTRO) {
-    return (
-      <div className="App">
-        <Intro onClick={onIntroClick} />
-      </div>
-    );
-  }
-
-  if (scene == SCENE_GAME_OVER) {
-    return (
-      <div className="App">
-        <GameOver />
-      </div>
-    );
-  }
-
   return (
     <div className="App">
+      {scene === SCENE_INTRO && <Intro onClick={() => setScene(SCENE_TUTORIAL)} />}
+      {scene === SCENE_TUTORIAL && <Tutorial onClick={onIntroClick} />}
+      {scene === SCENE_NEW_DAY && <NewDay onFinish={() => setScene(SCENE_PLAY_AREA)} />}
+      {scene === SCENE_GAME_OVER && <GameOver />}
       {scene === SCENE_PLAY_AREA && <PlayArea
         food={state.food}
         lastRoundGainedFood={state.lastRoundGainedFood}
