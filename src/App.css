@@ -102,16 +102,16 @@
   font-size: 18pt;
 }
 
-.play-area>h1 {
+.play-area-title {
   position: absolute;
   width: 100%;
   align-items: center;
   color: #fff;
+  width: 80%;
 }
 
 .hand {
   height: 80vh;
-  /*background: linear-gradient(to bottom right, #888, #cfdef3);*/
 }
 .hand .goober-group {
   height: 75vh;
