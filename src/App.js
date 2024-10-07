@@ -313,7 +313,7 @@ function App() {
         onExpeditionClick={toggleShowMap}
         onEndTurn={() => endTurn(state, dispatch)}
       />}
-      {showMap && <Map zones={state.zones} unlockedRooms={state.unlockedRooms} onZoneClick={(zone) => expedition(state, dispatch, zone)} />}
+      {showMap && <Map zones={state.zones} unlockedRooms={state.unlockedRooms} team={state.team} onZoneClick={(zone) => expedition(state, dispatch, zone)} />}
       {showResults && state.results.length > 0 && <Results results={state.results} onFinish={onResultsFinish} />}
     </div>)
 }

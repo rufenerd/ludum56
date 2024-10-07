@@ -251,6 +251,28 @@ button.big {
   overflow: visible;
 }
 
+.expedition-confirmation-bar {
+  font-size: 20px;
+  position: fixed;
+  background-color: #222;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100000
+}
+
+.expedition-confirmation-bar .goober-group {
+  width: 100%
+}
+
+.expedition-confirmation-zone {
+  padding: 20px;
+}
+
 .room {
   position: absolute;
 }

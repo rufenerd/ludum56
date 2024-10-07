@@ -1,9 +1,23 @@
-import { TransformWrapper, TransformComponent, useControls } from 'react-zoom-pan-pinch'
+import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch'
 import ZoneTooltip from './ZoneTooltip'
 import { rooms } from './rooms';
+import React, { useState } from 'react';
+import GooberGroup from './GooberGroup';
 
 function Map(props) {
-    const { zones, onZoneClick, unlockedRooms } = props
+    const { zones, onZoneClick, unlockedRooms, team } = props
+    const [showConfirmation, setShowConfirmation] = useState(false);
+    const [selectedZone, setSelectedZone] = useState(null);
+
+    const onZoneCircleClick = (zone) => {
+        setSelectedZone(zone)
+        setShowConfirmation(true)
+    }
+
+    const onCancelClick = () => {
+        setSelectedZone(null)
+        setShowConfirmation(false)
+    }
 
     return (
         <TransformWrapper
@@ -11,13 +25,13 @@ function Map(props) {
             minScale={0.1}
             maxScale={2}
             limitToBounds={false}
-            panning={{disabled: false }}
+            panning={{ disabled: false }}
         >
             <TransformComponent >
                 <div className="map">
                     <div className="zones">
                         {zones.filter(z => unlockedRooms.includes(z.room) && !(z.unlocksRoom && z.unlocked)).map(zone => (
-                            <div className="zone tooltip-container" key={zone.name} onClick={() => onZoneClick(zone)} style={{
+                            <div className="zone tooltip-container" key={zone.name} onClick={() => onZoneCircleClick(zone)} style={{
                                 position: 'absolute',
                                 zIndex: 999,
                                 top: `${zone.y || 500 * Math.random()}px`,
@@ -36,6 +50,18 @@ function Map(props) {
                     </div>
                 </div >
             </TransformComponent>
+            {showConfirmation && <div className='expedition-confirmation-bar'>
+                <GooberGroup goobers={team} bounce={true} />
+                <div className='expedition-confirmation'>
+                    <div>Send these Goobers to {selectedZone.name}?</div>
+                    <button onClick={onCancelClick}>
+                        Cancel
+                    </button>
+                    <button onClick={() => onZoneClick(selectedZone)}>
+                        Confirm
+                    </button>
+                </div>
+            </div>}
         </TransformWrapper>
     );
 }
