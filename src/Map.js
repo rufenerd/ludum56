@@ -1,4 +1,4 @@
-import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch'
+import { TransformWrapper, TransformComponent, useControls, useTransformEffect } from 'react-zoom-pan-pinch'
 import ZoneTooltip from './ZoneTooltip'
 import { rooms } from './rooms';
 import React, { useState } from 'react';
@@ -20,7 +20,17 @@ function getZoneColor(zone) {
     return "#cfcfcf"
 }
 
-const INITIAL_SCALE = 0.1
+function MapControls() {
+    const { zoomIn, zoomOut, resetTransform } = useControls()
+    useTransformEffect(({ state }) => {
+        console.log(state)
+    })
+
+    
+    return <div className="map-tools">
+        <button onClick={() => resetTransform()}>recenter</button>
+    </div>
+}
 
 function Map(props) {
     const { zones, onZoneClick, onAdventureCancel, unlockedRooms, team } = props
@@ -40,12 +50,16 @@ function Map(props) {
 
     return (
         <TransformWrapper
-            initialScale={INITIAL_SCALE}
+            initialScale={0.43}
+            initialPositionX={-3400}
+            initialPositionY={50}
+            wheel={{ step: 0.1 }}
             minScale={0.1}
             maxScale={2}
             limitToBounds={false}
             panning={{ disabled: false }}
         >
+            <MapControls />
             <TransformComponent >
                 <div className="map">
                     <div className="zones">

@@ -50,7 +50,7 @@
 .dialogue>small {
   color: #888;
 }
-
+  
 .game-over, .game-win {
   height: 100vh;
   display: flex;
@@ -164,7 +164,22 @@ button.big {
   flex-wrap: wrap;
   align-content: center;
   font-size: 18pt;
-  overflow: visible;
+  overflow:visible;
+}
+
+.map-tools {
+  position: fixed;
+  z-index: 1000;
+  top: 0px;
+  left: 0px;
+  margin: 10px;
+}
+
+.map-tools>button {
+  margin: 10px;
+  font-size: 14pt;
+  max-width: 5em;
+  min-width: 2em;
 }
 
 .team-bar .goober-group {
