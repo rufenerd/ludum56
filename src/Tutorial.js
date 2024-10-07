@@ -3,7 +3,7 @@ function Tutorial(props) {
     return <Dialogue onFinish={props.onClick} lines={[
         {
             text: '\'Twas the night before October 7th, and in Lab 8 not a creature was stirring. Or was it?',
-            img: 'assets/room_start.png',
+            img: 'assets/tutorial_room_low_res.png',
         },
         {
             text: 'What could that be? It seems to have crept out of its container...',
