@@ -17,7 +17,7 @@ const initialState = {
         new Goober("Ilva"),
         new Goober("Darf"),
     ],
-    food: 310,
+    food: 50,
     roundGainedFood: 0,
     hand: [],
     team: [],
@@ -52,7 +52,15 @@ const gameReducer = (state, action) => {
             return {
                 ...state,
                 food: newFood,
-                gameOver: newFood < 0
+                gameOver: newFood < 0,
+                results: [...state.results,
+                    {
+                      type: "consume",
+                      goobers: state.population,
+                      consumed: action.payload.consume,
+                      newFood
+                    }
+                ]
             };
         case 'GAME_OVER':
             return {

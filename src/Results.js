@@ -16,6 +16,7 @@ function Results(props) {
     let message = JSON.stringify(result, null, 2)
     let extra = <div></div>
     let dead = false
+    let mini = false
     switch (result.type) {
         case "food":
             title = "Food!"
@@ -53,13 +54,18 @@ function Results(props) {
             title = "Saved!"
             message = 'These doctors prevented the following deaths!'
             extra = <GooberGroup goobers={result.savedGoobers} hideTooltip={true}></GooberGroup>
+        case 'consume':
+            title = "Food Consumed"
+            message = `This population of goobers ate ${result.consumed} food!`
+            mini = true
+            extra = <div className='title'>You have {result.newFood} remaining!</div>
     }
 
     return (
         <div className='results'>
             <div className="title">{title}</div>
             <div className="message">{message}</div>
-            {result.goobers && <GooberGroup goobers={result.goobers} dead={dead} hideTooltip={true} />}
+            {result.goobers && <GooberGroup goobers={result.goobers} dead={dead} mini={mini} hideTooltip={true} />}
             {extra}
             <button className="big" onClick={() => setResultsIndex(resultsIndex + 1)}>OK</button>
         </div>
