@@ -7,10 +7,6 @@ function PlayArea(props) {
     const { food, lastRoundGainedFood, hand, population, team, initialTeam, onAddGooberToTeam, onStayClick, onBreedClick, onExpeditionClick, onEndTurn } = props
     const stillInHand = hand.filter(x => !team.includes(x))
 
-    if (hand.length == 0 && team.length == 0) {
-        onEndTurn()
-    }
-
     return (
         <div>
             <div className="play-area" style={{
