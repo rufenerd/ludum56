@@ -50,6 +50,15 @@
 .dialogue>small {
   color: #888;
 }
+
+.textborder {
+  color: white;
+  text-shadow:
+    -3px -3px 0 #000,
+    3px -3px 0 #000,
+    -3px 3px 0 #000,
+    3px 3px 0 #000;
+}
   
 .game-over, .game-win {
   height: 100vh;
@@ -63,9 +72,17 @@
 .game-over>h1 {
   margin-bottom: 0px;
 }
+.game-over>p {
+  font-size: 20pt;
+}
 .game-over>button {
   font-size: 24pt;
   width: 16em;
+}
+
+.game-win>.goober-group {
+  background-color: #fff;
+  border: solid 5px #000;
 }
 
 .stats {

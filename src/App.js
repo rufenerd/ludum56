@@ -353,7 +353,7 @@ function App() {
       {scene === SCENE_TUTORIAL && <Tutorial onClick={onIntroClick} />}
       {scene === SCENE_NEW_DAY && <NewDay onFinish={() => setScene(SCENE_PLAY_AREA)} />}
       {scene === SCENE_GAME_OVER && <GameOver state={state} />}
-      {scene === SCENE_GAME_WIN && <GameWin />}
+      {scene === SCENE_GAME_WIN && <GameWin state={state} />}
       {scene === SCENE_PLAY_AREA && <PlayArea
         food={state.food}
         lastRoundGainedFood={state.lastRoundGainedFood}
