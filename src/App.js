@@ -86,7 +86,6 @@ function App() {
 
   const startTurn = (state, dispatch) => {
     if (state.gameWin) {
-      alert("WIN")
       setScene(SCENE_GAME_WIN)
       return
     }
@@ -303,7 +302,7 @@ function App() {
   }
 
   if (scene === SCENE_RESULTS && state.results.length === 0) {
-    setScene(SCENE_NEW_DAY)
+    startTurn(state, dispatch)
   }
 
   return (

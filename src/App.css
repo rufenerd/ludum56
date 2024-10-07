@@ -38,7 +38,7 @@
   color: #888;
 }
 
-.game-over {
+.game-over, .game-win {
   height: 100vh;
   display: flex;
   justify-content: center;

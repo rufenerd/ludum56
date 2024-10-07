@@ -86,7 +86,7 @@ function Map(props) {
                     </button>}
                 </div>
             </div>
-        </TransformWrapper>
+        </TransformWrapper >
     );
 }
 
