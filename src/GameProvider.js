@@ -1,5 +1,5 @@
 import React, { createContext, useReducer, useContext } from 'react';
-import { Goober } from './classes';
+import { Goober, Lugger, Protector } from './classes';
 import { zones } from './zones'
 
 const GameContext = createContext();
@@ -17,9 +17,9 @@ const initialState = {
         new Goober("Malx"),
         new Goober("Weebie"),
         new Goober("Toogie"),
-        new Goober("Ribnar"),
-        new Goober("Ilva"),
-        new Goober("Darf"),
+        new Lugger("Ribnar"),
+        new Lugger("Ilva"),
+        new Protector("Darf"),
     ],
     food: 50,
     roundGainedFood: 0,
@@ -61,12 +61,12 @@ const gameReducer = (state, action) => {
                 results: newFood < 0
                     ? state.results
                     : [...state.results,
-                        {
+                    {
                         type: "consume",
                         goobers: state.population,
                         consumed,
                         newFood
-                        }
+                    }
                     ]
             };
         case 'GAME_OVER':
