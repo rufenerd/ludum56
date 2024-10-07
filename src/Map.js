@@ -50,9 +50,9 @@ function Map(props) {
 
     return (
         <TransformWrapper
-            initialScale={0.43}
-            initialPositionX={-3400}
-            initialPositionY={50}
+            initialScale={0.5}
+            initialPositionX={-3700}
+            initialPositionY={30}
             minScale={0.1}
             maxScale={2}
             wheel={{ step: 0.1 }}
