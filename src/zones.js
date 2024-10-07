@@ -242,9 +242,9 @@ export const zones = [
     },
     {
         name: "Gumball Bowl",
-        risk: 0,
+        risk: 1,
         bounty: 1,
-        remaining: 500,
+        remaining: 50,
         unlocked: true,
         room: "office",
         x: 3520,
