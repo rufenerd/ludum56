@@ -1,6 +1,7 @@
 {
   "name": "ludum",
   "version": "0.1.0",
+  "homepage": ".",
   "private": true,
   "dependencies": {
     "@panzoom/panzoom": "^4.5.1",
