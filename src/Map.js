@@ -5,18 +5,19 @@ import React, { useState } from 'react';
 import GooberGroup from './GooberGroup';
 
 function Map(props) {
-    const { zones, onZoneClick, unlockedRooms, team } = props
-    const [showConfirmation, setShowConfirmation] = useState(false);
+    const { zones, onZoneClick, onAdventureCancel, unlockedRooms, team } = props
     const [selectedZone, setSelectedZone] = useState(null);
 
     const onZoneCircleClick = (zone) => {
         setSelectedZone(zone)
-        setShowConfirmation(true)
     }
 
     const onCancelClick = () => {
-        setSelectedZone(null)
-        setShowConfirmation(false)
+        if (selectedZone) {
+            setSelectedZone(null)
+        } else {
+            onAdventureCancel()
+        }
     }
 
     return (
@@ -50,18 +51,21 @@ function Map(props) {
                     </div>
                 </div >
             </TransformComponent>
-            {showConfirmation && <div className='expedition-confirmation-bar'>
-                <GooberGroup goobers={team} bounce={true} />
+            <div className='expedition-confirmation-bar'>
+                <div className="adventurers">
+                    Adventurers
+                    <GooberGroup goobers={team} bounce={true} />
+                </div>
                 <div className='expedition-confirmation'>
-                    <div>Send these Goobers to {selectedZone.name}?</div>
+                    {selectedZone && <div>Send these Goobers to {selectedZone.name}?</div>}
                     <button onClick={onCancelClick}>
                         Cancel
                     </button>
-                    <button onClick={() => onZoneClick(selectedZone)}>
+                    {selectedZone && <button onClick={() => onZoneClick(selectedZone)}>
                         Confirm
-                    </button>
+                    </button>}
                 </div>
-            </div>}
+            </div>
         </TransformWrapper>
     );
 }

@@ -201,6 +201,10 @@ function App() {
     })
   }
 
+  const onAdventureCancel = () => {
+    setShowMap(false)
+  }
+
   const expedition = (state, dispatch, zone) => {
     setShowMap(false)
     const { team } = state
@@ -313,7 +317,7 @@ function App() {
         onExpeditionClick={toggleShowMap}
         onEndTurn={() => endTurn(state, dispatch)}
       />}
-      {showMap && <Map zones={state.zones} unlockedRooms={state.unlockedRooms} team={state.team} onZoneClick={(zone) => expedition(state, dispatch, zone)} />}
+      {showMap && <Map zones={state.zones} unlockedRooms={state.unlockedRooms} team={state.team} onAdventureCancel={onAdventureCancel} onZoneClick={(zone) => expedition(state, dispatch, zone)} />}
       {showResults && state.results.length > 0 && <Results results={state.results} onFinish={onResultsFinish} />}
     </div>)
 }
