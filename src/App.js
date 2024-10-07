@@ -16,22 +16,21 @@ import { names } from './names'
 const START_HAND_SIZE = 5
 const DIFFICULTY = 0.2
 
+const SCENE_INTRO = "intro"
+const SCENE_GAME_OVER = "gameover"
+const SCENE_PLAY_AREA = "playarea"
+const SCENE_MAP_SELECT = "mapselect"
+const SCENE_RESULTS = "results"
+
 function App() {
   const { state, dispatch } = useGame();
-  const [showIntro, setShowIntro] = useState(true);
-  const [showMap, setShowMap] = useState(false);
-  const [showResults, setShowResults] = useState(false);
+  const [ scene, setScene ] = useState(SCENE_INTRO);
 
   document.addEventListener('click', function (e) {
     console.log(e.pageX - 50, e.pageY - 50);
   });
 
-  const toggleShowMap = () => {
-    setShowMap(!showMap)
-  }
-
   const onResultsFinish = () => {
-    setShowResults(false)
     startTurn(state, dispatch)
   }
 
@@ -40,7 +39,6 @@ function App() {
     dispatch({
       type: "GAME_START"
     })
-    setShowIntro(false)
   }
 
   const foodRequired = (state) => {
@@ -63,14 +61,14 @@ function App() {
 
   const endTurn = (state, dispatch) => {
     if (state.results.length > 0) {
-      setShowResults(true)
+      setScene(SCENE_RESULTS)
     } else {
       onResultsFinish()
     }
   }
 
   const startTurn = (state, dispatch) => {
-    setShowMap(false)
+    setScene(SCENE_PLAY_AREA)
     const foodRequirement = foodRequired(state)
 
     dispatch({
@@ -202,11 +200,11 @@ function App() {
   }
 
   const onAdventureCancel = () => {
-    setShowMap(false)
+    setScene(SCENE_PLAY_AREA)
   }
 
   const expedition = (state, dispatch, zone) => {
-    setShowMap(false)
+    setScene(SCENE_PLAY_AREA)
     const { team } = state
 
     const risk = DIFFICULTY * zone.risk / team.reduce((m, a) => m * a.protect, 1)
@@ -281,10 +279,9 @@ function App() {
         targetZone: zone
       }
     })
-    toggleShowMap()
   }
 
-  if (showIntro) {
+  if (scene === SCENE_INTRO) {
     return (
       <div className="App">
         <Intro onClick={onIntroClick} />
@@ -292,7 +289,7 @@ function App() {
     );
   }
 
-  if (state.gameOver) {
+  if (scene == SCENE_GAME_OVER) {
     return (
       <div className="App">
         <GameOver />
@@ -300,11 +297,9 @@ function App() {
     );
   }
 
-  const hidePlayArea = showMap || (showResults && state.results.length > 0)
-
   return (
     <div className="App">
-      {!hidePlayArea && <PlayArea
+      {scene === SCENE_PLAY_AREA && <PlayArea
         food={state.food}
         lastRoundGainedFood={state.lastRoundGainedFood}
         hand={state.hand}
@@ -314,11 +309,11 @@ function App() {
         onAddGooberToTeam={(x) => toggleTeamMember(state, dispatch, x)}
         onStayClick={() => stay(state, dispatch)}
         onBreedClick={() => breed(state, dispatch)}
-        onExpeditionClick={toggleShowMap}
+        onExpeditionClick={() => setScene(SCENE_MAP_SELECT)}
         onEndTurn={() => endTurn(state, dispatch)}
       />}
-      {showMap && <Map zones={state.zones} unlockedRooms={state.unlockedRooms} team={state.team} onAdventureCancel={onAdventureCancel} onZoneClick={(zone) => expedition(state, dispatch, zone)} />}
-      {showResults && state.results.length > 0 && <Results results={state.results} onFinish={onResultsFinish} />}
+      {scene === SCENE_MAP_SELECT && <Map zones={state.zones} unlockedRooms={state.unlockedRooms} team={state.team} onAdventureCancel={onAdventureCancel} onZoneClick={(zone) => expedition(state, dispatch, zone)} />}
+      {scene === SCENE_RESULTS && state.results.length > 0 && <Results results={state.results} onFinish={onResultsFinish} />}
     </div>)
 }
 
