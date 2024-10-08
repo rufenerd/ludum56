@@ -304,7 +304,7 @@ export const zones = [
         unlocked: false,
         room: "lobby",
         canUnlock: (team) => team.length >= 5,
-        requires: ["goober", "goober", "goober", "goober", "goober"],
+        requiresText: "Requires: 5+ of any type of goober",
         x: 690,
         y: 3180,
     },

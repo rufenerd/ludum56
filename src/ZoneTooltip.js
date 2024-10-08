@@ -21,7 +21,7 @@ function ZoneTooltip(props) {
             <div className="zone-title">{zone.name}</div>
             <div>{`Risk level: ${zone.risk}`}</div>
             {hasRequirements && <div>Requires: {zone.requires.join(" and ")}</div>}
-            {hasRequirements && <GooberGroup goobers={exampleRequiresGoobers} mini={true} hideTooltip={true} />}
+            {(zone.requiresText || hasRequirements) && (zone.requiresText || <GooberGroup goobers={exampleRequiresGoobers} mini={true} hideTooltip={true} />)}
         </div>)
     }
     return (
