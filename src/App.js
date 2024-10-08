@@ -121,6 +121,7 @@ function App() {
   const startTurn = (state, dispatch) => {
     if (state.gameWin) {
       setScene(SCENE_GAME_WIN)
+      localStorage.removeItem("gooberGameState")
       return
     }
 
