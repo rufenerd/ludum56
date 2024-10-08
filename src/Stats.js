@@ -12,7 +12,7 @@ function Stats(props) {
                 FOOD DEMAND: {foodDemand}
             </div>
             {props.lastRoundGainedFood !== null && < div >
-                CHANGE: {props.lastRoundGainedFood - foodDemand}
+                FOOD CHANGE: {props.lastRoundGainedFood - foodDemand}
             </div>}
         </div >
     );
