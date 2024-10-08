@@ -226,7 +226,13 @@ function App() {
           }
         }
       } else {
-        offspring = [new Goober(randomName())]
+        dispatch({
+          type: "FAILED_BIRTH",
+          payload: {
+            goobers: team
+          }
+        })
+        return
       }
     } else {
       if (containsExactly(team, ["goober", "goober"])) {
