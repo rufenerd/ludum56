@@ -111,9 +111,11 @@ function App() {
   const endTurn = (state, dispatch) => {
     executeQueue()
 
-    dispatch({
-      type: "CONSUME",
-    })
+    if (!state.gameWin) {
+      dispatch({
+        type: "CONSUME",
+      })
+    }
 
     setScene(SCENE_RESULTS)
   }
