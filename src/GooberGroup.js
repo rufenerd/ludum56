@@ -1,11 +1,12 @@
 import GooberTooltip from "./GooberTooltip"
 
 function GooberGroup(props) {
+    const mini = props.mini || props.goobers.length > 10
     let className = "goober tooltip-container"
     if (props.onClick) {
         className += " selectable"
     }
-    if (props.mini) {
+    if (mini) {
         className += " mini"
     }
     if (props.bounce) {
@@ -24,9 +25,9 @@ function GooberGroup(props) {
                     className={className}
                     key={x.name + (!props.bounce ? Math.random() : '')}
                     onClick={() => props.onClick && props.onClick(x)}>
-                    {!props.hideTooltip && <GooberTooltip goober={x} showDescription={!props.mini} />}
+                    {!props.hideTooltip && <GooberTooltip goober={x} showDescription={!mini} />}
                     <img className={`goober-image ${props.dead ? "dead" : ''}`} src={`assets/${x.klass}.png`} alt="goober" />
-                    {!props.mini && <div>{x.name}</div>}
+                    {!mini && <div>{x.name}</div>}
                 </div>
             ))
             }
