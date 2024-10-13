@@ -1,3 +1,13 @@
+export const canUnlock = (zone, team) => {
+    if (zone.unlocked) {
+        return true
+    }
+
+    const meetsMinRequired = !zone.minRequired || team.length >= zone.minRequired
+    const meetsKlassRequiements = !zone.requires || zone.requires.every(k => team.map(x => x.klass).includes(k))
+    return meetsMinRequired && meetsKlassRequiements
+}
+
 export const zones = [
     {
         name: "Cheep-o Animal Feed",
@@ -15,7 +25,6 @@ export const zones = [
         bounty: 2,
         remaining: 40,
         unlocked: false,
-        canUnlock: (team) => team.map(x => x.klass).includes("opener"),
         requires: ["opener"],
         room: "start",
         x: 9052,
@@ -38,7 +47,6 @@ export const zones = [
         bounty: 1,
         remaining: 0,
         unlocked: false,
-        canUnlock: (team) => team.map(x => x.klass).includes("explorer"),
         room: "start",
         unlocksRoom: "breakroom",
         x: 8873,
@@ -51,7 +59,6 @@ export const zones = [
         bounty: 1,
         remaining: 0,
         unlocked: false,
-        canUnlock: (team) => team.map(x => x.klass).includes("explorer"),
         room: "start",
         unlocksRoom: "hall",
         x: 8484,
@@ -104,7 +111,6 @@ export const zones = [
         bounty: 1,
         remaining: 0,
         unlocked: false,
-        canUnlock: (team) => team.map(x => x.klass).includes("explorer"),
         requires: ["explorer"],
         unlocksRoom: "hall",
         room: "breakroom",
@@ -209,7 +215,6 @@ export const zones = [
         unlocked: false,
         unlocksRoom: "breakroom",
         room: "hall",
-        canUnlock: (team) => team.map(x => x.klass).includes("explorer"),
         requires: ["explorer"],
         x: 7580,
         y: 2000,
@@ -220,7 +225,6 @@ export const zones = [
         bounty: 1,
         remaining: 0,
         unlocked: false,
-        canUnlock: (team) => team.map(x => x.klass).includes("explorer"),
         requires: ["explorer"],
         unlocksRoom: "kitchen",
         room: "hall",
@@ -233,7 +237,6 @@ export const zones = [
         bounty: 1,
         remaining: 0,
         unlocked: false,
-        canUnlock: (team) => team.map(x => x.klass).includes("opener"),
         requires: ["opener"],
         unlocksRoom: "office",
         room: "hall",
@@ -246,7 +249,6 @@ export const zones = [
         bounty: 1,
         remaining: 0,
         unlocked: false,
-        canUnlock: (team) => team.map(x => x.klass).includes("explorer") && team.map(x => x.klass).includes("opener"),
         requires: ["explorer", "opener"],
         unlocksRoom: "hall2",
         room: "office",
@@ -280,7 +282,6 @@ export const zones = [
         remaining: 0,
         unlocked: false,
         unlocksRoom: "lobby",
-        canUnlock: (team) => team.map(x => x.klass).includes("opener"),
         requires: ["opener"],
         room: "office",
         x: 2997,
@@ -303,7 +304,7 @@ export const zones = [
         remaining: 0,
         unlocked: false,
         room: "lobby",
-        canUnlock: (team) => team.length >= 5,
+        minRequired: 5,
         requiresText: "Requires: 5+ of any type of goober",
         x: 690,
         y: 3180,
@@ -315,7 +316,6 @@ export const zones = [
         remaining: 0,
         unlocked: false,
         unlocksRoom: "experiment",
-        canUnlock: (team) => team.map(x => x.klass).includes("explorer"),
         requires: ["explorer"],
         room: "hall2",
         x: 7227,
@@ -387,7 +387,6 @@ export const zones = [
         bounty: 5,
         remaining: 500,
         unlocked: false,
-        canUnlock: (team) => team.map(x => x.klass).includes("opener"),
         requires: ["opener"],
         room: "experiment",
         x: 9827,

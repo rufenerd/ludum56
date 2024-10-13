@@ -13,6 +13,7 @@ import Intro from './Intro';
 import PlayArea from './PlayArea';
 import Tutorial from './Tutorial';
 import { makeOneOfKlass, Goober, Hungry, Lugger, Immortal, Protector, Stud, Explorer, Doctor, Scavenger, Bozo, Asexual, Buddy, Recruiter, Opener, Replicator, weightedRandomClass } from './classes';
+import { canUnlock } from './zones';
 import { names } from './names'
 import Dialogue from './Dialogue';
 import NewDay from './NewDay';
@@ -340,7 +341,7 @@ function App() {
 
     let unlockedZone = null
     if (!zone.unlocked) {
-      if (zone.canUnlock && zone.canUnlock(alive)) {
+      if (canUnlock(zone, alive)) {
         unlockedZone = zone
       } else {
         dispatch({

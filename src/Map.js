@@ -1,11 +1,12 @@
 import { TransformWrapper, TransformComponent, useControls, useTransformEffect } from 'react-zoom-pan-pinch'
 import ZoneTooltip from './ZoneTooltip'
 import { rooms } from './rooms';
+import { canUnlock } from './zones';
 import React, { useState } from 'react';
 import GooberGroup from './GooberGroup';
 
 function getZoneColor(zone, team) {
-    if (!zone.unlocked && !(zone.canUnlock && zone.canUnlock(team))) {
+    if (!zone.unlocked && !canUnlock(zone, team)) {
         return "#cfcfcf"
     }
 
